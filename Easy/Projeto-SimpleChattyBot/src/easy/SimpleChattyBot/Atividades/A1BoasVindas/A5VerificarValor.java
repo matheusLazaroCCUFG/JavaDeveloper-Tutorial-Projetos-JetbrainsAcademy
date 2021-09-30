@@ -12,5 +12,5 @@ public class A5VerificarValor {
         }else{
             System.out.println(false);
         }
-    }//kkk
+    }//kk
 }
