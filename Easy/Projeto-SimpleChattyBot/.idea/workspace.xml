@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c53582b0-13fa-4136-8ca7-4dd014e2ebf9" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JavaDeveloper-JetbrainsAcademy3.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaDeveloper-JetbrainsAcademy3/Teste.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaDeveloper-JetbrainsAcademy3/easy/SimpleChattyBot/Atividades/A1BoasVindas/A1EsquilosENozes.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaDeveloper-JetbrainsAcademy3/easy/SimpleChattyBot/Atividades/A1BoasVindas/A2SubstituindoAporB.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaDeveloper-JetbrainsAcademy3/easy/SimpleChattyBot/Atividades/A1BoasVindas/A3ProdutoNumerosDeAaB.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaDeveloper-JetbrainsAcademy3/easy/SimpleChattyBot/Atividades/A1BoasVindas/A4OExercitoDeUnidades.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/JavaDeveloper-JetbrainsAcademy3/easy/SimpleChattyBot/Atividades/A1BoasVindas/A5VerificarValor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Teste.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/easy/SimpleChattyBot/Atividades/A1BoasVindas/A1EsquilosENozes.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/easy/SimpleChattyBot/Atividades/A1BoasVindas/A2SubstituindoAporB.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/easy/SimpleChattyBot/Atividades/A1BoasVindas/A3ProdutoNumerosDeAaB.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/easy/SimpleChattyBot/Atividades/A1BoasVindas/A4OExercitoDeUnidades.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/easy/SimpleChattyBot/Atividades/A1BoasVindas/A5VerificarValor.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1yv2RYtzXF46Ltc2zmFwfsKLeR3" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c53582b0-13fa-4136-8ca7-4dd014e2ebf9" name="Changes" comment="" />
+      <created>1633117739802</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1633117739802</updated>
+    </task>
+    <servers />
+  </component>
+</project>
