@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c53582b0-13fa-4136-8ca7-4dd014e2ebf9" name="Changes" comment="commit">
-      <change afterPath="$PROJECT_DIR$/src/SimpleChattyBot/Atividades/A2ConvencoesDeEstiloDeCodificacao/READEM.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SimpleChattyBot/BoasVindas/SimpleBot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/SimpleChattyBot/BoasVindas/SimpleBot.java" afterDir="false" />
-    </list>
+    <list default="true" id="c53582b0-13fa-4136-8ca7-4dd014e2ebf9" name="Changes" comment="commit" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,6 +32,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../.." />
   </component>
   <component name="RunManager">
     <configuration name="SimpleBot" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -87,7 +84,21 @@
       <option name="project" value="LOCAL" />
       <updated>1633123419899</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="commit">
+      <created>1633125877040</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1633125877041</updated>
+    </task>
+    <task id="LOCAL-00005" summary="commit">
+      <created>1633126109354</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1633126109354</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
