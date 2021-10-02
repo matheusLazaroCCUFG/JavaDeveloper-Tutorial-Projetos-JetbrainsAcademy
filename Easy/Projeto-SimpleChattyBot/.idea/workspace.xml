@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c53582b0-13fa-4136-8ca7-4dd014e2ebf9" name="Changes" comment="commit" />
+    <list default="true" id="c53582b0-13fa-4136-8ca7-4dd014e2ebf9" name="Changes" comment="commit">
+      <change afterPath="$PROJECT_DIR$/src/SimpleChattyBot/Etapa2ImprimaSeuNome/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SimpleChattyBot/Etapa2ImprimaSeuNome/SimpleBot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,7 +40,20 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.SimpleBot (1)">
+    <configuration name="SimpleBot (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="SimpleChattyBot.Etapa2ImprimaSeuNome.SimpleBot" />
+      <module name="Projeto-SimpleChattyBot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="SimpleChattyBot.Etapa2ImprimaSeuNome.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="SimpleBot" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="SimpleChattyBot.BoasVindas.SimpleBot" />
       <module name="Projeto-SimpleChattyBot" />
@@ -63,6 +80,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.SimpleBot (1)" />
         <item itemvalue="Application.SimpleBot" />
       </list>
     </recent_temporary>
@@ -75,7 +93,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1633117739802</updated>
-      <workItem from="1633139925163" duration="846000" />
+      <workItem from="1633139925163" duration="1871000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1633121926711</created>
@@ -154,7 +172,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633140418394</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="commit">
+      <created>1633140812173</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1633140812173</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
