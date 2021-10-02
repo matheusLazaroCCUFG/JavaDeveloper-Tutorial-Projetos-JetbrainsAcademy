@@ -1,5 +1,5 @@
 # Java Developer - Jetbrains Academy
-###############################################################################
+#####<hr>
 ## Anotações importantes
 ### Convenções de código Oracle
 #### O número de espaços
