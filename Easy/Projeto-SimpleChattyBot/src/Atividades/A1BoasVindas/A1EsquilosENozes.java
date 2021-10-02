@@ -1,4 +1,4 @@
-package easy.SimpleChattyBot.Atividades.A1BoasVindas;
+package Atividades.A1BoasVindas;
 
 import java.util.Scanner;
 

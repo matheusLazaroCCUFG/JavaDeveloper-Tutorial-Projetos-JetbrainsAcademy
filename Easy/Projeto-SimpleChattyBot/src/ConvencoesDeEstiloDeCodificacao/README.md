@@ -21,4 +21,3 @@ public class NumberOfSpacesExample {
 * Comprimento máximo de uma linha
   * Evitar linhas com mais de 80 caracteres
     * Util quando laptops sao usados.
-* 

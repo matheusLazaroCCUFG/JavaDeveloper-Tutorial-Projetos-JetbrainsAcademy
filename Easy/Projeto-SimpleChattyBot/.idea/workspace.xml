@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c53582b0-13fa-4136-8ca7-4dd014e2ebf9" name="Changes" comment="commit" />
+    <list default="true" id="c53582b0-13fa-4136-8ca7-4dd014e2ebf9" name="Changes" comment="commit">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SimpleChattyBot/Atividades/A1BoasVindas/A1EsquilosENozes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Atividades/A1BoasVindas/A1EsquilosENozes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SimpleChattyBot/Atividades/A1BoasVindas/A2SubstituindoAporB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Atividades/A1BoasVindas/A2SubstituindoAporB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SimpleChattyBot/Atividades/A1BoasVindas/A3ProdutoNumerosDeAaB.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Atividades/A1BoasVindas/A3ProdutoNumerosDeAaB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SimpleChattyBot/Atividades/A1BoasVindas/A4OExercitoDeUnidades.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Atividades/A1BoasVindas/A4OExercitoDeUnidades.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SimpleChattyBot/Atividades/A1BoasVindas/A5VerificarValor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Atividades/A1BoasVindas/A5VerificarValor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/SimpleChattyBot/Atividades/A2ConvencoesDeEstiloDeCodificacao/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/ConvencoesDeEstiloDeCodificacao/README.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,7 +40,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../.." />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager">
     <configuration name="SimpleBot" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -111,6 +119,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="commit" />
