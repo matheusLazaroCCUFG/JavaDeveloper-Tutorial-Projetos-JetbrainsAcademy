@@ -2,6 +2,7 @@
 # <hr>
 ## Anotações importantes
 ### Convenções de código Oracle
+https://www.oracle.com/technetwork/java/codeconventions-150003.pdf
 #### O número de espaços
 * A primeira convenção é usar 4 espaços como unidade de indentação em todo o código do programa.
 #### A localização das chaves
