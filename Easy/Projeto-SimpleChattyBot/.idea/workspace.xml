@@ -46,7 +46,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager" selected="Application.SimpleBot (2)">
+  <component name="RunManager" selected="Application.SimpleBot (4)">
     <configuration name="SimpleBot (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="SimpleChattyBot.Etapa2ImprimaSeuNome.SimpleBot" />
       <module name="Projeto-SimpleChattyBot" />
@@ -73,6 +73,32 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="SimpleBot (3)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="SimpleChattyBot.Etapa4AprendizagemDeNumeros.SimpleBot" />
+      <module name="Projeto-SimpleChattyBot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="SimpleChattyBot.Etapa4AprendizagemDeNumeros.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SimpleBot (4)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="SimpleChattyBot.Etapa5MultiplaEscolha.SimpleBot" />
+      <module name="Projeto-SimpleChattyBot" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="SimpleChattyBot.Etapa5MultiplaEscolha.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="SimpleBot" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="SimpleChattyBot.BoasVindas.SimpleBot" />
       <module name="Projeto-SimpleChattyBot" />
@@ -86,19 +112,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.SimpleBot (4)" />
+        <item itemvalue="Application.SimpleBot (3)" />
         <item itemvalue="Application.SimpleBot (2)" />
         <item itemvalue="Application.SimpleBot (1)" />
         <item itemvalue="Application.SimpleBot" />
@@ -114,6 +144,7 @@
       <option name="presentableId" value="Default" />
       <updated>1633117739802</updated>
       <workItem from="1633139925163" duration="4076000" />
+      <workItem from="1633316103438" duration="4376000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1633121926711</created>
@@ -227,5 +258,31 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="commit" />
     <option name="LAST_COMMIT_MESSAGE" value="commit" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="462" y="105" key="FileChooserDialogImpl" timestamp="1633320684338">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="462" y="105" key="FileChooserDialogImpl/0.0.1366.728/1366.0.1366.728@0.0.1366.728" timestamp="1633320684338" />
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom" timestamp="1633320694576">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1366.728@0.0.1366.728" timestamp="1633320694576" />
+    <state width="1323" height="179" key="GridCell.Tab.0.center" timestamp="1633320694575">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1366.728@0.0.1366.728" timestamp="1633320694575" />
+    <state width="1323" height="179" key="GridCell.Tab.0.left" timestamp="1633320694575">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1366.728@0.0.1366.728" timestamp="1633320694575" />
+    <state width="1323" height="179" key="GridCell.Tab.0.right" timestamp="1633320694576">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1323" height="179" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1366.728@0.0.1366.728" timestamp="1633320694576" />
+    <state x="65" y="15" key="new project wizard" timestamp="1633320685426">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="65" y="15" key="new project wizard/0.0.1366.728/1366.0.1366.728@0.0.1366.728" timestamp="1633320685426" />
   </component>
 </project>
