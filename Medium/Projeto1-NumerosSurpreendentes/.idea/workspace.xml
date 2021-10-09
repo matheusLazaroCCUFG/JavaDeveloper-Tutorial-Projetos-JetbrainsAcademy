@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8adf4640-09a6-4c8f-8b91-fb71c06c71bc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Etapa2NumerosDuck/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Etapa2NumerosDuck/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="8adf4640-09a6-4c8f-8b91-fb71c06c71bc" name="Default Changelist" comment="commit">
+      <change beforePath="$PROJECT_DIR$/out/production/Projeto1-NumerosSurpreendentes/Etapa1NumerosBuzz/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Projeto1-NumerosSurpreendentes/Etapa1NumerosBuzz/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,8 +96,16 @@
       <option name="presentableId" value="Default" />
       <updated>1633320695828</updated>
       <workItem from="1633320697140" duration="3944000" />
-      <workItem from="1633811430101" duration="2446000" />
+      <workItem from="1633811430101" duration="3603000" />
     </task>
+    <task id="LOCAL-00001" summary="commit">
+      <created>1633814088081</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1633814088081</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -114,5 +121,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit" />
   </component>
 </project>
