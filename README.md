@@ -64,7 +64,7 @@ switch (action) {
 }
 ```
 * Como você pode ver, esse código é bem estruturado e mais fácil de ler do que a instrução condicional igual.
-#### <br>
+#### <hr>
 #### A classe de utilitário Arrays
 * Se você precisa processar matrizes, pode importar e usar métodos padrão agrupados na classe de utilitário ```Arrays```.
   * converter uma matriz em string usando ```Arrays.toString(array)``` e depois imprimi-la:
