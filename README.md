@@ -41,3 +41,26 @@ System.out.println(sum);
 ```
 * Se a sequência de entrada for ```1 2 3```, o código será impresso ```6```; se for ```5 18 9 23 4```, o código será impresso ```59```.
 * Como você vê, o ```while``` loop pode ser usado para resolver diferentes tarefas interessantes em seus programas.
+#### <hr>
+#### switch, case e default
+* <strong>A instrução switch</strong> fornece uma maneira de escolher entre vários casos com base no valor de uma única variável (não uma expressão!). A variável pode ser um número inteiro, caractere, string ou enumeração. Os dois últimos tipos serão estudados posteriormente.
+* Usando a instrução switch, o código anterior será semelhante a este:
+```java 
+switch (action) {
+    case 1:
+        System.out.println("Starting a new game...");
+        break;
+    case 2:
+        System.out.println("Loading a saved game");
+        break;
+    case 3:
+        System.out.println("Displaying help...");
+        break;
+    case 4:
+        System.out.println("Exiting...");
+        break;
+    default:
+        System.out.println("Unsuitable action, please, try again");
+}
+```
+* Como você pode ver, esse código é bem estruturado e mais fácil de ler do que a instrução condicional igual.

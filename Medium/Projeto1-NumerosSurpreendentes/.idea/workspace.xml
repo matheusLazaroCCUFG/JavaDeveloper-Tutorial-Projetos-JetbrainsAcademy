@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8adf4640-09a6-4c8f-8b91-fb71c06c71bc" name="Default Changelist" comment="commit">
-      <change afterPath="$PROJECT_DIR$/src/Atividades/Atividade2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Atividades/Atividade3.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Atividades/Atividade4.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Atividades/Atividade1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Atividades/Atividade1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +41,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager" selected="Application.Atividade3">
+  <component name="RunManager" selected="Application.Atividade4">
     <configuration name="Atividade1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Atividades.Atividade1" />
       <module name="Projeto1-NumerosSurpreendentes" />
@@ -82,12 +81,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Etapa2NumerosDuck.Main" />
+    <configuration name="Atividade4" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Atividades.Atividade4" />
       <module name="Projeto1-NumerosSurpreendentes" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Etapa2NumerosDuck.*" />
+          <option name="PATTERN" value="Atividades.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -95,12 +94,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Etapa1NumerosBuzz.Main" />
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Etapa2NumerosDuck.Main" />
       <module name="Projeto1-NumerosSurpreendentes" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Etapa1NumerosBuzz.*" />
+          <option name="PATTERN" value="Etapa2NumerosDuck.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -121,11 +120,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Atividade4" />
         <item itemvalue="Application.Atividade3" />
         <item itemvalue="Application.Atividade2" />
         <item itemvalue="Application.Atividade1" />
         <item itemvalue="Application.Main (1)" />
-        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -139,7 +138,7 @@
       <updated>1633320695828</updated>
       <workItem from="1633320697140" duration="3944000" />
       <workItem from="1633811430101" duration="5312000" />
-      <workItem from="1633830271531" duration="4335000" />
+      <workItem from="1633830271531" duration="5655000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1633814088081</created>
@@ -162,7 +161,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633816633707</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="commit">
+      <created>1633834761930</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1633834761931</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
