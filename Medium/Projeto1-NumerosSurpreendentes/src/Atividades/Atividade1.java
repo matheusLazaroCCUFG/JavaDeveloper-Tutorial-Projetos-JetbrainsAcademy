@@ -19,7 +19,7 @@ public class Atividade1 {
     public static int verifica(long m) {
         int n = 0;
         while (true) {
-            if (fatorial(n) > m ) {
+            if (fatorial(n) > m) {
                 break;
             }
             n++;
