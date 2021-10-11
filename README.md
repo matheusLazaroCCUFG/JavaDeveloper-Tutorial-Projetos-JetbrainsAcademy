@@ -103,6 +103,10 @@ switch (action) {
     ```
 * Obviamente, a ```Arrays``` classe contém muitos outros métodos úteis, incluindo cópia de array, pesquisa em arrays e assim por diante. Para detalhes, veja : https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html
 #### <hr>
+
+
+
+#### <hr>
 #### <hr>
 #### <hr>
 ### POO - Programação Orientada a Objetos 
@@ -292,3 +296,135 @@ Car.convertToMilesPerHour(4.5);
 * Para implementar uma interface, a palavra- chave ```implements``` é usada.
 * Ao contrário de uma classe, uma interface pode estender várias interfaces.
 * Uma classe pode implementar várias interfaces.
+#### <hr><hr><hr>
+### interface Comparable
+* Ao trabalhar com dados, você provavelmente precisará fazer o pedido de uma maneira conveniente. Por exemplo, você pode ter que colocar os números em ordem crescente, agrupar as linhas em ordem alfabética e organizar tudo com que trabalha por data, preço ou outras características personalizadas.
+* Em Java, é possível implementar vários algoritmos de classificação para qualquer tipo de dados. E se você tiver que trabalhar com tipos personalizados, classificar os elementos de uma coleção e tentar comparar objetos que não são diretamente comparáveis? É aí que a ```Comparable``` interface se torna útil. Neste tópico, aprenderemos tudo sobre essa interface e seu ```compareTo()``` método.
+#### Preparando para comparar
+Vejamos um exemplo. Criamos uma lista de ```Integer```'s, adicionamos alguns elementos e os classificamos.
+```java 
+public static void main(String[] args) {
+    List<Integer> list = new ArrayList<>();
+    list.add(55);
+    list.add(13);
+    list.add(47);
+
+    Collections.sort(list);
+    System.out.println(list);
+}
+```
+* Conforme esperado, obtemos:
+```java 
+[13, 47, 55]
+```
+* Agora, vamos criar uma classe simples ```Car``` onde queremos classificar os carros por seus números.
+```java 
+public class Car {
+    private int number;
+    private String model;
+    private String color;
+    private int weight;
+
+    // constructor
+
+    // getters, setters
+}
+```
+* Agora tentamos escrever algum código para o ```main``` método, criar nossa coleção e classificá-la usando o ```Collections.sort()``` método.
+```java 
+public static void main(String[] args) {
+    List<Car> cars = new ArrayList<>();
+    Car car1 = new Car(876, "BMW", "white", 1400);
+    Car car2 = new Car(345, "Mercedes", "black", 2000);
+    Car car3 = new Car(470, "Volvo", "blue", 1800);
+    cars.add(car1);
+    cars.add(car2);
+    cars.add(car3);
+
+    Collections.sort(cars);
+    System.out.println(cars);
+}
+```
+* Como resultado, obtemos um erro de compilação:
+```
+The method sort(List<T>) in the type Collections 
+  is not applicable for the arguments (ArrayList<Car>)
+```
+* A razão para isso é que classes padrão como ```Integer```, ```String``` e assim por diante, implementam uma interface especial, para que possamos compará-las sem problemas. Quanto à nossa classe personalizada ```Car```, não funciona assim. Vamos ver como podemos consertar isso.
+#### Interface Comparable
+* ```Comparable``` fornece o ```compareTo()``` método que permite comparar um objeto com outros objetos do mesmo tipo. Também é importante cumprir as condições: todos os objetos podem ser comparados a outros objetos do mesmo tipo da forma mais utilizada, o que significa que ```compareTo()``` devem ser consistentes com o ```equals``` método. Uma sequência de dados tem a <strong>ordem natural</strong>, se para cada 2 elementos ae b, onde aestá localizado à esquerda de b, a condição for verdadeira: ```a.compareTo(b) <= 0```
+* É fácil entender como comparar um ```Integer``` ou ```String``` porque eles já implementam a ```Comparable``` interface, mas como comparamos objetos do nosso tipo personalizado? Podemos fazer isso de maneiras diferentes dependendo da tarefa. Podemos compará-los por qualquer campo único ou vários campos.
+* Para podermos classificar, devemos reescrever nossa ```Car``` classe usando a ```Comparable``` interface. Por exemplo, podemos comparar nossos ```Car``` objetos por seus ```number```. Veja como você pode implementá-lo:
+```java 
+public class Car implements Comparable<Car> {
+
+    private int number;
+    private String model;
+    private String color;
+    private int weight;
+
+    // constructor
+
+    // getters, setters
+
+    @Override
+    public int compareTo(Car otherCar) {
+        return Integer.valueOf(getNumber()).compareTo(otherCar.getNumber());
+    }
+
+}
+```
+* Agora, se executarmos nosso novo código, obteremos o resultado correto.
+#### Implemtnendo o metodo compareTo
+* Vamos falar sobre o ```compareTo()``` método. Ele compara o objeto atual com o objeto enviado como parâmetro. Para implementá-lo corretamente, precisamos ter certeza de que o método retorna:
+  * Um número inteiro positivo (por exemplo, 1), se o objeto atual for maior;
+  * Um número inteiro negativo (por exemplo, -1), se o objeto atual for menor;
+  * Zero, se forem iguais.
+* Abaixo você pode ver um exemplo de como o ```compareTo()``` método é implementado na ```Integer``` classe.
+```java 
+@Override
+public int compareTo(Integer anotherInteger) {
+    return compare(this.value, anotherInteger.value);
+}
+
+public static int compare (int x, int y) {
+    return (x < y) ? -1 : ((x == y) ? 0 : 1);
+}
+```
+* Existem algumas outras regras para implementar o ```compareTo()``` método. Para demonstrá-los, imagine que temos uma classe chamada ```Person```:
+```java 
+public class Person {
+    private String name;
+    private int age;
+    private int height;
+    private int weight;
+    
+    // constructor
+
+    // getters and setters
+}
+```
+* Nós criamos alguns objetos de ```Person``` e os adicionamos à lista ```people```.
+```java 
+public static void main(String[] args) {
+    List<Person> people = new ArrayList<>();
+    Person tom = new Person("Tom", 22, 185, 65);
+    Person bob = new Person("Bob", 22, 175, 85);
+    Person kris = new Person("Kris", 30, 180, 90);
+    people.add(tom);
+    people.add(bob);
+    people.add(kris);
+
+    Collections.sort(people);
+    System.out.println(people);
+}
+```
+* Uma das regras é manter a ```compareTo()``` implementação consistente com a implementação do ```equals()``` método. Por exemplo, se compararmos nosso povo por sua idade, ```tom``` e eles ```bob``` têm a mesma idade, então:
+  * ```tom.compareTo(bob) == 0``` deve ter o mesmo valor booleano que ```tom.equals(bob)```
+* Se compararmos nosso pessoal pela altura, Tom é mais alto que Kris e Kris é mais alto que Bob. Portanto, Tom é mais alto que Bob:
+  * ```(tom.compareTo(kris) > 0 && kris.compareTo(bob) > 0)``` implica ```tom.compareTo(bob) > 0```
+* Kris é mais velho que Bob, portanto Bob é mais novo que Kris:
+  * ```kris.compareTo(bob) > 0``` e ```bob.compareTo(kris) < 0```
+* Tom e Bob têm a mesma idade, então ambos devem ser mais novos ou mais velhos que Kris:
+  * ```tom.compareTo(bob) == 0``` implica que ```tom.compareTo(kris) > 0``` e ```bob.compareTo(kris) > 0``` ou ```tom.compareTo(kris) < 0``` e ```bob.compareTo(kris) < 0```
+* Isso garantirá que possamos usar objetos com segurança em conjuntos classificados e mapas classificados.
