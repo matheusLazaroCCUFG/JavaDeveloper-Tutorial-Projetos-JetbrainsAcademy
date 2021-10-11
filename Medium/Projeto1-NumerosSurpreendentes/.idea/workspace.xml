@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8adf4640-09a6-4c8f-8b91-fb71c06c71bc" name="Default Changelist" comment="commit" />
+    <list default="true" id="8adf4640-09a6-4c8f-8b91-fb71c06c71bc" name="Default Changelist" comment="commit">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../README.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -106,17 +109,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
@@ -137,7 +129,9 @@
       <updated>1633320695828</updated>
       <workItem from="1633320697140" duration="3944000" />
       <workItem from="1633811430101" duration="5312000" />
-      <workItem from="1633830271531" duration="14377000" />
+      <workItem from="1633830271531" duration="14402000" />
+      <workItem from="1633913328845" duration="710000" />
+      <workItem from="1633919001353" duration="2642000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1633814088081</created>
@@ -188,7 +182,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633846272862</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="commit">
+      <created>1633847825379</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1633847825379</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

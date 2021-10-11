@@ -102,3 +102,193 @@ switch (action) {
     System.out.println(Arrays.toString(characters)); // it prints [A, A, A, A, A, B, B, B, B, B]
     ```
 * Obviamente, a ```Arrays``` classe contém muitos outros métodos úteis, incluindo cópia de array, pesquisa em arrays e assim por diante. Para detalhes, veja : https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html
+#### <hr>
+#### <hr>
+#### <hr>
+### POO - Programação Orientada a Objetos 
+#### Interface x Classe abstrata
+* Uma <strong>classe abstrata</strong> pode conter métodos completos ou incompletos. Uma <strong>Interface</strong> pode conter apenas a assinatura de um método, mas nenhum corpo ou implementação. Portanto, em uma <strong>classe abstrata</strong>, pode-se implementar métodos, mas em uma <strong>Interface</strong>, não.
+#### <hr>
+### Interface
+#### Por que interface
+* A ideia geral de OOP e um de seus princípios é abstração. Isso significa que objetos do mundo real podem ser representados por seus modelos abstratos. Projetar modelos é focar nas características essenciais dos objetos e descartar os outros. Para entender o que isso significa, vamos dar uma olhada em um lápis. Um lápis é um objeto que podemos usar para desenhar. Outras propriedades, como material ou comprimento, podem ser importantes para nós às vezes, mas não definem a ideia de um lápis.
+* Imagine que precisamos criar um programa de editor gráfico. Uma das funções básicas do programa é o desenho. Antes de desenhar, o programa pede ao usuário para selecionar uma ferramenta de desenho. Pode ser uma caneta, lápis, pincel, marca-texto, marcador, spray e outros. Cada ferramenta de um conjunto tem suas características específicas: um lápis e um spray deixam marcas diferentes e isso importa. Mas há também uma característica essencial que os une: a capacidade de desenhar.
+* Agora vamos considerar a ```Pencil``` classe, que é uma abstração de um lápis. Como já discutimos a classe pelo menos deve ter o ```draw``` método que aceita um modelo de curva. Esta é uma função crucial de um lápis para nosso programa. Suponha que ```Curve``` seja uma classe que representa alguma curva:
+```java 
+class Pencil {
+    ...
+    public void draw(Curve curve) {...}
+}
+```
+* Vamos definir classes para outras ferramentas, por exemplo, um pincel:
+```java 
+class Brush {
+    ...
+    public void draw(Curve curve) {...}
+}
+```
+* Cada um deles possui o método ```draw```, embora o utilize à sua maneira. A capacidade de desenhar é uma característica comum a todos eles. Vamos chamar esse recurso ```DrawingTool```. Então podemos dizer que se uma classe tem o ```DrawingTool``` recurso, ela deve ser capaz de desenhar, isso significa que a classe deve ter o ```void draw(Curve curve) {...}``` método.
+* Java permite declarar esse recurso introduzindo interfaces. Esta é a aparência de nossa interface:
+```java 
+interface DrawingTool {
+    void draw(Curve curve);
+}
+```
+* Ele declara o ```draw``` método sem implementação.
+* Agora vamos marcar as classes que podem desenhar adicionando ```implements DrawingTool``` à declaração da classe. Se uma classe implementa uma interface, ela deve implementar todos os métodos declarados:
+```java 
+class Pencil implements DrawingTool {
+    ...
+    public void draw(Curve curve) {...}
+}
+
+class Brush implements DrawingTool {
+    ...
+    public void draw(Curve curve) {...}
+}
+```
+* Agora, apenas uma rápida olhada na declaração da classe é o suficiente para entender que a classe é capaz de desenhar. Em outras palavras, a ideia principal de uma interface é declarar funcionalidade .
+* Outro benefício importante da introdução de interfaces é que você pode usá-las como um tipo:
+```java 
+DrawingTool pencil = new Pencil();
+DrawingTool brush = new Brush();
+```
+* Agora, os objetos lápis e pincel têm o mesmo tipo. Isso significa que ambas as classes podem ser tratadas de maneira semelhante a um ```DrawingTool```. Esta é outra maneira de apoiar o <strong>polimorfismo</strong>, que ajuda a projetar a função de desenho reutilizável do programa do editor gráfico.
+```java 
+void drawCurve(DrawingTool tool, Curve curve) {
+    System.out.println("Drawing a curve " + curve + " using a " + tool);
+    tool.draw(curve);
+}
+```
+* Em muitos casos, é mais importante saber o que um objeto pode fazer, em vez de como ele faz o que faz. Esta é a razão pela qual as interfaces são comumente usadas para declarar um tipo de variável.
+#### Declarando interfaces
+* Uma interface pode ser considerada um tipo especial de classe que não pode ser instanciada. Para declarar uma interface, você deve escrever a palavra-chave em ```interface``` vez de ```class``` antes do nome da interface:
+* Uma interface pode conter:
+  * constantes públicas;
+  * métodos abstratos sem uma implementação (a palavra-chave```abstract```  não é necessária aqui);
+  * métodos padrão com implementação (a palavra-chave ```default```  é necessária);
+  * métodos estáticos com implementação (a palavra-chave ```static```  é necessária);
+  * métodos privados com implementação.
+``` 
+Se os modificadores não forem especificados depois que o método for declarado,
+seus parâmetros serão "public abstract" por padrão.
+```
+* A palavra-chave ```abstract``` antes de um método significa que o método não possui um corpo, apenas declara uma assinatura. ```default``` métodos serão discutidos mais detalhadamente.
+* Uma interface não pode conter campos (apenas <strong>constantes</strong>), construtores ou métodos abstratos não públicos. Vamos declarar uma interface contendo todos os membros possíveis:
+```java 
+interface Interface {
+        
+    int INT_CONSTANT = 0; // it's a constant, the same as public static final int INT_FIELD = 0
+        
+    void instanceMethod1();
+        
+    void instanceMethod2();
+        
+    static void staticMethod() {
+        System.out.println("Interface: static method");
+    }
+        
+    default void defaultMethod() {
+        System.out.println("Interface: default method. It can be overridden");
+    }
+
+    private void privateMethod() {
+        System.out.println("Interface: private methods in interfaces are acceptable but should have a body");
+    }
+}
+```
+```
+Os métodos estáticos, padrão e privados devem ter uma implementação na interface!
+```
+* Vamos dar uma olhada mais de perto nessa interface. A variável ```INT_CONSTANT``` não é um campo aqui - é uma constante final estática. Dois métodos ```instanceMethod1()``` e ```instanceMethod2()``` são métodos abstratos. O ```staticMethod()``` é apenas um método estático regular. O método padrão ```defaultMethod()``` tem uma implementação, mas pode ser sobrescrito em subclasses. O também ```privateMethodtem``` uma implementação e pode ser usado para decompor ```default``` métodos.
+#### Implementando interfaces
+* Uma classe pode implementar uma interface usando a palavra-chave ```implements```. Devemos fornecer implementações para todos os métodos abstratos da interface.
+* Vamos implementar a interface que consideramos anteriormente:
+```java 
+class Class implements Interface {
+
+    @Override
+    public void instanceMethod1() {
+        System.out.println("Class: instance method1");
+    }
+
+    @Override
+    public void instanceMethod2() {
+        System.out.println("Class: instance method2");
+    }
+}
+```
+* Agora podemos criar uma instância da classe e chamar seus métodos:
+```java 
+Interface instance = new Class();
+
+instance.instanceMethod1(); // it prints "Class: instance method1"
+instance.instanceMethod2(); // it prints "Class: instance method2"
+instance.defaultMethod();   // it prints "Interface: default method. It can be overridden"
+```
+* Observe que a ```instance``` variável tem ```Interface``` tipo, embora seja aceitável usá-la ```Class``` para denotar tipo.
+#### Implementando e estendendo várias interfaces
+* Um dos recursos importantes da interface é a herança múltipla .
+* Uma classe pode implementar várias interfaces:
+```java 
+interface A { }
+interface B { }
+interface C { }
+    
+class D implements A, B, C { }
+```
+* Uma interface pode estender uma ou mais interfaces usando a palavra ```extends```- chave :
+```java 
+interface A { }
+interface B { }
+interface C { }
+
+interface E extends A, B, C { }
+```
+* Uma classe também pode estender outra classe e implementar várias interfaces:
+```java 
+class A { }
+
+interface B { }
+interface C { }
+    
+class D extends A implements B, C { }
+```
+* Todos os exemplos acima não apresentam problemas.
+* A herança múltipla de interfaces é freqüentemente usada na biblioteca de classes padrão Java. A classe String, por exemplo, implementa três interfaces ao mesmo tempo:
+```java 
+public final class String 
+    implements java.io.Serializable, Comparable<String>, CharSequence {
+// ...
+}
+```
+#### Interfaces Marker (Marcador)
+* Em algumas situações, uma interface pode não ter nenhum membro. Tais interfaces são chamado <strong>marker</strong> ou <strong>tagged interfaces</strong> (interfaces de etiquetados). Por exemplo, uma interface conhecida ```Serializable``` é uma interface de marcador:
+```java 
+public interface Serializable{ 
+}
+```
+* Outros exemplos de interfaces de marcador são ```Cloneable```, ```Remoteetc```. Eles são usados para fornecer informações essenciais para a JVM.
+#### Métodos estáticos
+* Você pode declarar e implementar um método estático em uma interface
+```java 
+interface Car {
+    static float convertToMilesPerHour(float kmh) {
+        return 0.62 * kmh;
+    }
+}
+```
+* Para usar um método estático, você só precisa invocá-lo diretamente de uma interface
+```java 
+Car.convertToMilesPerHour(4.5);
+```
+* O principal objetivo dos métodos estáticos de interface é definir a funcionalidade do utilitário que é comum para todas as classes que implementam a interface. Eles ajudam a evitar a duplicação de código e a criação de classes de utilitários adicionais.
+#### Conclusão
+* Uma interface é um tipo especial de classe que não pode ser instanciada.
+* A ideia principal de uma interface é declarar funcionalidade.
+* As interfaces ajudam a abstrair de classes específicas e enfatizam a funcionalidade.
+  * Isso torna o design de software mais reutilizável e limpo.
+* É uma boa prática projetar classes usando interfaces em vez de classes.
+* Para implementar uma interface, a palavra- chave ```implements``` é usada.
+* Ao contrário de uma classe, uma interface pode estender várias interfaces.
+* Uma classe pode implementar várias interfaces.
