@@ -103,6 +103,128 @@ switch (action) {
     ```
 * Obviamente, a ```Arrays``` classe contém muitos outros métodos úteis, incluindo cópia de array, pesquisa em arrays e assim por diante. Para detalhes, veja : https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html
 #### <hr>
+#### StringBuilder
+#### Strings mutáveis
+* Como você deve saber, as strings em Java são <strong>imutáveis</strong>. Isso significa que, uma vez criada, uma string não pode ser alterada. Se quisermos modificar o conteúdo de um objeto string, devemos criar uma nova string. Essa pode não ser a melhor maneira quando fazemos muitas modificações, porque cada operação cria um novo objeto, o que é ruim para o desempenho.
+* Felizmente, existe uma classe especial chamada ```StringBuilder``` que é usada para criar objetos de string mutáveis. Um objeto desta classe é semelhante a uma string regular, exceto que pode ser modificado. Por exemplo, é melhor usar do ```StringBuilder``` que ```String``` quando muitas concatenações são executadas em tempo de execução.
+#### Construindo objetos
+* É possível criar um objeto vazio do tipo ```StringBuilder```:
+```java 
+StringBuilder empty = new StringBuilder();
+System.out.println(empty); // ""
+```
+* ou passe uma string para ele:
+```java 
+StringBuilder sb = new StringBuilder("Hello!");
+System.out.println(sb); // "Hello!"
+```
+```
+Observe, não precisamos importar nada para usar esta classe em programas.
+```
+#### Alguns métodos importantes
+* A ```StringBuilder``` classe fornece um conjunto de métodos úteis para manipular objetos. Vamos considerar alguns deles.
+  * ```int length()``` retorna o comprimento (a contagem de caracteres), como em strings regulares. Este método não modifica o objeto.
+```java 
+StringBuilder sb = new StringBuilder("I use Java");
+System.out.println(sb.length()); // 10
+```
+  * ```char charAt(int index)``` retorna um caractere localizado no índice especificado. O primeiro caractere tem o índice 0. Este método não modifica o objeto.
+```java 
+StringBuilder sb = new StringBuilder("I use Java");
+System.out.println(sb.charAt(0)); // 'I'
+System.out.println(sb.charAt(6)); // 'J'
+```
+  * ```void setCharAt(int index, char ch)``` define um caractere localizado no índice especificado para <strong>ch</strong>.
+```java 
+StringBuilder sb = new StringBuilder("start");
+sb.setCharAt(1, 'm');
+System.out.println(sb); // "smart"
+```
+  * ```StringBuilder deleteCharAt(int index)``` remove o caractere na posição especificada.
+```java 
+StringBuilder sb = new StringBuilder("dessert");
+sb.deleteCharAt(2);
+System.out.println(sb); // "desert"
+```
+  * ```StringBuilder append(String str)``` concatena a string fornecida ao final do ```StringBuilder``` objeto de chamada . Existem também várias sobrecargas para pegar tipos primitivos e até matrizes de caracteres.
+```java 
+StringBuilder sb = new StringBuilder("abc");
+sb.append("123");
+System.out.println(sb); // "abc123"
+```
+  * Também é possível invocar esse método várias vezes no mesmo objeto na mesma instrução porque esse método retorna o mesmo objeto modificado.
+```java 
+StringBuilder messageBuilder = new StringBuilder(); // empty
+
+messageBuilder
+        .append("From: Kate@gmail.com\n")
+        .append("To: Max@gmail.com\n")
+        .append("Text: I lost my keys.\n")
+        .append("Please, open the door!");
+
+System.out.println(messageBuilder);
+```
+* Saída:
+```
+From: Kate@gmail.com
+To: Max@gmail.com
+Text: I lost my keys.
+Please, open the door!
+```
+  * ```StringBuilder insert(int offset, String str)``` insere a string fornecida no ```StringBuilder``` objeto existente na posição fornecida indicada pelo deslocamento. Este método tem muitas sobrecargas para diferentes tipos.
+```java 
+StringBuilder sb = new StringBuilder("I'm a programmer.");
+sb.insert(6, "Java ");
+System.out.println(sb); // I'm a Java programmer.
+```
+  * ```StringBuilder replace(int start, int end, String str)``` substitui a substring do índice de string especificado (inclusivo) para o índice final (exclusivo) com uma determinada string.
+```java 
+StringBuilder sb = new StringBuilder("Let's use C#");
+sb.replace(10,12,"Java");
+System.out.println(sb); // Let's use Java
+```
+  * ```StringBuilder delete(int start, int end)``` remove a substring do índice inicial (inclusivo) para o índice final (exclusivo).
+```java 
+StringBuilder sb = new StringBuilder("Welcome");
+sb.delete(0,3);
+System.out.println(sb); // "come"
+```
+  * ```StringBuilder reverse()``` faz com que essa sequência de caracteres seja substituída pelo reverso da sequência.
+```java 
+StringBuilder sb = new StringBuilder("2 * 3 + 8 * 4");
+sb.reverse();
+System.out.println(sb); // "4 * 8 + 3 * 2"
+```
+```
+Observe, quando você tem um StringBuilder objeto, pode obter um String invocando o toString método.
+```
+* Para obter mais detalhes sobre os métodos, consulte a documentação: https://docs.oracle.com/javase/10/docs/api/java/lang/StringBuilder.html
+#### O length() e a capacity()
+* Existem dois métodos que não devem ser confundidos: ```length``` e ```capacity```. O ```length``` retorna o número real de caracteres, enquanto ```capacity``` retorna a quantidade de armazenamento disponível para os caracteres recém-inseridos, além da qual ocorrerá uma alocação. A capacidade é uma parte da representação interna de ```StringBuilder``` e seu valor mudará dinamicamente.
+* O exemplo a seguir o ajudará a distinguir melhor esses métodos:
+```java 
+StringBuilder sb = new StringBuilder(); // initial capacity is 16
+
+System.out.println(sb.length());   // 0
+System.out.println(sb.capacity()); // 16
+
+sb.append("A very long string");
+
+System.out.println(sb.length());   // 18
+System.out.println(sb.capacity()); // 34
+```
+* É possível especificar a capacidade ao criar um ```StringBuilder``` objeto, mas não é usado com muita frequência:
+```java 
+StringBuilder sb = new StringBuilder(30);
+
+System.out.println(sb.length());   // 0
+System.out.println(sb.capacity()); // 30
+```
+
+
+
+
+
 
 
 

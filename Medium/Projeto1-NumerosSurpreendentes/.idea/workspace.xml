@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8adf4640-09a6-4c8f-8b91-fb71c06c71bc" name="Default Changelist" comment="commit">
-      <change afterPath="$PROJECT_DIR$/src/Etapa4NumerosGapful/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Etapa4NumerosGapful/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Atividades/Atividade10StringBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Etapa5NumerosSpy/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Etapa5NumerosSpy/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +48,7 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager" selected="Application.Main (2)">
+  <component name="RunManager" selected="Application.Main (3)">
     <configuration name="Article" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Atividades.Atividade8InterfaceComparable.Article" />
       <module name="Projeto1-NumerosSurpreendentes" />
@@ -60,12 +62,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Atividade6" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Atividades.Atividade6" />
+    <configuration name="Atividade10StringBuilder" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Atividades.Atividade10StringBuilder" />
       <module name="Projeto1-NumerosSurpreendentes" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Atividades.Atividade7Interfaces.*" />
+          <option name="PATTERN" value="Atividades.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -99,12 +101,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Etapa3NumerosPalindromos.Main" />
+    <configuration name="Main (3)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Etapa5NumerosSpy.Main" />
       <module name="Projeto1-NumerosSurpreendentes" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Etapa3NumerosPalindromos.*" />
+          <option name="PATTERN" value="Etapa5NumerosSpy.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -127,11 +129,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main (3)" />
+        <item itemvalue="Application.Atividade10StringBuilder" />
         <item itemvalue="Application.Main (2)" />
         <item itemvalue="Application.Article" />
         <item itemvalue="Application.Main (1)" />
-        <item itemvalue="Application.Main" />
-        <item itemvalue="Application.Atividade6" />
       </list>
     </recent_temporary>
   </component>
@@ -148,7 +150,7 @@
       <workItem from="1633830271531" duration="14402000" />
       <workItem from="1633913328845" duration="710000" />
       <workItem from="1633919001353" duration="13030000" />
-      <workItem from="1634007526168" duration="6954000" />
+      <workItem from="1634007526168" duration="14934000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1633814088081</created>
@@ -234,7 +236,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633935989519</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="commit">
+      <created>1634017063511</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1634017063511</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
