@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8adf4640-09a6-4c8f-8b91-fb71c06c71bc" name="Default Changelist" comment="commit">
-      <change afterPath="$PROJECT_DIR$/src/Atividades/Atividade8InterfaceComparable/Article.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Atividades/Atividade9InterfaceComparable/Person.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Etapa4NumerosGapful/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Etapa4NumerosGapful/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Projeto1-NumerosSurpreendentes/Atividades/Atividade7Interfaces/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Projeto1-NumerosSurpreendentes/Atividades/Atividade7Interfaces/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,26 +46,13 @@
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
   </component>
-  <component name="RunManager" selected="Application.Article">
+  <component name="RunManager" selected="Application.Main (2)">
     <configuration name="Article" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Atividades.Atividade8InterfaceComparable.Article" />
       <module name="Projeto1-NumerosSurpreendentes" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="Atividades.Atividade8InterfaceComparable.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Atividade5" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Atividades.Atividade5" />
-      <module name="Projeto1-NumerosSurpreendentes" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Atividades.Atividade7Interfaces.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -101,6 +86,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Main (2)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Etapa4NumerosGapful.Main" />
+      <module name="Projeto1-NumerosSurpreendentes" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Etapa4NumerosGapful.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Etapa3NumerosPalindromos.Main" />
       <module name="Projeto1-NumerosSurpreendentes" />
@@ -114,24 +112,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main (2)" />
         <item itemvalue="Application.Article" />
         <item itemvalue="Application.Main (1)" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Atividade6" />
-        <item itemvalue="Application.Atividade5" />
       </list>
     </recent_temporary>
   </component>
@@ -147,7 +147,8 @@
       <workItem from="1633811430101" duration="5312000" />
       <workItem from="1633830271531" duration="14402000" />
       <workItem from="1633913328845" duration="710000" />
-      <workItem from="1633919001353" duration="12769000" />
+      <workItem from="1633919001353" duration="13030000" />
+      <workItem from="1634007526168" duration="6954000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <created>1633814088081</created>
@@ -226,7 +227,14 @@
       <option name="project" value="LOCAL" />
       <updated>1633929449135</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="commit">
+      <created>1633935989519</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1633935989519</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
