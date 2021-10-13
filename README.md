@@ -220,6 +220,43 @@ StringBuilder sb = new StringBuilder(30);
 System.out.println(sb.length());   // 0
 System.out.println(sb.capacity()); // 30
 ```
+# <hr>
+### Varargs - parâmetros de comprimento variável
+* É possível passar um número arbitrário de argumentos do mesmo tipo para um método usando a sintaxe especial chamada <strong>varargs (argumentos de comprimento variável)</strong>. Esses argumentos são especificados por três pontos após o tipo. No corpo do método, você pode processar esse parâmetro como uma matriz regular do tipo especificado.
+* O método a seguir usa um parâmetro <strong>vararg</strong> inteiro e produz o número de argumentos na saída padrão usando a propriedade de <strong>comprimento</strong> de matrizes.
+```java 
+public static void printNumberOfArguments(int... numbers) {
+    System.out.println(numbers.length);
+}
+```
+* Como você pode ver, uma sintaxe especial ```...``` é usada aqui para especificar um parâmetro <strong>vararg</strong>.
+* Agora, você pode invocar o método passando vários números inteiros ou uma matriz de ints.
+```java 
+printNumberOfArguments(1);
+printNumberOfArguments(1, 2);
+printNumberOfArguments(1, 2, 3);
+printNumberOfArguments(new int[] { }); // no arguments here
+printNumberOfArguments(new int[] { 1, 2 });
+```
+* Este código resulta em:
+```java 
+1
+2
+3
+0
+2
+```
+* Este exemplo também demonstra a diferença entre os argumentos e parâmetros de um método. O método possui apenas um único parâmetro, mas pode ser chamado com vários argumentos.
+#### Varargs e outros parâmetros
+* Se um método possui mais de um parâmetro, o ```vararg``` parâmetro deve ser o último na declaração do método.
+* Aqui está um exemplo incorreto:
+```java 
+public static void method(double... varargs, int a) { /* do something */ }
+```
+* A versão correta do método é:
+```java 
+public static void method(int a, double... varargs) { /* do something */ }
+```
 
 
 
@@ -228,6 +265,27 @@ System.out.println(sb.capacity()); // 30
 
 
 
+
+
+
+
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
 #### <hr>
 #### <hr>
 #### <hr>

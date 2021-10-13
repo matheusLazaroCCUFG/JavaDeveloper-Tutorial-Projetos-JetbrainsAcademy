@@ -9,14 +9,16 @@ public class Main {
         String[] strAux;
         long par1Value;
         long par2Increment;
-        String par3Property;
+        String par3Property1;
+        String par4Property2;
 
         System.out.println("Welcome to Amazing Numbers!");
 
         printSupportedRequests();
 
         while (true) {
-            par3Property = "";
+            par3Property1 = "";
+            par4Property2 = "";
 
             System.out.print("\nEnter a request: ");
 
@@ -38,7 +40,8 @@ public class Main {
 
             par1Value = Long.parseLong(strAux[0]);
             par2Increment = strAux.length == 1 ? -1 : Long.parseLong(strAux[1]);
-            par3Property += strAux.length <= 2 ? "" : strAux[2].toLowerCase();
+            par3Property1 += strAux.length <= 2 ? "" : strAux[2].toLowerCase();
+            par4Property2 += strAux.length <= 3 ? "" : strAux[3].toLowerCase();
 
             if (par1Value <= 0) {
                 break;
@@ -48,18 +51,83 @@ public class Main {
                 System.out.println("The second parameter should be a natural number.");
             }
 
-            if (!par3Property.equals("even") && !par3Property.equals("odd") &&
-                    !par3Property.equals("buzz") && !par3Property.equals("duck") &&
-                    !par3Property.equals("palindromic") && !par3Property.equals("gapful") &&
-                    !par3Property.equals("spy") && !par3Property.equals("")
+            if ( (par4Property2.equals("") || par4Property2.equals(par3Property1)) &&
+                !par3Property1.equals("even") && !par3Property1.equals("odd") &&
+                !par3Property1.equals("buzz") && !par3Property1.equals("duck") &&
+                !par3Property1.equals("palindromic") && !par3Property1.equals("gapful") &&
+                !par3Property1.equals("spy") && !par3Property1.equals("") &&
+                !par3Property1.equals("square") && !par3Property1.equals("sunny")
             ) {
                 System.out.println(
-                        "The property [" + par3Property.toUpperCase() + "] is wrong.\n" +
-                                "Available properties: [EVEN, ODD, BUZZ, DUCK, PALINDROMIC, GAPFUL, SPY]");
+                        "\nThe property [" + par3Property1.toUpperCase() + "] is wrong.\n" +
+                                "Available properties: [EVEN, ODD, BUZZ, DUCK, PALINDROMIC, GAPFUL, SPY, SQUARE, SUNNY]");
                 continue;
             }
 
-            printProperties(par1Value, par2Increment, par3Property);
+            else {// há o 4º parâmetro
+                if ( // par3 errado e par4 errado
+                        (!par3Property1.equals("even") && !par3Property1.equals("odd") &&
+                                !par3Property1.equals("buzz") && !par3Property1.equals("duck") &&
+                                !par3Property1.equals("palindromic") && !par3Property1.equals("gapful") &&
+                                !par3Property1.equals("spy") && !par3Property1.equals("") &&
+                                !par3Property1.equals("square") && !par3Property1.equals("sunny")) &&
+                                (!par4Property2.equals("even") && !par4Property2.equals("odd") &&
+                                        !par4Property2.equals("buzz") && !par4Property2.equals("duck") &&
+                                        !par4Property2.equals("palindromic") && !par4Property2.equals("gapful") &&
+                                        !par4Property2.equals("spy") && !par4Property2.equals("square") &&
+                                        !par4Property2.equals("sunny") && !par4Property2.equals(""))
+
+                ) {
+                    System.out.println(
+                            "\nThe properties [" + par3Property1 + ", " + par4Property2 + "] are wrong.\n" +
+                                    "Available properties: [EVEN, ODD, BUZZ, DUCK, PALINDROMIC, GAPFUL, SPY, SQUARE, SUNNY]");
+                    continue;
+                } else
+                if( // par3 errado
+
+                        (!par3Property1.equals("even") && !par3Property1.equals("odd") &&
+                    !par3Property1.equals("buzz") && !par3Property1.equals("duck") &&
+                    !par3Property1.equals("palindromic") && !par3Property1.equals("gapful") &&
+                    !par3Property1.equals("spy") && !par3Property1.equals("") &&
+                    !par3Property1.equals("square") && !par3Property1.equals("sunny"))
+                    ) {
+                    System.out.println(
+                        "\nThe property [" + par3Property1.toUpperCase() + "] is wrong.\n" +
+                        "Available properties: [EVEN, ODD, BUZZ, DUCK, PALINDROMIC, GAPFUL, SPY, SQUARE, SUNNY]"
+                    );
+                    continue;
+                } else
+                if(// par4 errado
+                    (!par4Property2.equals("even") && !par4Property2.equals("odd") &&
+                    !par4Property2.equals("buzz") && !par4Property2.equals("duck") &&
+                    !par4Property2.equals("palindromic") && !par4Property2.equals("gapful") &&
+                    !par4Property2.equals("spy") && !par4Property2.equals("") &&
+                    !par4Property2.equals("square") && !par4Property2.equals("sunny"))
+                ) {
+                    System.out.println(
+                            "\nThe property [" + par4Property2.toUpperCase() + "] is wrong.\n" +
+                                    "Available properties: [EVEN, ODD, BUZZ, DUCK, PALINDROMIC, GAPFUL, SPY, SQUARE, SUNNY]"
+                    );
+                    continue;
+                } else
+                if(
+                    (par3Property1.equals("odd") && par4Property2.equals("even")) ||
+                    (par3Property1.equals("even") && par4Property2.equals("odd")) ||
+                    (par3Property1.equals("duck") && par4Property2.equals("spy")) ||
+                    (par3Property1.equals("spy") && par4Property2.equals("duck")) ||
+                    (par3Property1.equals("sunny") && par4Property2.equals("square")) ||
+                    (par3Property1.equals("square") && par4Property2.equals("sunny"))
+                ) {
+                    System.out.println(
+                        "\nThe request contains mutually exclusive properties: [" + par4Property2 + ", " + par3Property1 + "]\n" +
+                        "There are no numbers with these properties."
+                    );
+                    continue;
+                }
+            }
+
+            printProperties(par1Value, par2Increment, par3Property1, par4Property2);
+
         }
 
         System.out.println("\nGoodbye!");
@@ -182,16 +250,23 @@ public class Main {
     }
 
     public static boolean square(long num) {
-        for (long i = 0; i <= num; i++) {
-            if (Math.sqrt(num) == (double)i) {
-                return true;
-            }
+        long tmp;
+
+        tmp = (int)Math.sqrt(num);
+
+        if(tmp * tmp == num){
+            return true;
         }
 
         return false;
     }
 
-    public static void printProperties(long par1Value, long par2Increment, String par3Property){
+    public static void printProperties(
+        long par1Value,
+        long par2Increment,
+        String par3Property1,
+        String part4Property2
+    ){
         long qtdProperty = 0;
 
         if (par2Increment == -1) {
@@ -248,7 +323,7 @@ public class Main {
                 System.out.println("         odd: false");
             }
         } else
-        if (par3Property.equals("")) {
+        if (par3Property1.equals("")) {
             System.out.println();
             for (long i = par1Value; i < par1Value + par2Increment; i++) {
                 System.out.print("             " + i + " is ");
@@ -287,18 +362,83 @@ public class Main {
                     System.out.print("odd\n");
                 }
             }
-        } else { // pesquisar todos os próximos par2 do tipo "par3", começando por par1
+        } else
+        if (part4Property2.equals("")) { // pesquisar todos os próximos par2 do tipo "par3", começando por par1
             System.out.println();
             for (long i = par1Value; ; i++) {
-                if (    (par3Property.equals("buzz") && buzz(i)) ||
-                        (par3Property.equals("duck") && duck(i)) ||
-                        (par3Property.equals("palindromic") && palindromic(i)) ||
-                        (par3Property.equals("gapful") && gapful(i)) ||
-                        (par3Property.equals("spy") && spy(i)) ||
-                        (par3Property.equals("sunny") && spy(i)) ||
-                        (par3Property.equals("square") && spy(i)) ||
-                        (par3Property.equals("even") && i % 2 == 0) ||
-                        (par3Property.equals("odd") && i % 2 != 0)
+                if (    (par3Property1.equals("buzz") && buzz(i)) ||
+                        (par3Property1.equals("duck") && duck(i)) ||
+                        (par3Property1.equals("palindromic") && palindromic(i)) ||
+                        (par3Property1.equals("gapful") && gapful(i)) ||
+                        (par3Property1.equals("spy") && spy(i)) ||
+                        (par3Property1.equals("sunny") && sunny(i)) ||
+                        (par3Property1.equals("square") && square(i)) ||
+                        (par3Property1.equals("even") && i % 2 == 0) ||
+                        (par3Property1.equals("odd") && i % 2 != 0)
+                ) {
+                    qtdProperty++;
+                    System.out.print("             " + i + " is ");
+
+                    if (buzz(i)) {
+                        System.out.print("buzz, ");
+                    }
+
+                    if (duck(i)) {
+                        System.out.print("duck, ");
+                    }
+
+                    if (palindromic(i)) {
+                        System.out.print("palindromic, ");
+                    }
+
+                    if (gapful(i)) {
+                        System.out.print("gapful, ");
+                    }
+
+                    if (spy(i)) {
+                        System.out.print("spy, ");
+                    }
+
+                    if (square(i)) {
+                        System.out.print("square, ");
+                    }
+
+                    if (sunny(i)) {
+                        System.out.print("sunny, ");
+                    }
+
+                    if (i % 2 == 0) {
+                        System.out.print("even\n");
+                    } else {
+                        System.out.print("odd\n");
+                    }
+                }
+
+                if(qtdProperty == par2Increment) {
+                    break;
+                }
+            }
+        } else { // par3 e par4
+            System.out.println();
+            for (long i = par1Value; ; i++) {
+                if (    ((par3Property1.equals("buzz") && buzz(i)) ||
+                        (par3Property1.equals("duck") && duck(i)) ||
+                        (par3Property1.equals("palindromic") && palindromic(i)) ||
+                        (par3Property1.equals("gapful") && gapful(i)) ||
+                        (par3Property1.equals("spy") && spy(i)) ||
+                        (par3Property1.equals("sunny") && sunny(i)) ||
+                        (par3Property1.equals("square") && square(i)) ||
+                        (par3Property1.equals("even") && i % 2 == 0) ||
+                        (par3Property1.equals("odd") && i % 2 != 0)) &&
+                        ((part4Property2.equals("buzz") && buzz(i)) ||
+                        (part4Property2.equals("duck") && duck(i)) ||
+                        (part4Property2.equals("palindromic") && palindromic(i)) ||
+                        (part4Property2.equals("gapful") && gapful(i)) ||
+                        (part4Property2.equals("spy") && spy(i)) ||
+                        (part4Property2.equals("sunny") && sunny(i)) ||
+                        (part4Property2.equals("square") && square(i)) ||
+                        (part4Property2.equals("even") && i % 2 == 0) ||
+                        (part4Property2.equals("odd") && i % 2 != 0))
                 ) {
                     qtdProperty++;
                     System.out.print("             " + i + " is ");
@@ -352,7 +492,7 @@ public class Main {
             "- enter two natural numbers to obtain the properties of the list:\n" +
             "  * the first parameter represents a starting number;\n" +
             "  * the second parameters show how many consecutive numbers are to be processed;\n" +
-            "- two natural numbers and a property to search for;\n" +
+            "- two natural numbers and two properties to search for;\n" +
             "- separate the parameters with one space;\n" +
             "- enter 0 to exit."
         );
