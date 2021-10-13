@@ -257,15 +257,175 @@ public static void method(double... varargs, int a) { /* do something */ }
 ```java 
 public static void method(int a, double... varargs) { /* do something */ }
 ```
+# <hr>
+### Enums em Java
+* Quando uma variável pode tirar apenas um de um pequeno conjunto de valores possíveis, é uma boa ideia usar enums em um programa. Enum é uma palavra-chave especial abreviada para enumeração que nos permite criar uma lista de constantes agrupadas por seu conteúdo: estações, cores, estados, etc. Quando armazenamos um monte de constantes em um lugar e as manipulamos juntas , isso nos ajuda a evitar erros e torna o código mais legível e claro.
+* Agora, vamos examinar mais de perto como os enums funcionam.
+#### Definindo um enum
+* Podemos criar nossa própria enumeração de maneira semelhante à declaração de classes. De acordo com a Convenção do Código Java, as constantes em um enum são escritas em letras maiúsculas. Todas as constantes devem ser separadas por vírgulas. Dê uma olhada no exemplo de enum ```Season```:
+```java 
+public enum Season {
+    SPRING, SUMMER, AUTUMN, WINTER // four instances
+}
+```
+```
+É possível declarar um enum dentro da classe. Nesse caso, não precisamos usar o publicmodificador na declaração enum.
+```
+* Em geral, um enum pode ser considerado uma classe com instâncias predefinidas. Aqui, temos quatro instâncias de estações ```SPRING```, ```SUMMER```, ```AUTUMN``` e ```WINTER``` dentro do armazenamento ```Season```. Se quisermos estender a lista de constantes, podemos simplesmente adicionar outra instância em nosso enum: meados do inverno, inverno australiano, etc. Não se esqueça de que na vida real elas têm que fazer sentido.
+* Agora que temos uma ideia de como definir enums básicos, vamos aprender como usá-los em um programa.
+#### Métodos para processar enums
+* Suponha que tenhamos que escrever um programa com um enum que exiba três status de usuário possíveis. Vamos criar um enum ```UserStatus``` com estes status:
+```java 
+public enum UserStatus {
+    PENDING, ACTIVE, BLOCKED
+}
+```
+* E agora inicializamos uma variável do tipo ```UserStatus``` do exemplo anterior:
+```java 
+UserStatus active = UserStatus.ACTIVE;
+```
+* Cada valor enum tem um nome que pode ser acessado usando o método ```name()```:
+```java 
+System.out.println(active.name()); // ACTIVE
+```
+* Às vezes, podemos precisar acessar uma instância de enumeração por seu nome. Isso pode ser feito com o ```valueOf()``` método que nos fornece outra maneira de inicializar uma variável:
+```java 
+UserStatus blocked = UserStatus.valueOf("BLOCKED"); // BLOCKED
+```
+* Uma coisa importante a lembrar sobre esse método é que ele diferencia maiúsculas de minúsculas . Isso significa que, se a string fornecida não corresponder exatamente a nenhuma constante, obteremos uma <strong>IllegalArgumentException</strong>.
+```java 
+UserStatus blocked = UserStatus.valueOf("blocked"); // IllegalArgumentException, valueOf is case-sensitive
+```
+* Se quisermos ver todas as constantes de uma enumeração, podemos obtê-las em uma matriz usando o ```values()``` método:
+```java 
+UserStatus[] statuses = UserStatus.values(); // [PENDING, ACTIVE, BLOCKED]
+```
+* Outro método chamado ```ordinal()``` retorna a posição ordinal de uma instância de um enum:
+```java 
+System.out.println(active.ordinal()); // 1 (starting with 0)
+System.out.println(UserStatus.BLOCKED.ordinal()); // 2
+```
+* Embora um enum seja um tipo de referência, duas variáveis podem ser comparadas corretamente usando o ```equals``` método e o operador ```==```.
+#### Enums na instrução switch
+* Um <strong>enum</strong> pode ser usado com sucesso na ```switch``` instrução. Dependendo do status, nosso programa pode realizar diferentes ações indicadas pelo ```switch``` extrato. Nesse caso, ele imprime respostas diferentes:
+```java 
+UserStatus status = ... // some status
+ 
+switch (status) {
+    case PENDING:
+        System.out.println("You need to wait a little.");
+        break;
+    case ACTIVE:
+        System.out.println("No problems, you may pass here.");
+        break;
+    case BLOCKED:
+        System.out.println("Stop! You can't pass here.");
+        break;
+    default:
+        System.out.println("Unsupported enum constant.");
+}
+```
+* A mensagem que nosso programa envia depende do valor da variável ```status```.
+#### Iterando sobre um enum
+* Uma das melhores maneiras de iterar em um enum é usar um ```for``` ou um ```for-each``` loop. Vamos aplicá-lo ao nosso exemplo de enum:
+```java 
+    for (UserStatus status : UserStatus.values()) {
+        System.out.println(status);
+    }
+/* the output is
+PENDING 
+ACTIVE
+BLOCKED
+*/
+```
+* Aqui, usamos o ```values()``` método para retornar uma matriz de valores enum. Esse loop é útil ao iterar enums com um grande número de constantes.
+# <hr>
+### Campos e métodos em enum
+* Usamos enums para definir conjuntos de variáveis imutáveis. Depois de defini-los, podemos precisar estender a funcionalidade do enum e adicionar valores às constantes. Assim como uma classe, um enum pode ter campos, construtores e métodos. É por isso que um enum é útil ao trabalhar com valores que você não vai alterar.
+* Para provar isso, vamos considerar o seguinte exemplo.
+#### Amostra enum
+* Suponha que tenhamos que escrever um programa que exibe o nível da bateria de um smartphone, banco de energia ou qualquer dispositivo com uma escala discreta.
+* Em primeiro lugar, vamos criar um enum com vários níveis de limite que representam o nível de carga da bateria:
+```java 
+public enum ChargeLevel {
+    FULL, HIGH, MEDIUM, LOW
+}
+```
+* Suponha que precisemos exibir o nível de carga da bateria visualmente. Queremos que seja dividido em vários segmentos e tenha também uma indicação de cor, desta forma:
+* Para fazer isso, adicionaremos campos e valores correspondentes ao nosso enum. Quando os definimos, devemos fornecer valores para o construtor do enum. Aqui, criamos um construtor no ```ChargeLevel``` enum e adicionamos dois campos ```sections``` e ```color```. Além disso, existem dois métodos ```getSections()``` e ```getColor()``` que retornam os valores dos campos respectivamente.
+```java 
+public enum ChargeLevel {
 
+    FULL(4, "green"),
+    HIGH(3, "green"),
+    MEDIUM(2, "yellow"),
+    LOW(1, "red");
 
+    int sections;
+    String color;
 
+    ChargeLevel(int sections, String color) {
+        this.sections = sections;
+        this.color = color;
+    }
 
+    public int getSections() {
+        return sections;
+    }
 
+    public String getColor() {
+        return color;
+    }
+}
+```
+* Observe que todas as instâncias enum são criadas pela JVM da mesma maneira que um campo estático de uma classe. Esse é o motivo pelo qual um enum não pode conter um construtor público. Isso significa que não podemos criar objetos enum invocando um construtor enum com a ```new``` palavra - chave, mas temos que escolher uma das instâncias predefinidas.
+Lembre-se de que, se seu enum contiver campos e métodos, você deve sempre defini-los após a lista de constantes no enum.
+* Agora temos uma classe com informações adicionais reunidas em um só lugar: o número de seções a destacar e a cor.
+```java 
+System.out.println(ChargeLevel.LOW.sections); // 1
+System.out.println(ChargeLevel.LOW.color); // red
+```
+* É possível estender um enum adicionando métodos estáticos personalizados. Por exemplo, vamos adicionar um método que encontre uma ```ChargeLevel``` instância por um determinado número de seções:
+```java 
+public enum ChargeLevel {
 
+    FULL(4, "green"),
+    HIGH(3, "green"),
+    MEDIUM(2, "yellow"),
+    LOW(1, "red");
 
+    int sections;
+    String color;
 
+    ChargeLevel(int sections, String color) {
+        this.sections = sections;
+        this.color = color;
+    }
 
+    public int getSections() {
+        return sections;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public static ChargeLevel findByNumberOfSections(int sections) {
+        for (ChargeLevel value: values()) {
+            if (value.sections == sections) {
+                return value;
+            }
+        }
+        return null;
+    }
+}
+```
+* Dentro do ```findByNumberOfSections()``` método, iteramos sobre os valores possíveis usando um ```for-each``` loop. Aqui está um exemplo da saída do nosso método:
+```java 
+System.out.println(ChargeLevel.findByNumberOfSections(2)); // MEDIUM
+```
+#### Conclusão
+* Como um enum é um tipo de classe especial em Java, podemos adicionar construtores, campos e métodos a ele. Assim, é possível aprimorar nosso enum para incluir os valores de que precisamos. Os valores das constantes são definidos quando declaramos o enum. Se você deseja adicionar campos, métodos e construtores enum, deve fazê-lo após a declaração das constantes enum.
 
 
 
