@@ -5,4 +5,5 @@
 * Familiarize-se com Coleções e aprenda a trabalhar com arquivos, argumentos e linha de comando.
 #### <hr>
 ### Anotações
-#### Tipos de ponto flutuante 
+#### Tipos de ponto flutuante
+

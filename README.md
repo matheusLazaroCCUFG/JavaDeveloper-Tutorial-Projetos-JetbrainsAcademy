@@ -426,7 +426,13 @@ System.out.println(ChargeLevel.findByNumberOfSections(2)); // MEDIUM
 ```
 #### Conclusão
 * Como um enum é um tipo de classe especial em Java, podemos adicionar construtores, campos e métodos a ele. Assim, é possível aprimorar nosso enum para incluir os valores de que precisamos. Os valores das constantes são definidos quando declaramos o enum. Se você deseja adicionar campos, métodos e construtores enum, deve fazê-lo após a declaração das constantes enum.
-
+#### <hr>
+#### Scanner double ou float - decimal
+* Se você resolver nossos problemas de codificação localmente ou tentar repetir nossos exemplos, poderá encontrar um problema com seu computador com configurações de localidade diferentes. Nesse caso, o Scanner não pode ler números de ponto flutuante com o caractere de ponto ( 3.1415 ). Tente inserir números escritos com o separador de vírgula ( 3,1415 ).
+* Se você deseja usar o caractere de ponto sem modificar suas configurações locais, tente usar o seguinte código para criar um scanner:
+```java 
+Scanner scanner = new Scanner(System.in).useLocale(Locale.US);
+```
 
 
 #### <hr>
