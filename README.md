@@ -433,6 +433,186 @@ System.out.println(ChargeLevel.findByNumberOfSections(2)); // MEDIUM
 ```java 
 Scanner scanner = new Scanner(System.in).useLocale(Locale.US);
 ```
+#### <hr>
+### O que é uma exceção (exception)?
+* Alguns erros em seu código não impedem a execução do programa. Nesse caso, o programa só travará ao tentar executar uma linha "interrompida": uma linha com um erro chamada de <strong>exceção</strong>. Assim, as exceções são os erros detectados durante a <strong>execução</strong> do programa (em tempo de execução), enquanto os erros de sintaxe são aqueles detectados durante a <strong>compilação</strong> do programa em código de bytes. Uma exceção interrompe a execução normal de um programa.
+* Vamos considerar vários tipos de exceções e como evitá-las.
+#### ArithmeticException
+* Suponha que você esteja escrevendo um programa que lê dois inteiros da entrada padrão e, em seguida, produz o resultado da divisão inteira do primeiro número pelo segundo. Olhe o código abaixo.
+```java 
+import java.util.Scanner;
+
+public class ArithmeticExceptionDemo {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int a = scanner.nextInt();
+        int b = scanner.nextInt();
+
+        System.out.println(a / b); // an exception is possible here!
+        System.out.println("finished");
+    }
+}
+```
+* Se o usuário passar ```9``` e ```3``` como os valores de entrada, o programa produzirá ```3``` junto com a ```"finished"``` string. Mas se o segundo número for ```0```, o programa lançará uma exceção por causa da divisão por zero.
+```java 
+Exception in thread "main" java.lang.ArithmeticException: / by zero
+  at ArithmeticExceptionDemo.main(ArithmeticExceptionDemo.java:11)
+```
+* Como você pode ver, o programa falha com o ```ArithmeticExceptione``` a ```"finished"``` string não é impressa. Todo o código <strong>antes</strong> da exceção é executado corretamente, e tudo o que vem <strong>depois</strong> não é.
+* A mensagem exibida mostra a causa da exceção (```"/ by zero"```), o arquivo e o número da linha onde ocorreu (```ArithmeticExceptionDemo.java:11```). As informações fornecidas são úteis para desenvolvedores, mas não são muito significativas para os usuários finais do programa.
+* Para evitar a exceção, podemos verificar o valor antes da divisão e, se o valor for zero, imprimir uma mensagem. Aqui está outra versão do programa. Se o segundo número for zero, o programa imprimirá a string "<strong>Divisão por zero!</strong>".
+```java 
+import java.util.Scanner;
+
+public class ArithmeticExceptionDemo {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int a = scanner.nextInt();
+        int b = scanner.nextInt();
+
+        if (b == 0) {
+            System.out.println("Division by zero!");
+        } else {
+            System.out.println(a / b);
+        }
+        System.out.println("finished");
+    }
+}
+```
+* Veja alguns exemplos de entrada. Vamos começar com números inteiros diferentes de zero:
+```java 
+8 4
+```
+* O programa ainda funciona da mesma maneira e o resultado é:
+```java 
+2
+finished
+```
+* Agora, se tentarmos inserir zero como um divisor:
+```java 
+3 0
+```
+* O resultado é:
+```java 
+Division by zero!
+finished
+```
+* Como você pode ver, a nova versão do programa não lança uma exceção e sempre termina com sucesso. Além disso, ele imprime uma mensagem amigável em vez da mensagem padrão.
+#### NumberFormatException
+* Outra situação a ser considerada é quando você está tentando converter uma string em um número inteiro. Se a string tiver um formato inadequado, o código lançará uma exceção.
+* O programa a seguir lê um número da entrada padrão e, em seguida, produz o número que o segue.
+```java 
+import java.util.Scanner;
+
+public class NumberFormatExceptionDemo {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+
+        int number = Integer.parseInt(input); // an exception is possible here!
+        System.out.println(number + 1);
+    }
+}
+```
+* Funciona muito bem se a linha de entrada for um número inteiro correto. Mas se a entrada não estiver correta (por exemplo ```"121a"```), o programa irá falhar:
+```java 
+Exception in thread "main" java.lang.NumberFormatException: For input string: "121a"
+  at java.base/java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+  at java.base/java.lang.Integer.parseInt(Integer.java:652)
+  at java.base/java.lang.Integer.parseInt(Integer.java:770)
+  at NumberFormatExceptionDemo.main(NumberFormatExceptionDemo.java:9)
+```
+* Esta mensagem exibe o tipo de exceção (```NumberFormatException```) e a string de entrada passada. O local onde ocorreu a exceção é mostrado na última linha da mensagem:
+  * o nome do arquivo é ```NumberFormatExceptionDemo.java```;
+  * o ```main``` método;
+  * a linha 9.
+* Todas as linhas anteriores da mensagem mostram as posições dentro do ```parseInt``` método que faz parte da biblioteca padrão.
+* Para evitar essa exceção, é possível verificar a string de entrada usando uma expressão regular. Caso a entrada não esteja correta, podemos enviar uma mensagem de aviso. O seguinte programa faz isso:
+```java 
+import java.util.Scanner;
+
+public class NumberFormatExceptionDemo {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+
+        if (input.matches("\\d+")) { // it checks if the input line contains only digits
+            int number = Integer.parseInt(input);
+            System.out.println(number + 1);
+        } else {
+            System.out.println("Incorrect number: " + input);
+        }
+    }
+}
+```
+* Se a linha de entrada for "121a", o programa não irá parar e imprimirá a mensagem:
+```java 
+Incorrect number: 121a
+```
+* Se você tiver problemas para entender o que é a exceção, você pode copiar e colar o nome e pesquisar no Google. Além disso, você é fortemente encorajado a fazê-lo, pois 99% dos problemas que os alunos encontram já foram resolvidos em fóruns profissionais.
+#### <hr>
+#### Classes Wrapper
+* Cada tipo primitivo possui uma classe dedicada a ele. Essas classes são conhecidas como <strong>wrappers</strong> e são <strong>imutáveis</strong> (assim como strings). As classes de wrapper podem ser usadas em diferentes situações:
+  * quando uma variável pode ser ```null``` (ausência de um valor);
+  * quando você precisa armazenar valores em coleções genéricas (será considerado nos próximos tópicos);
+  * quando você deseja usar métodos especiais dessas classes.
+* A tabela a seguir lista todos os tipos primitivos e as classes de wrapper correspondentes.
+<table>
+  <tr style="background-color: blue; color: white">
+    <th>Primitivo</th>
+    <th>Classe Wrapper</th>
+    <th>Constructor Argument</th>
+  </tr>
+  <tr>
+    <td>boolean</td>
+    <td>Boolean</td>
+    <td>boolean or String</td>
+  </tr>
+  <tr>
+    <td>byte</td>
+    <td>Byte</td>
+    <td>byte or String</td>
+  </tr>
+  <tr>
+    <td>char</td>
+    <td>Character</td>
+    <td>char</td>
+  </tr>
+  <tr>
+    <td>int</td>
+    <td>Integer</td>
+    <td>int or String</td>
+  </tr>
+  <tr>
+    <td>float</td>
+    <td>Float</td>
+    <td>float, double or String</td>
+  </tr>
+  <tr>
+    <td>double</td>
+    <td>Double</td>
+    <td>double or String</td>
+  </tr>
+  <tr>
+    <td>long</td>
+    <td>Long</td>
+    <td>long or String</td>
+  </tr>
+  <tr>
+    <td>short</td>
+    <td>Short</td>
+    <td>short or String</td>
+  </tr>
+</table>
+
+
+
 
 
 #### <hr>
