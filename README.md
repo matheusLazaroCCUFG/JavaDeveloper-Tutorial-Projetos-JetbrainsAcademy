@@ -564,7 +564,7 @@ Incorrect number: 121a
   * quando você deseja usar métodos especiais dessas classes.
 * A tabela a seguir lista todos os tipos primitivos e as classes de wrapper correspondentes.
 <table>
-  <tr style="background-color: blue; color: white">
+  <tr style="background-color: blue; color: white; font-size: 20px">
     <th>Primitivo</th>
     <th>Classe Wrapper</th>
     <th>Constructor Argument</th>
