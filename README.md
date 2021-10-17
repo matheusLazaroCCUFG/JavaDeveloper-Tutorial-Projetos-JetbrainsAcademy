@@ -557,26 +557,23 @@ Incorrect number: 121a
 ```
 * Se você tiver problemas para entender o que é a exceção, você pode copiar e colar o nome e pesquisar no Google. Além disso, você é fortemente encorajado a fazê-lo, pois 99% dos problemas que os alunos encontram já foram resolvidos em fóruns profissionais.
 #### <hr>
-#### Classes Wrapper
+### Classes Wrapper
 * Cada tipo primitivo possui uma classe dedicada a ele. Essas classes são conhecidas como <strong>wrappers</strong> e são <strong>imutáveis</strong> (assim como strings). As classes de wrapper podem ser usadas em diferentes situações:
   * quando uma variável pode ser ```null``` (ausência de um valor);
   * quando você precisa armazenar valores em coleções genéricas (será considerado nos próximos tópicos);
   * quando você deseja usar métodos especiais dessas classes.
 * A tabela a seguir lista todos os tipos primitivos e as classes de wrapper correspondentes.
-<table>
-  <tr style="background-color: blue; color: white; font-size: 20px">
+<table> 
+  <tr> 
     <th>Primitivo</th>
-    <th>Classe Wrapper</th>
-    <th>Constructor Argument</th>
-  </tr>
-  <tr>
-    <td>boolean</td>
-    <td>Boolean</td>
-    <td>boolean or String</td>
-  </tr>
-  <tr>
-    <td>byte</td>
-    <td>Byte</td>
+    <th>Classe Wrapper</th> 
+    <th>Constructor Argument</th> 
+  </tr> <tr> 
+    <td>boolean</td> 
+    <td>Boolean</td> 
+    <td>boolean or String</td> 
+  </tr> <tr> <td>byte</td> 
+  <td>Byte</td>
     <td>byte or String</td>
   </tr>
   <tr>
@@ -611,9 +608,373 @@ Incorrect number: 121a
   </tr>
 </table>
 
+* Como você pode ver, o Java fornece oito classes de wrapper: uma para cada tipo primitivo. A terceira coluna mostra o tipo de argumento de que você precisa para criar um objeto da classe de invólucro correspondente.
+#### Boxing e unboxing
+* <strong>Boxing</strong> é a conversão de tipos primitivos em objetos de classes de invólucro correspondentes. <strong>Unboxing</strong> é o processo inverso. O código a seguir ilustra os dois processos:
+```java 
+int primitive = 100;
+Integer reference = Integer.valueOf(primitive); // boxing
+int anotherPrimitive = reference.intValue();    // unboxing
+```
+* <strong>Autoboxing</strong> e <strong>auto-unboxing</strong> são conversões automáticas executadas pelo compilador Java.
+```java 
+double primitiveDouble = 10.8;
+Double wrapperDouble = primitiveDouble; // autoboxing
+double anotherPrimitiveDouble = wrapperDouble; // auto-unboxing
+```
+* Você pode misturar processos de boxing / unboxing automáticos e manuais em seus programas.
+```
+O autoboxing funciona apenas quando as partes esquerda e direita de uma
+atribuição têm mesmo tipo. Em outros casos, você obterá um erro de compilação.
+```
+```java 
+Long n1 = 10L; // OK, assigning long to Long
+Integer n2 = 10; // OK, assigning int to Integer 
 
+Long n3 = 10; // WRONG, assigning int to Long
+Integer n4 = 10L; // WRONG assigning long to Integer
+```
+#### Construindo wrappers com base em outros tipos
+* As classes wrapper possuem construtores para criar objetos de outros tipos. Por exemplo, um objeto de uma classe wrapper pode ser criado a partir de uma string (exceto para a ```Character``` classe).
+```java 
+Integer number = new Integer("10012"); // an Integer from "10012"
+Float f = new Float("0.01");           // a Float from "0.01"
+Long longNumber = new Long("100000000"); // a Long from "100000000"
+Boolean boolVal = new Boolean("true");   // a Boolean from "true"
+```
+* Você também pode criar objetos wrapper usando métodos especiais:
+```java 
+Long longVal = Long.parseLong("1000");      // a Long from "1000"
+Long anotherLongVal = Long.valueOf("2000"); // a Long from "2000"
+```
+* Se a string de entrada tiver um argumento inválido (por exemplo, ```"1d0o3"```), ambos os métodos lançam o ```NumberFormatException```.
+```
+Observe que, desde o Java 9, os construtores estão obsoletos. Você deve usar métodos especiais para criar objetos das classes de wrapper.
+```
+#### Comparando wrappers
+* Assim como para qualquer tipo de referência, o operador ```==``` verifica se dois objetos de invólucro são realmente iguais, ou seja, se eles se referem ao mesmo objeto na memória. O método ```equals```, por outro lado, verifica se dois objetos de invólucro são significativamente iguais, por exemplo, verifica se dois invólucros ou cadeias de caracteres têm o mesmo valor.
+```java 
+Long i1 = Long.valueOf("2000");
+Long i2 = Long.valueOf("2000");
+System.out.println(i1 == i2);      // false
+System.out.println(i1.equals(i2)); // true
+```
+* Não se esqueça desse recurso ao trabalhar com wrappers. Mesmo que correspondam aos tipos primitivos, os objetos de invólucro são tipos de referência!
+#### <hr>
+### Introdução à programação genérica
+#### Programação genérica
+* Existem situações em que os métodos e classes não dependem dos tipos de dados nos quais operam. Por exemplo, o algoritmo para localizar um elemento em uma matriz pode processar matrizes de strings, inteiros ou classes personalizadas. Não importa o que o array armazena: o algoritmo é sempre o mesmo. Contudo, não podemos escrever este algoritmo como um único método, porque requer argumentos diferentes (```int[]```, ```String[]```, etc.).
+* Desde a versão 5, o Java oferece suporte à programação genérica que introduz abstração sobre os tipos. Métodos e classes genéricos podem lidar com diferentes tipos da mesma maneira geral. Um tipo concreto é determinado apenas quando um desenvolvedor cria um objeto da classe ou invoca o método. Essa abordagem nos permite escrever código mais abstrato e desenvolver bibliotecas de software reutilizáveis. Vamos considerá-lo passo a passo usando exemplos escritos em Java.
+#### Parâmetros de tipo
+* Um tipo genérico é uma classe genérica (ou interface) que é parametrizada em tipos. Para declarar uma classe genérica, precisamos declarar uma classe com a seção de parâmetro de tipo delimitada por colchetes angulares ```<``` ```>```após o nome da classe.
+* No exemplo a seguir, a classe ```GenericTypetem``` um único parâmetro de tipo denominado ```T```. Assumimos que o tipo ```T``` é "algum tipo" e escrevemos o corpo da classe independentemente do tipo concreto.
+```java 
+class GenericType<T> { 
 
+    /**
+     * A field of "some type"
+     */
+    private T t;
 
+    /**
+     * Takes a value of "some type" and assigns it to the field
+     */
+    public GenericType(T t) {
+        this.t = t;
+    }
+
+    /**
+     * Returns a value of "some type"
+     */
+    public T get() {
+        return t;
+    }
+
+    /**
+     * Takes a value of "some type", assigns it to a field and then returns it
+     */
+    public T set(T t) {
+        this.t = t;
+        return this.t;   
+    }
+}
+```
+* Depois de ser declarado, um parâmetro de tipo pode ser usado dentro do corpo da classe como um tipo comum. Por exemplo, o exemplo acima usa o parâmetro de tipo ```T``` como:
+  * um tipo para um campo
+  * um tipo de argumento de construtor
+  * um argumento de método de instância e tipo de retorno
+* O comportamento de ambos os métodos de instância não depende do tipo concreto de ```T```; ele pode receber / retornar uma string ou um número da mesma maneira.
+* Uma classe pode ter qualquer número de parâmetros de tipo. Por exemplo, a seguinte classe tem três.
+```java 
+class Three<T, U, V> {
+    T t;
+    U u;
+    V v;
+}
+```
+* Mas a maioria das classes genéricas tem apenas um ou dois parâmetros de tipo.
+#### A convenção de nomenclatura para parâmetros de tipo
+* Há uma convenção de nomenclatura que restringe as opções de nome de parâmetro de tipo a letras maiúsculas simples. Sem essa convenção, seria difícil dizer a diferença entre uma variável de tipo e um nome de classe comum.
+* Os nomes de parâmetro de tipo mais comumente usados são:
+  * ```T``` - Modelo
+  * ```S```, ```U```, ```V``` Etc. - 2ª, 3ª, 4ª tipos
+  * ```E``` - Elemento (usado extensivamente por diferentes coleções)
+  * ```K``` - Chave
+  * ```V``` - Valor
+  * ```N``` - Número
+#### Criação de objetos de classes genéricas
+* Para criar um objeto de uma classe genérica (padrão ou customizada), precisamos especificar o argumento de tipo após o nome do tipo.
+```java 
+GenericType<Integer> obj1 = new GenericType<Integer>(10);
+
+GenericType<String> obj2 = new GenericType<String>("abc");
+```
+```
+É importante observar que um argumento de tipo deve ser um tipo de referência. Tipos primitivos como int ou double são argumentos de tipo inválido.
+```
+* Java 7 tornou possível substituir os argumentos de tipo necessários para invocar o construtor de uma classe genérica por um conjunto vazio de argumentos de tipo, desde que o compilador possa inferir os argumentos de tipo a partir do contexto.
+```java 
+GenericType<Integer> obj1 = new GenericType<>(10);
+
+GenericType<String> obj2 = new GenericType<>("abc");
+```
+* Usaremos esse formato em todos os outros exemplos.
+```
+O par de colchetes angulares <>é informalmente chamado de operador de diamante.
+```
+* Às vezes, declarar uma variável com um tipo genérico pode ser demorado e difícil de ler. A partir do Java 10, podemos escrever em ```var``` vez de um tipo específico para forçar a inferência automática de tipo com base no tipo de valor atribuído.
+```java 
+var obj3 = new GenericType<>("abc");
+```
+* Depois de criar um objeto com um argumento de tipo especificado, podemos invocar métodos da classe que recebem ou retornam o parâmetro de tipo:
+```java 
+Integer number = obj1.get(); // 10
+String string = obj2.get();  // "abc"
+
+System.out.println(obj1.set(20));    // prints the number 20
+System.out.println(obj2.set("def")); // prints the string "def"
+```
+* Se uma classe tem vários parâmetros de tipo, precisamos especificar todos eles ao criar instâncias:
+```java 
+GenericType<Type1, Type2, ..., TypeN> obj = new GenericType<>(...);
+```
+#### Matriz genérica personalizada
+* Como um exemplo mais complicado, vamos considerar a seguinte classe que representa um array imutável genérico. Ele tem um campo para armazenar itens do tipo T, um construtor para definir itens, um método para obter um item por seu índice e outro método para obter o comprimento do array interno. A classe é imutável porque não fornece métodos para modificar a matriz de itens.
+```java 
+public class ImmutableArray<T> {
+
+    private T[] items;
+
+    public ImmutableArray(T[] items) {
+        this.items = items;
+    }
+
+    public T get(int index) {
+        return items[index];
+    }
+
+    public int length() {
+        return items.length;
+    }
+}
+```
+* Esta classe mostra que uma classe genérica pode ter métodos (como comprimento) que não usam o tipo de parâmetro de forma alguma.
+* O código a seguir cria uma instância de ```ImmutableArray``` para armazenar três strings e, em seguida, enviar os itens para a saída padrão.
+```java 
+var stringArray = new ImmutableArray<>(new String[] {"item1", "item2", "item3"});
+
+for (int i = 0; i < stringArray.length(); i++) {
+    System.out.print(stringArray.get(i) + " ");
+}
+```
+* É possível parametrizar ```ImmutableArray``` com qualquer tipo de referência, incluindo arrays, classes padrão ou suas próprias classes.
+```java 
+var doubleArray = new ImmutableArray<>(new Double[] {1.03, 2.04});
+
+MyClass obj1 = ..., obj2 = ...; // suppose, you have two objects of your custom class
+
+var array = new ImmutableArray<>(new MyClass[] {obj1, obj2});
+```
+* Usamos ```var``` nos exemplos acima para economizar espaço. Em vez de usar var, poderíamos ter especificado explicitamente o tipo, por exemplo, ```ImmutableArray<String> stringArray = ...;``` e assim por diante.
+#### <hr>
+#### O que são Collections (coleções / listas / list)
+#### Quando as matrizes não são suficientes
+* A linguagem Java oferece suporte a matrizes para armazenar vários valores ou objetos do mesmo tipo juntos. Uma matriz é inicializada com um tamanho predefinido durante a criação. O tamanho não pode ser alterado no futuro e isso impõe algumas limitações ao seu uso para resolver problemas de negócios. Se quisermos armazenar mais dados, precisamos criar um novo array maior e, em seguida, copiar os dados neste array manualmente. Isso pode ser ineficiente para programas que processam muitos dados.
+#### Coleções diferentes
+* Felizmente, existe um conjunto de contêineres chamados coleções para agrupar elementos em uma única unidade. Eles são usados para armazenar, recuperar, manipular e comunicar dados agregados.
+* As coleções são mais sofisticadas e flexíveis do que os arrays. Em primeiro lugar, eles são redimensionáveis : você pode adicionar qualquer número de elementos a uma coleção. Uma coleção tratará automaticamente a exclusão de um elemento de qualquer posição. O segundo ponto é que as coleções fornecem um rico conjunto de métodos que já estão implementados para você.
+* Existem vários tipos de coleções com diferentes estruturas de armazenamento interno. Você pode escolher um tipo de coleção que melhor corresponda ao seu problema, de modo que suas operações mais frequentes sejam convenientes e eficientes.
+```
+Na verdade, coleções são representações de diferentes estruturas de dados e tipos de dados abstratos da Ciência da Computação. É bom entender a relação entre eles e as coleções em Java. Isso o ajudará a programar entrevistas e a trabalhar para selecionar uma coleção apropriada.
+```
+#### Características das coleções
+* Existem vários recursos específicos de coleções em Java:
+  1. Eles são representados por diferentes classes da Java Standard Library.
+  2. Todas as coleções modernas são tipos genéricos, enquanto as coleções antigas são não genéricas . Vamos nos concentrar apenas em novas coleções. Como genéricos regulares, eles podem armazenar qualquer tipo de referência, incluindo classes definidas por você (como ```Person``` ou outra coisa).
+  3. As coleções podem ser mutáveis (possível adicionar e remover elementos) e imutáveis (impossível fazer isso).
+* Além das coleções padrão, há várias bibliotecas externas com coleções. Uma dessas bibliotecas é a Guava Collections, que foi desenvolvida pelo Google. Ele pode ser usado se as coleções padrão não forem suficientes para resolver seus problemas.
+#### O exemplo de coleção mais simples
+* Há um exemplo de uma coleção simples chamada ```ArrayList```. Para utilizá-lo, faça a seguinte importação:
+```
+java.util.ArrayList;
+```
+* Ele funciona de maneira semelhante a um array regular, mas você não precisa redimensioná-lo manualmente para adicionar e remover elementos.
+```java 
+ArrayList<String> list = new ArrayList<>();
+
+list.add("first");
+list.add("second");
+list.add("third");
+
+System.out.println(list); // [first, second, third]
+
+System.out.println(list.get(0)); // first
+System.out.println(list.get(1)); // second
+System.out.println(list.get(2)); // third
+
+list.remove("first");
+
+System.out.println(list); // [second, third]
+
+System.out.println(list.size()); // 2
+```
+```
+Observe, neste exemplo, usamos o getmétodo para acessar um elemento por seu índice. Ao contrário dos arrays, as coleções não têm o []operador.
+```
+* Esperamos que isso seja o suficiente para o primeiro contato com as coleções. Em outros tópicos, você aprenderá diferentes tipos de coleções com mais detalhes. Agora, a principal coisa a entender é que usar coleções não é mais difícil do que usar um array regular.
+```
+Todas as coleções modernas são genéricas, portanto, você pode especificar
+qualquer tipo de referência como um parâmetro genérico e armazená-lo em uma
+coleção. Mas há uma restrição, as coleções não pode armazenar valores primitivos
+em tudo ( int, long, char, doublee assim por diante). Você deve usar uma das
+classes de mensagens publicitárias ( Integer, Long, Character, Doubleou outra)
+em seu lugar.
+```
+### ArrayList
+#### Arrays redimensionáveis
+* Uma das classes mais amplamente usadas da Java Class Library é uma classe chamada ```ArrayList``` que representa uma matriz redimensionável de objetos de um tipo especificado. Ao contrário do array padrão denotado como ```[]```, ele pode crescer dinamicamente após a adição e encolher após a remoção de seus elementos. Esse comportamento é muito útil se você não souber o tamanho do array com antecedência ou se precisar de um que possa alterar os tamanhos durante a vida útil de um programa.
+* Na verdade, essa classe é construída sobre um array Java padrão, estendendo-o com um conjunto de operações convenientes. Como um array padrão, permite obter o número atual de elementos (seu tamanho) bem como acessar seus elementos por meio de seus índices.
+* Existe apenas uma restrição: por ```ArrayList``` ser uma classe genérica, não pode armazenar tipos primitivos. No entanto, ele pode armazenar qualquer tipo de referência, incluindo ```String```'s, classes de wrapper (como ```Integer```' s), other ```ArrayList```'s e classes personalizadas.
+#### Criação de uma instância de ArrayList
+* Para começar a usar a classe por seu nome abreviado, faça a seguinte importação:
+```java 
+import java.util.ArrayList;
+```
+* Vamos considerar várias maneiras de criar instâncias desta classe.
+1) A maneira mais simples é usar um construtor sem argumento:
+```java 
+ArrayList<String> list = new ArrayList<>();
+```
+* A lista criada está vazia, mas sua capacidade inicial é 10 (por padrão).
+2) Também podemos especificar a capacidade inicial do mesmo:
+```java 
+ArrayList<String> list = new ArrayList<>(50);
+```
+* Esta lista está vazia, mas sua capacidade inicial está definida para 50.
+* 3) Ou você pode construir um ArrayListque consiste em elementos de outra lista:
+```java 
+ArrayList<String> list = new ArrayList<>(anotherList);
+```
+* Independentemente de como você cria uma instância de ```ArrayList```, seu tamanho mudará dinamicamente. Nesta lição, criaremos uma lista com a capacidade padrão como no primeiro exemplo.
+```
+Se você é um usuário avançado, sabe que é melhor criar e usar um ArrayList por
+meio de sua Listinterface. Faremos isso nas próximas lições, após aprender
+a herança . Acreditamos que a abordagem atual é suficiente por enquanto, uma
+vez que requer menos conhecimento para começar a usar coleções dinâmicas.
+```
+#### Metodos basicos
+* A coleção possui um conjunto de métodos convenientes que emulam e estendem a funcionalidade de matrizes padrão. Vamos discutir o que são. Primeiro, vamos inicializar alguma coleção:
+```java 
+ArrayList<String> names = new ArrayList<>(); // empty collection of strings
+```
+* Em primeiro lugar, existe um método para determinar o tamanho da coleção ```size``` que retorna o número de elementos da lista. Vamos tentar aprender o tamanho do nosso:
+```java 
+System.out.println(names.size()); // 0
+```
+* Como esperado, ele está vazio e o resultado é zero. Também podemos querer aprender o valor da posição especificada do objeto. Para isso, as coleções possuem ```get(int index)``` método que retorna o objeto da lista que está presente no índice especificado.
+* A seguir, existem vários métodos para adicionar elementos e definir valores de uma coleção:
+  * ```add(Object o)``` adiciona um elemento passado à última posição da coleção;
+  * ```add(int index, Object o)``` adiciona um elemento passado à posição especificada da coleção;
+  * ```set(int index, Object o)``` substitui o elemento presente no índice especificado pelo objeto;
+* Vamos adicionar alguns nomes à nossa coleção:
+```java 
+names.add("Justin");      // [Justin]
+names.add("Helen");       // [Justin, Helen]
+names.add(1, "Joshua");   // [Justin, Joshua, Helen]
+names.add(0, "Laura");    // [Laura, Justin, Joshua, Helen]
+```
+* E substitua um nome por outro:
+```java 
+names.set(3, "Marie"); // now: [Laura, Justin, Joshua, Marie]
+```
+* Podemos verificar se tudo está conforme o esperado:
+```java 
+System.out.println(names);        // [Laura, Justin, Joshua, Marie]
+System.out.println(names.size()); // 4
+System.out.println(names.get(0)); // the first element is "Laura"
+System.out.println(names.get(3)); // the last element is "Marie"
+```
+* Finalmente, existem métodos para remover elementos da coleção:
+  * ```remove(Object o)``` remove a primeira ocorrência do elemento especificado desta lista, se estiver presente;
+  * ```remove(int index)``` remove o elemento na posição especificada nesta lista;
+  * ```clear()``` remove todos os elementos da coleção.
+* Vamos tentar remover elementos por valor e índice:
+```java 
+names.remove("Justin"); // [Laura, Joshua, Marie]
+names.remove(1);        // [Laura, Marie]
+names.clear();          // []
+```
+```
+Importante: índices de elementos começam com 0, assim como para matrizes padrão
+```
+* Tente brincar com este código sozinho e aproveite o poder dele ArrayList.
+#### Mais métodos ArrayList
+* Ilustramos as possibilidades de métodos básicos para coleções em Java aplicadas a um ```ArrayList``` objeto. Mas esta classe tem mais alguns métodos próprios. Primeiro, vamos criar outro ```ArrayList```:
+```java 
+/* an ArrayList of Integers, not ints */
+ArrayList<Integer> numbers = new ArrayList<>();
+
+numbers.add(1);
+numbers.add(2);
+numbers.add(3);
+numbers.add(1);
+```
+* Também existe um ```addAll(Collection c)``` método para adicionar toda a coleção a um ```ArrayList```. Ele anexa elementos da coleção fornecida ao final da lista:
+```java 
+ArrayList<Integer> numbers2 = new ArrayList<>();    // creating another list of Integers
+numbers2.add(100);
+numbers2.addAll(numbers); // [100, 1, 2, 3, 1]
+```
+* A classe também possui um método chamado ```contains``` que verifica se uma lista contém um valor ou não, e dois métodos e que encontram o índice da primeira e da última ocorrência de um elemento, respectivamente. Eles retornam se não houver tal índice. ```indexOf``` ```lastIndexOf``` ```-1```
+* Vamos ver:
+```java 
+System.out.println(numbers.contains(2));    // true
+System.out.println(numbers.contains(4));    // false
+System.out.println(numbers.indexOf(1));     // 0
+System.out.println(numbers.lastIndexOf(1)); // 3
+System.out.println(numbers.lastIndexOf(4)); // -1
+```
+* Como você pode ver, essa classe fornece um rico conjunto de métodos para trabalhar com elementos. Você não precisa escrevê-los sozinho, como faz com os arrays padrão.
+#### Iterando sobre ArrayList
+* É possível iterar sobre os elementos de uma instância da classe. Isso é feito da mesma maneira que iterar em um array. No exemplo a seguir, usamos os loops for e for-each para adicionar as cinco primeiras potências de dez em uma lista e, em seguida, imprimir os números na saída padrão.
+```java 
+ArrayList<Long> powersOfTen = new ArrayList<>();
+
+int count = 5;
+for (int i = 0; i < count; i++) {
+    long power = (long) Math.pow(10, i);
+    powersOfTen.add(power);
+}
+
+for (Long value : powersOfTen) {
+    System.out.print(value + " ");
+}
+```
+* O código imprime o seguinte:
+```java 
+1 10 100 1000 10000 
+```
+* Não é mais difícil do que usar uma matriz padrão.
 
 #### <hr>
 #### <hr>

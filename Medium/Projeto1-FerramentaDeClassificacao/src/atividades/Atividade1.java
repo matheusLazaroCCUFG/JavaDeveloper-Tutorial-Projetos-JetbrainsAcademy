@@ -2,19 +2,48 @@ package atividades;
 
 import java.util.Scanner;
 
-class Atividade1 {
+public class Atividade1 {
 
-    public static void main(String[] args) {
-        String str1;
-        String str2 = "123";
+    /**
+     * @param val
+     * Converter Long val para int
+     * @return int
+     */
+    public static int convert(Long val) {
 
-        if (str2.equals(str1 = "123")) {
-            str2 = null;
+        if (val == null) {
+            return 0;
+        } else {
+            if (val > Integer.MAX_VALUE) {
+                return Integer.MAX_VALUE;
+            } else if (val < Integer.MIN_VALUE) {
+                return Integer.MIN_VALUE;
+            }
         }
+        return val.intValue();
+    }
 
-        str1 = str2;
-        str2 = str1;
+    /* Do not change code below */
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String val = scanner.nextLine();
+        Long longVal = "null".equals(val) ? null : Long.parseLong(val);
+        System.out.println(convert(longVal));
 
-        System.out.println(str2);
+        Long val1 = 4321L;
+
+        Long val2 = new Long("4321");
+
+        Long val3 = Long.parseLong("4321");
+
+        Long val4 = new Long(4321);
+    }
+
+    public static boolean toPrimitive(Boolean b) {
+        if (b == null) {
+            return false;
+        } else {
+            return b.booleanValue();
+        }
     }
 }
