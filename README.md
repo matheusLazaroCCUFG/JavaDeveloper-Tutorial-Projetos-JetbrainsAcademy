@@ -1,5 +1,4 @@
 # Java Developer - Jetbrains Academy
-#### Perfil Hyperskill: https://hyperskill.org/profile/144157174
 # <hr>
 ## Anotações importantes
 ### Convenções de código Oracle
