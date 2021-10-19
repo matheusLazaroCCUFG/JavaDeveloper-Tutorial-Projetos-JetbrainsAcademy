@@ -5,5 +5,9 @@
 * Familiarize-se com Coleções e aprenda a trabalhar com arquivos, argumentos e linha de comando.
 #### <hr>
 ### Anotações
-#### Tipos de ponto flutuante
-
+### Problema de classificaçao
+#### Entendendo o problema
+* O problema de classificação geralmente surge na prática de programação, quando temos que ordenar uma sequência de elementos. A ordem necessária pode ser crescente ou decrescente. Freqüentemente, a ordem crescente é considerada um padrão.
+* Para representar sequências de elementos, muitas linguagens oferecem suporte a matrizes e / ou listas.
+* Aqui está uma matriz de seis elementos:
+  <img alt="" height="85" src="https://ucarecdn.com/0a2d589b-a820-4d1c-984f-900401a8698c/" width="316">
