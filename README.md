@@ -975,6 +975,200 @@ for (Long value : powersOfTen) {
 1 10 100 1000 10000 
 ```
 * Não é mais difícil do que usar uma matriz padrão.
+#### <hr>
+### Hashing: visão geral
+* Hashing é uma técnica amplamente usada em programação. Quer envie uma mensagem pela Internet, faça login em um site ou pesquise um arquivo em seu computador, você está usando funções hash ! Mas o que são e o que fazem?
+#### O que é hashing?
+* Formalmente, funções hash são funções que podemos usar para mapear dados de tamanho arbitrário para valores de tamanho fixo. Isso é muito vago, então vamos dar uma olhada em uma comparação da vida real para entendê-los melhor:
+* Imagine que você tem um amigo Paul que mantém uma lista telefônica. Seu amigo é preguiçoso e não quer perder muito tempo escrevendo o nome completo de seus contatos. Então, em vez disso, Paulo escreve apenas as consoantes em seus nomes. Por exemplo, em vez de John Smith, Paul escreve Jhn Smth. Em alguns aspectos, esse processo é semelhante ao <strong>hash</strong>. Podemos considerar que "remover todas as vogais" é a <strong>função hash</strong>. Chamamos o resultado da aplicação de uma função hash a alguma entrada de <strong>valor hash</strong> ou simplesmente seu <strong>hash</strong>. Em nosso caso, Jhn Smth é o valor hash de John Smith. Agora, nem todos os valores de hash serão distintos: pense em duas pessoas com nomes Tim Black e Tom Black . O valor hash para ambos os nomes será Tm Blck. Quando isso acontece, chamamos de <strong>colisão</strong>.
+* A principal diferença entre nosso exemplo e uma função hash real é que, em nosso caso, os valores hash <strong>não têm um tamanho fixo</strong>. Um exemplo mais preciso seria se Paulo escreveu as primeiras 5 letras em seus nomes. O valor de hash para John Smith seria John S , para Tim Black seria Tim Bl , e para Tim Blacksmith, seria Tim Bl também. Existem mais nomes do que formas possíveis de escrever 5 letras, por isso temos a garantia de colisões. A mesma coisa também é verdadeira para funções hash. Eles recebem dados que podem ser muito grandes e retornam algo de tamanho fixo, então não há como evitar completamente as colisões!
+#### Aplicações de funções hash
+* Como mencionamos no início, as funções hash têm muitas aplicações. Vejamos alguns dos mais importantes:
+* <strong>Resumos de mensagens</strong>: digamos que você tenha uma mensagem que deseja enviar a um amigo pela Internet, mas tem medo de que alguém altere seu conteúdo antes que ela chegue a seu amigo. Uma das coisas que você pode fazer é calcular um valor hash para sua mensagem antes de enviá-la. Quando seus amigos a recebem, eles calculam o valor hash da mensagem usando a mesma função hash que você. Você pode então comparar os dois hashes e verificar se eles são iguais. As funções hash usadas para isso têm a propriedade de ser difícil encontrar colisões. Essas funções hash são chamadas de <strong>função hash criptográfica</strong>. Eles também podem ter outras propriedades, como a do exemplo a seguir.
+* <strong>Armazenamento de senha</strong>: você já se perguntou por que os sites não têm a opção de enviar sua senha caso você a esqueça, e eles fazem você redefini-la? Para poder enviá-lo de volta, eles precisam armazená-lo em texto simples. Ao fazer isso, se alguém obtiver acesso ao banco de dados de senhas, poderá facilmente roubar todas as contas! O que os sites fazem é armazenar um hash de sua senha. Quando você envia a senha de login, eles calculam seu hash e verificam se é igual ao que armazenaram. Nesse caso, encontrar colisões não é um grande problema. Aqui, você precisa saber que, se alguém encontrar o hash da sua senha, não será possível descobrir sua senha por meio dele.
+* <strong>Tabelas de hash</strong>: um uso mais comum na programação diária são as tabelas de hash. Eles são estruturas de dados rápidas e convenientes que usam hash. Com eles, você pode pesquisar, inserir ou remover elementos de uma tabela. A ideia principal por trás deles é que você deseja usar valores hash para indexar dados em um array. Por exemplo, se você deseja usar uma tabela hash para armazenar uma lista telefônica, pode salvar o par ( Tim Black, 0123456789) no índice Tm Blck. Então, para encontrar o número do telefone de Tim, basta pesquisar no índice Tm Blck. Depois disso, você também pode salvar (Tom Black , 9876543210)no mesmo índice e, sempre que precisar encontrar o número de telefone de Tim ou Tom, você só precisa pesquisar entre dois pares, ao invés de toda a lista telefônica. As funções de hash usadas em tabelas de hash são menos restritivas do que aquelas usadas para resumos de mensagens e armazenamento de senha, e seus valores de hash são, geralmente, números. Veremos mais detalhadamente as tabelas de hash nos tópicos a seguir.
+#### <hr>
+### Função Hash
+#### Introdução
+* Em teoria, uma função hash é qualquer função que pode assumir qualquer valor grande e gerar um valor de tamanho fixo. No entanto, nem todas as funções com essa propriedade são úteis, pois diferentes casos de uso precisam de propriedades diferentes. Para entendê-lo melhor, veremos agora algumas propriedades gerais das funções hash e alguns exemplos delas.
+#### Definindo uma boa função hash
+* Qual é a diferença entre qualquer função hash e uma boa? Para definir uma boa função hash, precisamos aprender três de suas propriedades: eficiente, determinística e uniforme.
+* Uma função hash <strong>eficiente</strong> deve calcular o valor do hash em tempo constante: O (1) no tamanho da entrada. Digamos que você tenha uma variedade de "n" inteiros. Então, uma boa função hash levaria tempo O (n), pois n é o tamanho da entrada, e seria capaz de calcular hashes para n > 100.000.000 em menos de um segundo. Agora, digamos que outra função hash leve tempo O (n ^ 2). Então, ele mal conseguia calcular hashes para n ~ 10.000 em um segundo.
+* Se duas entradas são iguais, elas devem ter o mesmo valor de hash, é por isso que precisamos que uma função de hash seja <strong>determinística</strong>. Há duas coisas a serem lembradas aqui:
+  * Primeiro, determinístico significa que a função não pode ser aleatória. Por exemplo, a função que retorna 0 ou 1 aleatoriamente, independentemente da entrada, é uma função hash, mas não determinística.
+  * Em segundo lugar, imagine que você tem duas variáveis distintas, ambas com o mesmo valor, digamos 7. Para um computador, elas ocupam pontos diferentes na memória, então são diferentes, mas essas variáveis ​​são iguais se os valores forem comparados. Nesse caso, queremos que a função hash retorne o mesmo valor. Um exemplo de função hash que não faz isso é a função que retorna o endereço do valor na memória.
+* Como você já sabe, a terceira propriedade é uniforme: os valores de hash são distribuídos uniformemente. Isso significa que as entradas devem ser mapeadas igualmente entre os valores de hash possíveis. Outra forma de colocar isso: se agruparmos as entradas possíveis por seu valor de hash, queremos que os grupos tenham tamanhos próximos uns dos outros.
+* Essas são as propriedades gerais que qualquer função hash deve ter. Vejamos alguns dos mais comuns para ver como funcionam.
+#### Funções de hash padrão
+* Para usar funções hash, precisamos primeiro aprender a notação. As funções de hash são geralmente denotadas por h. O valor hash para um objeto específico x é denotado por h (x). As funções de hash usadas na programação do dia-a-dia geralmente pegam um tipo de valor e retornam inteiros. Eles são usados em tabelas hash e têm todas as três propriedades que discutimos acima. Estes são alguns dos hashes mais fáceis e mais comumente usados:
+* Inteiros: usamos a função de identidade, que sempre retorna o valor que é fornecido:h (x) = x, ou o módulo: h (x) = x % p, para algum número p(geralmente um primo). O modulo x % p retorna o resto ao dividir x por p. Vamos ver como eles funcionam para algum número aleatório, digamos 10. A identidade sempre retornará o número fornecido, então temos h (10) = 10. Para o módulo, se escolhermos p = 7, então nós temos h (10) = 10 % 7 = 3. Se escolhermos p = 10, então nós temos h (10) = 10 % 10 = 0.
+* Matrizes inteiras: digamos que a matriz tenha a forma [v1, v2, ..., vn].
+* ...
+* valor Hash:
+  * x: último valor
+  x mod p + x
+#### Funções criptográficas de hash
+* Os hashes criptográficos são feitos para funcionar com qualquer entrada de qualquer comprimento e tipo, considerando-a como uma sequência de bits: 1's e 0's. Eles também geram uma sequência de bits, mas de comprimento fixo. O computador pode funcionar muito bem com ele, mas para nós é muito difícil "ver" se não o formatarmos de forma clara. Normalmente, existem algumas centenas de bits na saída, então o que fazemos é considerá-lo como um grande número na base 2, convertê-lo na base 16 e escrevê-lo como uma string.
+* Os hashes criptográficos ainda respeitam as propriedades acima, mas são mais complexos. Eles têm menos casos de uso, mas são extremamente importantes na segurança. Vamos ver de quais propriedades eles precisam:
+  * Imagine que uma empresa armazene uma tabela de pares de nome de usuário e senha para um site que você usa. Se essa tabela vazar, qualquer pessoa poderá ver sua senha. Então, o que eles fazem é salvar o hash da sua senha. Sempre que você envia sua senha, eles calculam o hash e verificam se é igual ao salvo. Agora, se a tabela vazar, um invasor deve encontrar uma senha que tenha o mesmo valor de hash da sua senha para poder fazer login como você. Portanto, a função hash deve tornar muito difícil para um invasor encontrar essa senha. Essa função é chamada de resistente à pré-imagem : dado um valor hashhh, é difícil encontrar uma mensagemmm com hash (m) = h.
+  * Uma das maneiras de garantir que uma mensagem não foi alterada é enviando o hash da mensagem junto com a própria mensagem. Suponha que um invasor queira alterar a mensagem, mas não pode alterar o hash. Em seguida, ele precisa encontrar uma mensagem diferente com hash para o mesmo valor. Mesmo que a nova mensagem não faça sentido, ela pode afetar a comunicação de algumas maneiras. Uma função hash que não permite é chamada de segunda pré-imagem resistente ou resistente a colisão fraca : dada uma mensagem m1 é difícil encontrar uma mensagem diferente m2 com hash (m1) = hash (m2).
+  * Em alguns casos de uso muito específicos, localizar qualquer par de mensagens com o mesmo hash pode resultar em problemas. Uma função hash que não permite é chamada de resistente à colisão ou resistente à colisão forte : é difícil encontrar qualquer mensagem m1, m2 de tal modo que hash (m1) = hash (m2).
+* Quando dizemos que é difícil encontrar algum valor, isso significa que encontrar um valor com as propriedades necessárias levaria anos , mesmo com os supercomputadores mais poderosos. Se você acha que é difícil conseguir essas propriedades, você está certo! Nem todos podem criar tal função. Felizmente, existem alguns padrões que são amplamente usados hoje. Suas implementações são complicadas, por isso não entraremos em detalhes.
+* Primeiro, vamos dar uma olhada no MD5 . Foi criado em 1992 como uma alternativa melhor ao seu antecessor, MD4. Ele recebe qualquer entrada e produz um valor hash de 128 bits. Inicialmente, acreditava-se que fosse resistente a colisões, mas em 2004 ficou provado que não. Demorou 12 anos e muita pesquisa para descobrir isso, então é melhor ficar com os hashes existentes do que tentar criar novos!
+* Outra função hash criptográfica, mais segura, é SHA256 . Sua saída é de 256 bits e é usada em muitos lugares, sendo um deles a prova de trabalho do Bitcoin . Vamos dar uma olhada em alguns exemplos e ver o que pequenas mudanças na entrada fazem ao valor de hash:
+* ...
+* Mesmo pequenas mudanças produzem grandes diferenças! Isso é consequência da resistência à colisão e da pré-imagem.
+* Valor Hash
+  * Para deixar claro, vamos ver como calculamos o valor de hash para a matriz [1, 2, 3, 4] usando p = 5:
+    * h0 = 0
+    * h1 = h0 * p + v1 = 0 * 5 + 1 = 1
+    * h2 = h1 * p + v2 = 1 * 5 + 2 = 7
+    * h3 = h2 * p + v3 = 7 * 5 + 3 = 38
+    * h4 = h3 * p + v4 = 38 * 5 + 4 = <strong>194</strong>
+#### <hr>
+### Tabelas hash
+#### Introduçao
+* Vamos imaginar o seguinte cenário: você tem muitos amigos e uma grande estante cheia de livros. Alguns de seus amigos querem seus livros emprestados, alguns querem devolvê-los e alguns querem saber se você tem um determinado livro. Então, você deseja escrever um programa que permite adicionar livros, remover livros e verificar se um livro está disponível. Para este cenário, qual seria a melhor estrutura de dados a ser usada?
+* As tabelas de hash são estruturas que nos permitem inserir e remover valores e verificar se um valor está presente no tempo O (1) para cada uma dessas operações. Tabelas de hash sozinhas não podem garantir esse tempo. Porém, emparelhado com uma boa função hash, tudo funciona bem, tornando-se uma das melhores estruturas de dados para esse fim.  
+#### Tabelas hash
+* As tabelas de hash são matrizes em que cada entrada é um depósito . Os intervalos podem conter 0 ou mais valores de um tipo. Eles são identificados por seu índice na matriz. Se quisermos inserir um valor na tabela hash, calculamos seu valor hash e o inserimos no balde com um índice igual ao valor hash (módulo do tamanho da matriz se o valor hash for muito grande). Você pode fazer o mesmo para remover um objeto ou procurá-lo.
+* Vejamos um exemplo agora. Digamos que temos uma tabela hash com 5 depósitos e estamos inserindo inteiros {1, 3, 5, 6} com a função hash de identidade. A tabela é parecida com esta:
+<table align="center" border="1" cellpadding="1" cellspacing="1">
+	<tbody>
+		<tr>
+			<th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Índice</font></font></th>
+			<td style="text-align: center;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">0</font></font></td>
+			<td style="text-align: center;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1</font></font></td>
+			<td style="text-align: center;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">2</font></font></td>
+			<td style="text-align: center;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">3</font></font></td>
+			<td style="text-align: center;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">4</font></font></td>
+		</tr>
+		<tr>
+			<th><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Valores</font></font></th>
+			<td style="text-align: center;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{5}</font></font></td>
+			<td style="text-align: center;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{1, 6}</font></font></td>
+			<td style="text-align: center;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{}</font></font></td>
+			<td style="text-align: center;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{3}</font></font></td>
+			<td style="text-align: center;"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">{}</font></font></td>
+		</tr>
+	</tbody>
+</table>
+
+* Agora vamos descobrir como funciona. Como estamos usando a função de identidade, o valor do hash é igual ao próprio valor. Por causa disso, você pode ver que 1 e 3 estão em intervalos nos índices 1 e 3, respectivamente. Agora, 5 e 6 têm valores de hash 5 e 6, mas há poucos baldes! Para encontrar um intervalo para eles, pegamos o módulo do valor do hash pelo número total de intervalos, neste caso, 5. Portanto, 5 módulo 5 é 0 e 6 módulo 5 é 1, e você pode ver na tabela que os valores são colocados nos baldes corretos.
+* Existem dois tipos de tabelas de hash. O que está acima é chamado de conjunto hash . Eles podem ser usados ​​em cenários onde precisamos apenas verificar se um valor está presente, por exemplo, o cenário do livro na introdução. Ainda podemos adicionar ou remover elementos, mas, na maioria dos casos, não estamos interessados ​​em obter um valor de um conjunto hash, uma vez que já temos um valor igual que precisamos para poder pesquisar uma tabela hash. As implementações de conjuntos de hash são unordered_set em C ++ e HashSet em Java.
+* Outro tipo de tabela hash é um mapa hash . Imagine que você deseja manter uma lista telefônica com nomes e números de amigos e deseja pesquisar números de telefone usando o nome de um amigo. Se você mantiver um conjunto hash dos pares nome-número, precisará saber o número para poder pesquisar. Aqui, os mapas hash podem ajudá-lo. Eles são muito semelhantes aos conjuntos de hash, mas armazenam pares. A primeira entrada do par é chamada de chave e a segunda é o valor . Apenas o hash da chave é usado e, ao pesquisar, procuramos o valor associado a uma chave. No exemplo acima, as chaves seriam os nomes e os valores seriam os números de telefone. As implementações de mapas hash são unordered_map em C ++ e HashMap em Java.
+#### Fator de carga
+* Ter baldes enormes é sempre uma má notícia! Imagine uma tabela hash com um balde e um grande número de elementos. Então, toda vez que queremos fazer algo, temos que pesquisar em todo o balde para encontrar os elementos de que precisamos. É a mesma coisa que colocar todos os elementos em um array sem qualquer ordem! Se permitíssemos que isso acontecesse, de que adiantaria usar uma tabela hash?
+* Agora, pense em um exemplo mais comum: uma tabela hash com 100 depósitos e 200 valores. Uma função hash ideal distribuiria os valores uniformemente e teríamos 2 valores em cada intervalo. Então, sempre que verificamos um valor, temos que verificar a igualdade com os dois valores no intervalo correspondente. Isso não é ruim, mas, idealmente, os baldes devem ter 1 ou 0 elementos. Nem sempre podemos garantir isso, mas podemos melhorar o número médio se, por exemplo, tivermos mais baldes do que elementos. Para isso, temos que introduzir o fator de carga.
+* O fator de carga de uma tabela hash é um número realeueuentre 0 e 1 que nos informa o quão cheia está a tabela hash. Podemos calculá-lo a qualquer momento com esta fórmula:
+eu = #elements / #buckets
+* A maioria das tabelas de hash tem um fator de carga máximo alfa, um número constante entre 0 e 1 que é um limite superior para o fator de carga. Depois de inserir um novo valor na tabela de hash, calculamos o novo fator de carga eu. Se eu > alfa. Em seguida, aumentamos o número de baldes na tabela hash, geralmente criando um novo array com o dobro de baldes e inserindo nele todos os valores do antigo. Observe que temos que recalcular os índices de todos os elementos, pois seus índices são baseados em valores de hash e no número total de intervalos. Um valor comum para o fator de carga máximo é 0,75, o que nos ajuda a garantir que haja baldes suficientes, sem desperdiçar muita memória em baldes vazios.
+* Esta imagem ilustra que quanto mais vazio o balde, melhor é para o desempenho da tabela hash. O fator de carga nos ajuda a manter as caçambas o mais próximo possível do vazio. Um fator de carga muito baixo, no entanto, também pode ser um mau sinal, pois significa que usamos muita memória desnecessária para armazenar baldes vazios.]
+#### Por que as tabelas de hash são tão rápidas?
+* Anteriormente, mencionamos que as tabelas de hash levam O (1) para inserir, remover ou pesquisar um valor ao usar uma boa função hash. Vamos ver porque isso é verdade!
+* Para todas essas operações, a tabela hash tem que fazer exatamente 2 coisas: calcular o valor hash e pesquisar em apenas um depósito pelo valor inicial. Uma boa função hash é eficiente , por isso leva O (1)para calcular o valor de hash e é determinístico , portanto, o valor de hash será o mesmo para quaisquer valores iguais, o que significa que pesquisaremos o intervalo correto. Em seguida, uma boa função hash é uniforme , portanto, não haverá alguns baldes muito grandes, enquanto outros estão vazios ou quase vazios. Isso, junto com o fator de carga que explicamos acima, certifique-se de que, em média, haja menos de um elemento em um balde. Então, pesquisar o balde leva tempo O (1). Finalmente, podemos implementar baldes para que a inserção e exclusão deles também leveO (1)O ( 1 ), por exemplo, usando listas vinculadas. Então, se estivermos usando uma boa função hash, todas as operações em uma tabela hash levarão O (1).
+#### Resumo
+* As tabelas de hash são estruturas de dados que suportam a inserção e remoção rápida de valores e a verificação da presença de um valor.
+* As tabelas de hash consistem em depósitos contendo um, vários ou zero valores.
+* As funções hash são usadas para determinar um depósito para um valor.
+* Hash define objetos de armazenamento com base em seus valores de hash; os mapas de hash armazenam pares de valores-chave com base nos valores de hash das chaves.
+* O fator de carga é normalmente usado para determinar quando redimensionar a tabela hash para mantê-la rápida.
+#### <hr>
+### Modificador protected
+<img alt="" height="345" src="https://ucarecdn.com/5c6eeffe-edba-4125-a9a5-13bc0dab2767/" width="789">
+
+* Como você deve se lembrar, um modificador de acesso descreve quem pode usar seu código. Existem 4 deles em Java:
+  * ```private```: disponível apenas para a própria classe;
+  * ```default```: disponível para classes do mesmo pacote (= pacote-privado );
+  * ```protected```: disponível para classes do mesmo pacote e para as classes extensivas.
+  * ```public```: disponível em qualquer lugar;
+* Já consideramos a maioria deles, mas ainda há um mais interessante: o ```protected``` modificador de acesso. Vamos colocá-lo entre os modificadores que você já conhece:
+* Este modificador significa que apenas as subclasses e quaisquer classes do mesmo pacote podem usar um membro da classe. Uma classe de nível superior não pode ser protegida, mas uma classe interna pode ser declarada dessa forma. É aqui que entra a importância de uma decomposição adequada do pacote.
+* Agora vamos definir a diferença entre ```protected``` e seus vizinhos de escala, ```private``` e " package-private " (padrão).
+#### Comparando modificadores protegidos e outros
+* Protegido versus padrão. Você pode pensar em classes do mesmo pacote como vizinhos e subclasses como filhos de uma classe específica. Existem algumas coisas que você pode compartilhar ou fazer com seus vizinhos, por exemplo, discutir um plano de reparos no prédio ou compartilhar o porão. Essas coisas e ações seriam privadas do pacote (padrão).
+* Também há coisas que você pode fazer pelas crianças e amigos íntimos, como pedir dinheiro emprestado ou dar um passeio no parque no domingo. Essas coisas serão ```protected```.
+* ```Protegido x privado``` . Essa distinção é ainda mais fácil: se uma variável, um método ou uma classe interna é usada apenas pela própria classe, então é ```private```, caso contrário, é ```protected```. Seguindo a regra principal:
+```
+Use o nível de acesso mais restritivo que faz sentido para um determinado membro.
+```
+* Se você não tiver certeza se o método é útil para outras classes, é melhor primeiro torná-lo privado e expandir sua disponibilidade posteriormente, se necessário.
+### Exemplo
+* No exemplo abaixo, o pacote ```org.hyperskill.bluetooth``` tem três classes: ```Laptop```, ```SmartPhone```, e ```SmartWatch```. Todos os gadgets do pacote podem ser conectados via Bluetooth. ```Laptop``` tem um método ```receiveInfo()```, responsável por obter qualquer informação dos gadgets conectados.
+```java 
+package org.hyperskill.bluetooth;
+
+public class Laptop {
+
+    private String info;
+
+    void receiveInfo(String info) {
+        this.info = info;
+    }
+
+}
+```
+* A ```Laptop``` classe tem apenas um único campo ```info``` que não pode ser acessado diretamente, pois é declarado como privado. Mas todas as classes do mesmo pacote podem acessá-lo invocando o ```receiveInfo``` método que é declarado como pacote privado (sem modificador).
+* Consideramos que as classes ```SmartPhone``` e ```SmartWatch``` estendem a mesma ```MobileGadget``` classe com o ```printNotification``` método:
+```java 
+package org.hyperskill.bluetooth;
+
+public class MobileGadget {
+
+    protected void printNotification(String data) {
+        System.out.println(data);
+    }
+}
+```
+* O ```printNotification``` método é acessível para todas as subclasses desta classe, bem como para todas as classes no mesmo pacote (incluindo a ```Laptop``` classe).
+* A ```SmartPhone``` classe pode acessar o ```receiveInfo``` método da ```Laptop``` classe e o ```printNotification``` método da ```MobileGadget``` classe.
+```java 
+package org.hyperskill.bluetooth;
+
+public class SmartPhone extends MobileGadget {
+
+    private Laptop connectedLaptop;
+
+    public SmartPhone() {
+        this.connectedLaptop = new Laptop();
+    }
+
+    private void sendInfoToLaptop(String data) {
+        printNotification("Sending data to laptop : "  + data);
+        connectedLaptop.receiveInfo(data);
+    }
+}
+```
+* A ```SmartWatch``` classe tem um método privado ```countHeartRate```, que não está disponível em outras classes (mesmo em uma classe “irmã” ```SmartPhone```). Ele também usa o ```Laptop``` método do para receber dados e o método dos pais para imprimir a notificação:
+```java 
+package org.hyperskill.bluetooth;
+
+public class SmartWatch extends MobileGadget {
+
+    private int avgHeartRate;
+    private Laptop connectedLaptop;
+
+    public SmartWatch() {
+        this.avgHeartRate = 75;
+        this.connectedLaptop = new Laptop();
+    }
+
+    private int countHeartRate() {
+        System.out.println("Counting heart rate");
+        return avgHeartRate;
+    }
+
+    private void sendInfoToLaptop(String data) {
+        printNotification("Sending data to laptop : "  + data);
+        connectedLaptop.receiveInfo(data);
+    }
+}
+```
+* Esperamos que você entenda todos os modificadores claramente agora!
+* O exemplo de código completo está disponível no GitHub <https://github.com/hyperskill/hs-java-samples/tree/master/src/main/java/org/hyperskill/samples/oop/protectedmodifier>. Tem uma estrutura de embalagem ligeiramente diferente que se aproxima de um projeto real. Você pode navegar na interface da web do GitHub. Você pode copiar este código e tentar alterá-lo para entender melhor o exemplo.
+
+
+
 
 #### <hr>
 #### <hr>
