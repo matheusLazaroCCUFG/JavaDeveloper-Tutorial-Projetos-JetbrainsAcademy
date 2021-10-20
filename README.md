@@ -1166,6 +1166,50 @@ public class SmartWatch extends MobileGadget {
 ```
 * Esperamos que você entenda todos os modificadores claramente agora!
 * O exemplo de código completo está disponível no GitHub <https://github.com/hyperskill/hs-java-samples/tree/master/src/main/java/org/hyperskill/samples/oop/protectedmodifier>. Tem uma estrutura de embalagem ligeiramente diferente que se aproxima de um projeto real. Você pode navegar na interface da web do GitHub. Você pode copiar este código e tentar alterá-lo para entender melhor o exemplo.
+#### <hr>
+### Classe Object
+#### A classe raiz em Java
+* A Java Standard Library tem uma classe chamada ```Object``` que é o pai padrão de todas as classes padrão e suas classes personalizadas. Cada classe estende esta implicitamente, portanto, é uma raiz de herança em programas Java. A classe pertence ao ```java.lang``` pacote importado por padrão.
+* Vamos criar uma instância do ```Object```.
+```
+Object anObject = new Object();
+```
+* A ```Object``` classe pode se referir a uma instância de qualquer classe porque qualquer instância é um tipo de ```Object``` ( upcasting ).
+```java 
+Long number = 1_000_000L;
+Object obj1 = number; // an instance of Long can be cast to Object
+
+String str = "str";
+Object obj2 = str; // the same with the instance of String
+```
+* Quando declaramos uma classe, podemos estender a ```Object``` classe explicitamente . No entanto, não adianta, uma vez que a extensão já é feita implicitamente. Aconselhamos você a evitar redundância em seu código, mas aqui está um exemplo, apenas no caso:
+```java 
+class A extends Object { }
+```
+* Em suas próprias soluções, basta escrever ```class A { }```.
+#### Métodos fornecidos pela classe Object
+* A ```Object``` classe fornece alguns métodos comuns a todas as subclasses. Possui nove métodos de instância (excluindo métodos sobrecarregados) que podem ser divididos em quatro grupos:
+  * tópicos de sincronização : ```wait```, ```notify```, ```notifyAll```;
+  * identidade do objeto : ```hashCode```,```equals```;
+  * gerenciamento de objetos : ```finalize```, ```clone```, ```getClass```;
+  * representação legível : ```toString```;
+* Essa forma de agrupar métodos não é perfeita, mas pode ajudá-lo a se lembrar deles. Aqui está uma explicação mais detalhada dos métodos:
+  * O primeiro grupo de métodos (```wait```, ```notify```, ```notifyAll```) são para trabalhar em aplicações de vários segmentos.
+  * ```hashCode``` retorna um valor de código hash para o objeto.
+  * ```equals``` indica se algum outro objeto é "igual" a este específico.
+  * ```finalize``` é chamado pelo coletor de lixo (GC) em um objeto quando o GC deseja limpá-lo. ( Observação: este método está obsoleto a partir do JDK 9).
+  * ```clone```  cria e retorna uma cópia do objeto.
+  * ```getClass``` retorna uma instância de ```Class```, que contém informações sobre a classe de tempo de execução.
+  * toString Retorna uma representação de string do objeto.
+* Alguns dos métodos listados acima são nativos, o que significa que são implementados no código nativo . Normalmente é escrito em C ou C ++. Os métodos nativos geralmente são usados para fazer interface com chamadas de sistema ou bibliotecas escritas em outras linguagens de programação.
+* Nos tópicos a seguir, consideraremos esses métodos de classe com mais detalhes.
+
+
+
+
+
+
+
 
 
 
