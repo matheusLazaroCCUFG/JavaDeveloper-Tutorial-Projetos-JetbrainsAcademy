@@ -1,6 +1,6 @@
 # Java Developer - Jetbrains Academy
 # <hr>
-## Anotações importantes
+## Tutorial seletivo com teoria e implementações em Java
 ### Convenções de código Oracle
 https://www.oracle.com/technetwork/java/codeconventions-150003.pdf
 #### O número de espaços
