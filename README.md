@@ -1219,7 +1219,7 @@ class A extends Object { }
 * As interfaces ```List<E>```, ```Set<E>```, ```Queue<E>```, ```SortedSet<E>```, e ```Deque<E>``` representam diferentes tipos de coleções. Você não pode criar diretamente um objeto deles, pois são apenas interfaces. Mas cada um deles tem várias implementações. Por exemplo, a ```ArrayList``` classe, que representa uma matriz redimensionável, é uma representação primária da ```List<E>``` interface. Outras interfaces, bem como suas implementações, serão consideradas nos tópicos a seguir.
 * Outra interface raiz é ```Map<K,V>``` que representa um mapa (ou dicionário) para armazenar pares de valores-chave onde ```K``` é o tipo de chaves e ```V``` é o tipo de valores armazenados . No mundo real, um bom exemplo de mapa é uma lista telefônica em que as chaves são os nomes de seus amigos e os valores são seus telefones. A ```Map<K,V>``` interface não é um subtipo da ```Collection``` interface, mas os mapas são frequentemente considerados como coleções, uma vez que fazem parte da estrutura de coleção e têm métodos semelhantes.
 ```
-Observe que as interfaces Collectione Mapnão se estendem.
+Observe que as interfaces Collection e Map não se estendem.
 ```
 #### A interface Collection
 * Aqui estão os métodos comuns fornecidos pela ```Collection``` interface.
@@ -1272,6 +1272,347 @@ languages.forEach(elem -> System.out.println(elem)); // with lambda expression
 * Parece muito legível, mas é opcional para uso.
 #### Removendo elementos
 * Também é possível remover elementos de uma coleção mutável (como ```ArrayList```).
+```java 
+languages.remove("Deutsch");
+
+System.out.println(languages.size()); // 2
+```
+```
+Observe removeque tanto o quanto os containsmétodos dependem do método equalsdos elementos. Se você armazenar classes não padrão na coleção, equals juntamente com hashCode deve ser substituído.
+```
+* Novamente, se você já estiver familiarizado com as expressões lambda, poderá invocar o ```removeIf``` método para remover todos os elementos que satisfazem o predicado fornecido:
+```java 
+languages.removeIf(lang -> lang.startsWith("E")); // it removes English
+
+System.out.println(languages.size()); // 1
+```
+* Use da maneira que quiser.
+#### Conclusão
+* A estrutura de coleções Java fornece um conjunto de interfaces com métodos comuns para diferentes tipos de coleções. Consideramos a ```Collection<E>``` interface, que é um contêiner abstrato para armazenar valores do mesmo tipo. Qualquer coleção particular (excluindo mapas) pode ser usada por meio dela em um programa e pode ser iterada usando o loop for-each ou o ```forEach``` método.
+#### <hr>
+### A interface List
+* Como você sabe, as listas são o tipo mais próximo de arrays, exceto que seu tamanho pode ser alterado dinamicamente enquanto o tamanho de um array é restrito. Além disso, as listas fornecem um comportamento mais avançado do que os arrays. Neste tópico, você aprofundará seu conhecimento sobre listas e sua relação com a Estrutura de coleções.
+```
+Uma lista é uma coleção ordenada de elementos. Isso significa que cada elemento tem uma posição na lista especificada por um índice inteiro, como em matrizes regulares.
+```
+#### A interface da lista
+* A ```List<E>``` interface representa uma lista como um tipo de dados abstrato. Ele estende a ```Collection<E>``` interface adquirindo seus métodos e adiciona alguns novos métodos:
+  * ```E set(int index, E element)``` substitui o elemento na posição especificada nesta lista pelo elemento especificado e retorna o elemento que foi substituído;
+  * ```E get(int index)``` retorna o elemento na posição especificada na lista;
+  * ```int indexOf(Object obj)``` retorna o índice da primeira ocorrência do elemento na lista ou -1se não houver tal índice;
+  * ```int lastIndexOf(Object obj)``` retorna o índice da última ocorrência do elemento na lista ou -1se não houver tal índice;
+  * ```List<E> subList(int fromIndex, int toIndex)``` retorna uma sublista desta lista de ```fromIndex``` incluída para ```toIndex``` excluída.
+* Como você pode ver, os métodos presumem que uma lista é uma coleção ordenada.
+* Você não pode criar uma instância da ```List``` interface, mas pode criar uma instância de uma de suas implementações: ```ArrayList``` ou ```LinkedList``` ou uma lista imutável e, em seguida, usá-la por meio da ```List``` interface comum . Você terá acesso a todos os métodos declarados em ambas ```List<E>``` e ```Collection<E>``` interfaces.
+```
+Trabalhar com listas por meio da List interface é considerado uma boa
+prática em programação, pois seu código não dependerá dos mecanismos
+internos de uma implementação específica.
+```
+#### Listas imutáveis
+* A maneira mais simples de criar uma lista é invocar o ```of``` método da ```List``` interface.
+```java 
+List<String> emptyList = List.of(); // 0 elements
+List<String> names = List.of("Larry", "Kenny", "Sabrina"); // 3 elements
+List<Integer> numbers = List.of(0, 1, 1, 2, 3, 5, 8, 13);  // 8 elements
+```
+* Ele retorna uma lista imutável contendo todos os elementos passados ou uma lista vazia. Usar este método é conveniente ao criar constantes de lista ou testar algum código.
+* Vamos realizar algumas operações:
+```java 
+List<String> daysOfWeek = List.of(
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+);
+
+System.out.println(daysOfWeek.size()); // 7
+System.out.println(daysOfWeek.get(1)); // Tuesday
+System.out.println(daysOfWeek.indexOf("Sunday")); // 6
+
+List<String> weekDays = daysOfWeek.subList(0, 5);
+System.out.println(weekDays); // [Monday, Tuesday, Wednesday, Thursday, Friday]
+```
+* Por ser imutável, apenas os métodos que não alteram os elementos da lista funcionarão. Outros lançarão uma exceção.
+```java 
+daysOfWeek.set(0, "Funday"); // throws UnsupportedOperationException
+daysOfWeek.add("Holiday");   // throws UnsupportedOperationException
+```
+* Essa situação demonstra claramente quando listas imutáveis são necessárias. É difícil imaginar que alguém renomeie um dia ou adicione outro!
+```
+Tenha cuidado ao trabalhar com listas imutáveis. Às vezes, até
+desenvolvedores experientes conseguem UnsupportedOperationException.
+```
+* Antes do Java 9, outra maneira de criar listas não modificáveis era a seguinte:
+```java 
+List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+```
+* Para usá-lo, o pacote ```java.util.Arrays``` deve ser importado.
+#### Listas mutáveis
+* Quando você precisa usar uma lista mutável, pode escolher uma das duas implementações mutáveis comumente usadas da Listinterface.
+* Um deles é familiar para você: a ```ArrayList<E>``` classe. Ele representa uma matriz redimensionável. Além de implementar a ```List``` interface, ele fornece métodos para manipular o tamanho do array usado internamente. Esses métodos não são necessários em programas com frequência, portanto, é melhor usar um objeto dessa classe por meio da ```List``` interface.
+```java 
+List<Integer> numbers = new ArrayList<>();
+
+numbers.add(15);
+numbers.add(10);
+numbers.add(20);
+
+System.out.println(numbers); // [15, 10, 20]
+
+numbers.set(0, 30); // no exceptions here
+
+System.out.println(numbers); // [30, 10, 20]
+```
+* Se você tiver uma lista imutável, poderá obter a versão mutável dela usando o seguinte código:
+```java 
+List<String> immutableList = Arrays.asList("one", "two", "three");
+List<String> mutableList = new ArrayList<>(immutableList); 
+```
+* Outra implementação mutável da ```List``` interface é a ```LinkedList``` classe. Ele representa uma lista duplamente vinculada com base em nós conectados. Todas as operações que indexam na lista percorrerão a lista do início ou do final, o que estiver mais próximo do índice especificado.
+```java 
+List<Integer> numbers = new LinkedList<>();
+        
+numbers.add(10);
+numbers.add(20);
+numbers.add(30);
+
+System.out.println(numbers); // [10, 20, 30]
+```
+* O acesso ao primeiro e ao último elemento da lista é sempre realizado em tempo constante ```O(1)``` porque os links são armazenados permanentemente no primeiro e no último elemento, portanto, adicionar um item ao final da lista não significa que você tenha que iterar o lista inteira em busca do último elemento. Mas acessar / definir um elemento por seu índice leva ```O(n)``` tempo para uma lista vinculada.
+```
+No caso geral, LinkedList perde para ArrayList o consumo de memória e velocidade das operações. Mas depende do problema que você está tentando resolver.
+```
+#### Iterando sobre uma lista
+* Não há problemas para iterar os elementos de uma lista.
+```java 
+List<String> names = List.of("Larry", "Kenny", "Sabrina");
+```
+1) Usando o loop "para cada":
+```java 
+// print every name
+for (String name : names) {
+    System.out.println(name);
+}
+```
+2) Usando índices e o ```size()``` método:
+```java 
+// print every second name
+for (int i = 0; i < names.size(); i += 2) {
+    System.out.println(names.get(i));
+}
+```
+* Quando você precisar passar por todos os elementos de uma lista, recomendamos escolher a primeira maneira de iterar. A segunda maneira é boa quando você precisa pular alguns elementos com base em suas posições na lista.
+#### Igualdade de lista
+* A questão final é como as listas são comparadas. Duas listas são iguais quando contêm os mesmos elementos na mesma ordem. A igualdade não depende dos tipos dos próprios (listas ```ArrayList```, ```LinkedList``` ou outra coisa).
+```java 
+Objects.equals(List.of(1, 2, 3), List.of(1, 2, 3));    // true
+Objects.equals(List.of(1, 2, 3), List.of(1, 3, 2));    // false
+Objects.equals(List.of(1, 2, 3), List.of(1, 2, 3, 1)); // false
+
+List<Integer> numbers = new ArrayList<>();
+        
+numbers.add(1);
+numbers.add(2);
+numbers.add(3);
+
+Objects.equals(numbers, List.of(1, 2, 3)); // true
+```
+* Com isso, concluímos nossa discussão sobre a ```List``` interface e os recursos comuns para todas as listas. Havia muita teoria. Se há algo que você ainda não entende, tente praticar e volte à teoria quando surgirem dúvidas.
+#### <hr>
+### A interface Set (Conjuntos)
+* Quando você precisa manter apenas elementos únicos dentro de uma coleção, para se livrar de duplicatas em uma sequência, ou se você pretende realizar algumas operações matemáticas, você pode usar um Set.
+```
+Um Set é uma coleção de elementos únicos, como um Set matemático.
+Um Set é significativamente diferente de uma matriz ou lista, pois é
+impossível obter um elemento por seu índice.
+```
+* Neste tópico, consideraremos Set's mutáveis e imutáveis e suas diferenças. Todos os nossos exemplos usarão strings e números, uma vez que armazenar objetos de classes personalizadas como elementos possui alguns pontos significativos. Será considerado em outros tópicos.
+#### A interface Set
+* A estrutura de coleções fornece a ```Set<E>``` interface para representar um Set como um tipo de dados abstrato. Ele herda todos os métodos da ```Collection<E>``` interface, mas não adiciona nenhum novo. Os métodos mais utilizados incluem ```contains```, ```add```, ```addAll```, ```remove```, ```removeAll```, ```size```,e outros que já considerada no tópico anterior sobre a estrutura das coleções.
+```
+Os métodos add e addAll adicionam elementos ao Set apenas se esses
+elementos ainda não estiverem no Set. Um Set sempre contém apenas
+elementos únicos.
+```
+* Um método vale a pena atenção especial quando se fala de ```Set<E>``` interface, como é muitas vezes usado com Set: ```retainAll(Collection<E> coll)```. Ele retém apenas os elementos do Set que estão contidos na coleção especificada.
+* Para começar a utilizar um Set, você precisa de um instanciar de suas implementações: ```HashSet```, ```TreeSet```, e ```LinkedHashSet```. Esses são Set mutáveis e usam regras diferentes para ordenar os elementos e têm alguns métodos adicionais. Eles também são otimizados para diferentes tipos de operações. Existem também Set imutáveis , cujos nomes não são importantes para os programadores. Eles também implementam a ```Set<E>``` interface.
+* Além disso, há uma implementação de alto desempenho EnumSet para enumtipos. Não o consideraremos neste tópico.
+#### Set's imutáveis
+* A maneira mais simples de criar um Set é invocar o ```of``` método da ```Set``` interface.
+```java 
+Set<String> emptySet = Set.of();
+Set<String> persons = Set.of("Larry", "Kenny", "Sabrina");
+Set<Integer> numbers = Set.of(100, 200, 300, 400);
+```
+* Ele retorna um Set imutável contendo todos os elementos passados ou um Set vazio. Usar o ```of``` método é conveniente ao criar constantes definidas ou testar algum código.
+* A ordem dos elementos dos Set imutáveis não é fixa:
+```JAVA 
+System.out.println(emptySet); // []
+System.out.println(persons);  // [Kenny, Larry, Sabrina] or another order
+System.out.println(numbers);  // [400, 200, 300, 100] or another order
+```
+* Uma das operações de Set mais amplamente utilizadas é verificar se um Set contém um elemento. Aqui está um exemplo:
+```java 
+System.out.println(emptySet.contains("hello")); // false
+System.out.println(persons.contains("Sabrina")); // true
+System.out.println(persons.contains("John")); // false
+System.out.println(numbers.contains(300)); // true
+```
+```
+Para imutáveis sets, só é possível invocar contains, size e isEmpty métodos.
+Todos os outros vão lançar, UnsupportedOperationExceptionpois eles tentam
+mudar o Set. Se você quiser adicionar / remover elementos, use um de
+HashSet, TreeSetou LinkedHashSet.
+```
+* A seguir, consideraremos três implementações mutáveis primárias da ```Set``` interface.
+#### HashSet
+* A ```HashSet``` classe representa um Set apoiado por uma tabela hash . Ele usa códigos hash de elementos para armazená-los de forma eficaz. Não dá nenhuma garantia quanto à ordem de iteração do Set; em particular, não garante que o pedido permanecerá constante ao longo do tempo.
+* O exemplo a seguir demonstra a criação de um ```HashSet``` e a adição de países a ele (com uma duplicata). O resultado da saída não contém duplicatas.
+```java 
+Set<String> countries = new HashSet<>();
+
+countries.add("India");
+countries.add("Japan");
+countries.add("Switzerland");
+countries.add("Japan");
+countries.add("Brazil");
+
+System.out.println(countries); // [Japan, Brazil, Switzerland, India]
+System.out.println(countries.contains("Switzerland")); // true
+```
+```
+Embora tecnicamente a ordem de HashSetseja um pouco determinada por
+hashCode, é uma má prática confiar em tais recursos, uma vez que a
+dependência é bastante complicada. HashSetdeve ser tratado como um Set
+não ordenado.
+```
+* Você não deve confiar na ordem dos elementos neste Set, mesmo com o loop for-each .
+* A ```HashSet``` classe oferece ```O(1)``` desempenho de tempo constante para as operações básicas (```add```, ```remove``` e ```contains```), assumindo que a função hash dispersa os elementos adequadamente entre os baldes.
+```
+Na prática, os Set são freqüentemente usados para verificar se
+alguns elementos pertencem a eles. A HashSetclasse é especialmente
+recomendada para tais casos, pois seu containsfuncionamento é altamente
+otimizado.
+```
+#### TreeSet
+* A ```TreeSet``` classe representa um Set que nos dá garantias sobre a ordem dos elementos. Corresponde à ordem de classificação dos elementos determinada por sua ordem natural (se eles implementam a ```Comparable``` interface) ou por ```Comparator``` implementação específica .
+```
+A ordem em que os elementos seriam classificados é a mesma que se você
+usasse um algoritmo de classificação em uma matriz ou lista contendo
+esses elementos.
+```
+* A ```TreeSet``` classe implementa a ```SortedSet``` interface que estende a ```Set``` interface base . A ```SortedSet``` interface fornece alguns novos métodos relacionados à comparação de elementos:
+  * ```Comparator<? super E> comparator()``` retorna o comparador usado para ordenar os elementos no Set ou ```null``` se o Set usa a ordenação natural de seus elementos;
+  * ```SortedSet<E> headSet(E toElement)``` retorna um subSet contendo elementos estritamente menores que ```toElement```;
+  * ```SortedSet<E> tailSet(E fromElement)``` retorna um subSet contendo elementos maiores ou iguais a ```fromElement```;
+  * ```SortedSet<E> subSet(E fromElement, E toElement)``` retorna um subSet contendo elementos no intervalo ```fromElement``` (inclusivo) ```toElement``` (exclusivo);
+  * ```E first()``` retorna o primeiro (mais baixo) elemento do Set;
+  * E ```last()``` retorna o último (mais alto) elemento do Set.
+* O exemplo a seguir demonstra alguns dos métodos listados:
+```java 
+SortedSet<Integer> sortedSet = new TreeSet<>();
+
+sortedSet.add(10);
+sortedSet.add(15);
+sortedSet.add(13);
+sortedSet.add(21);
+sortedSet.add(17);
+
+System.out.println(sortedSet); // [10, 13, 15, 17, 21]
+
+System.out.println(sortedSet.headSet(15)); // [10, 13]
+System.out.println(sortedSet.tailSet(15)); // [15, 17, 21]
+ 
+System.out.println(sortedSet.subSet(13,17)); // [13, 15] 
+
+System.out.println(sortedSet.first()); // minimum is 10
+System.out.println(sortedSet.last());  // maximum is 21
+```
+```
+Observe que, embora HashSetseja muito mais rápido do que TreeSet: tempo
+constante versus tempo log para a maioria das operações, ele não oferece
+garantias de pedido. Se você precisar usar as operações da
+SortedSetinterface ou se a iteração ordenada por valor for necessária,
+use TreeSet; caso contrário, HashSetseria uma escolha melhor.
+```
+#### LinkedHashSet
+* A ```LinkedHashSet``` classe representa um Set com elementos vinculados. Difere ```HashSet``` por garantir que a ordem dos elementos é a mesma que a ordem em que foram inseridos no Set. Reinserir um elemento que já está em ```LinkedHashSet``` não altera essa ordem.
+* Em certo sentido, ```LinkedHashSet``` é algo intermediário entre ```HashSet``` e ```TreeSet```. Implementado como uma tabela hash com uma lista vinculada em execução, este Set fornece iteração ordenada por inserção e é executado quase tão rápido quanto ```HashSet```.
+* O exemplo a seguir demonstra isso.
+```java 
+Set<Character> characters = new LinkedHashSet<>();
+
+for (char c = 'a'; c <= 'k'; c++) {
+    characters.add(c);
+}
+        
+System.out.println(characters); // [a, b, c, d, e, f, g, h, i, j, k]
+```
+* Neste código, a ordem dos caracteres é sempre a mesma e corresponde à ordem em que são inseridos no Set.
+```
+A LinkedHashSetimplementação poupa seus clientes do pedido caótico
+fornecido por, HashSetsem incorrer no aumento do custo do tempo das
+operações associado TreeSet. Mas LinkedHashSetrequer mais memória para
+armazenar elementos.
+```
+#### Set operações
+* Você já viu algumas operações em Set. Agora, vamos examinar as operações que geralmente são chamadas de operações teóricas de Set que vêm da matemática. É engraçado que em Java eles sejam comuns para todas as coleções, não apenas para Set.
+* Aqui está um exemplo de tais operações. Em primeiro lugar, criamos um Set mutável. Em seguida, aplicamos operações a ele, alterando os elementos.
+```java 
+// getting a mutable set from an immutable one
+Set<String> countries = new HashSet<>(List.of("India", "Japan", "Switzerland"));
+
+countries.addAll(List.of("India", "Germany", "Algeria"));
+System.out.println(countries ); // [Japan, Algeria, Switzerland, Germany, India]
+
+countries.retainAll(List.of("Italy", "Japan", "India", "Germany"));
+System.out.println(countries ); // [Japan, Germany, India]
+
+countries.removeAll(List.of("Japan", "Germany", "USA"));
+System.out.println(countries ); // [India]
+```
+* Após a execução ```addAll```, o Set ```countries``` não contém países duplicados. As operações ```retainAll``` e ```removeAll``` afetam apenas os elementos especificados nos Set passados. Também é possível usar qualquer classe que implemente a ```Collection``` interface para esses métodos (por exemplo ```ArrayList```).
+```
+Em matemática e outras linguagens de programação, as operações de Set
+demonstradas são conhecidas como união ( addAll), intersecção ( retainAll)
+e diferença ( removeAll).
+```
+* Também existe um método que nos permite verificar se um Set é um subSet (ou seja, contido em) outro Set.
+```java 
+Set<String> countries = new HashSet<>(List.of("India", "Japan", "Algeria"));
+
+System.out.println(countries.containsAll(Set.of())); // true
+System.out.println(countries.containsAll(Set.of("India", "Japan")));   // true
+System.out.println(countries.containsAll(Set.of("India", "Germany"))); // false
+System.out.println(countries.containsAll(Set.of("Algeria", "India", "Japan"))); // true
+```
+* Como você pode ver, esse método retorna ```true``` até mesmo para um Set vazio e um Set totalmente igual ao Set inicial.
+#### Set igualdade
+* Por último, mas não menos importante, é como os Set são comparados. Dois Set são iguais quando contêm os mesmos elementos. A igualdade não depende dos tipos de Set em si.
+```java 
+Objects.equals(Set.of(1, 2, 3), Set.of(1, 3));    // false
+Objects.equals(Set.of(1, 2, 3), Set.of(1, 2, 3)); // true
+Objects.equals(Set.of(1, 2, 3), Set.of(1, 3, 2)); // true
+
+Set<Integer> numbers = new HashSet<>();
+
+numbers.add(1);
+numbers.add(2);
+numbers.add(3);
+
+Objects.equals(numbers, Set.of(1, 2, 3)); // true
+```
+* Assumimos que os exemplos dados não precisam de comentários.
+
+
+
+
+
+
 
 
 #### <hr>

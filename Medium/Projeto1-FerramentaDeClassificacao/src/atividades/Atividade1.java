@@ -1,6 +1,6 @@
 package atividades;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class Atividade1 {
 
@@ -29,14 +29,6 @@ public class Atividade1 {
         String val = scanner.nextLine();
         Long longVal = "null".equals(val) ? null : Long.parseLong(val);
         System.out.println(convert(longVal));
-
-        Long val1 = 4321L;
-
-        Long val2 = new Long("4321");
-
-        Long val3 = Long.parseLong("4321");
-
-        Long val4 = new Long(4321);
     }
 
     public static boolean toPrimitive(Boolean b) {
