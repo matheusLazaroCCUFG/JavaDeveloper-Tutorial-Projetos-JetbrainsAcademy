@@ -1203,15 +1203,75 @@ class A extends Object { }
   * toString Retorna uma representação de string do objeto.
 * Alguns dos métodos listados acima são nativos, o que significa que são implementados no código nativo . Normalmente é escrito em C ou C ++. Os métodos nativos geralmente são usados para fazer interface com chamadas de sistema ou bibliotecas escritas em outras linguagens de programação.
 * Nos tópicos a seguir, consideraremos esses métodos de classe com mais detalhes.
+#### <hr>
+### Visão geral do Framework Collections
+* Java fornece a estrutura de coleções que consiste em classes e interfaces para estruturas de dados comumente reutilizáveis, como listas, matrizes dinâmicas, conjuntos e assim por diante. A estrutura tem uma arquitetura unificada para representar e manipular coleções, permitindo que as coleções sejam usadas independentemente dos detalhes de implementação por meio de suas interfaces.
+* A estrutura inclui:
+  * interfaces que representam diferentes tipos de coleções;
+  * implementações primárias das interfaces;
+  * implementações legadas de versões anteriores (conhecidas como "coleções antigas");
+  * implementações de propósito especial (como coleções imutáveis);
+  * algoritmos representados por métodos estáticos que realizam operações úteis em coleções.
+* Neste tópico, consideraremos apenas as interfaces básicas do framework de coleções colocado no java.utilpacote.
+#### Interfaces comumente usadas
+* Existem duas interfaces raiz genéricas ```Collection<E>``` e ```Map<K,V>```, e algumas interfaces mais específicas para representar diferentes tipos de coleções.
+* A interface ```Collection<E>``` representa uma coleção abstrata, que é um contêiner para objetos do mesmo tipo. Ele fornece alguns métodos comuns para todos os outros tipos de coleções.
+* As interfaces ```List<E>```, ```Set<E>```, ```Queue<E>```, ```SortedSet<E>```, e ```Deque<E>``` representam diferentes tipos de coleções. Você não pode criar diretamente um objeto deles, pois são apenas interfaces. Mas cada um deles tem várias implementações. Por exemplo, a ```ArrayList``` classe, que representa uma matriz redimensionável, é uma representação primária da ```List<E>``` interface. Outras interfaces, bem como suas implementações, serão consideradas nos tópicos a seguir.
+* Outra interface raiz é ```Map<K,V>``` que representa um mapa (ou dicionário) para armazenar pares de valores-chave onde ```K``` é o tipo de chaves e ```V``` é o tipo de valores armazenados . No mundo real, um bom exemplo de mapa é uma lista telefônica em que as chaves são os nomes de seus amigos e os valores são seus telefones. A ```Map<K,V>``` interface não é um subtipo da ```Collection``` interface, mas os mapas são frequentemente considerados como coleções, uma vez que fazem parte da estrutura de coleção e têm métodos semelhantes.
+```
+Observe que as interfaces Collectione Mapnão se estendem.
+```
+#### A interface Collection
+* Aqui estão os métodos comuns fornecidos pela ```Collection``` interface.
+  * ```int size()``` retorna o número de elementos nesta coleção;
+  * ```boolean isEmpty()``` retorna ```true``` se esta coleção não contém elementos;
+  * ```boolean contains(Object o)``` retorna ```true``` se esta coleção contém o elemento especificado;
+  * ```boolean add(E e)``` adiciona um elemento à coleção. Retorna ```true```, se o elemento foi adicionado, senão retorna ```false```;
+  * ```boolean remove(Object o)``` remove uma única instância do elemento especificado;
+  * ```boolean removeAll(Collection<?> collection)``` remove os elementos desta coleção que também estão contidos na coleção especificada;
+  * ```void clear()``` remove todos os elementos desta coleção.
+* É possível referir-se a qualquer coleção particular por meio dessa interface base, pois, como você sabe, a superclasse pode ser usada para se referir a qualquer objeto de subclasse derivado dessa superclasse.
+* Vamos criar uma ```languages``` coleção e adicionar três elementos a ela:
+```java 
+Collection<String> languages = new ArrayList<>();
 
+languages.add("English");
+languages.add("Deutsch");
+languages.add("Français");
 
-
-
-
-
-
-
-
+System.out.println(languages.size()); // 3
+```
+* Essa abordagem permite que você substitua a coleção concreta a qualquer momento, sem alterar o código que a usa. Ele também promove a reutilização de software, fornecendo uma interface padrão para coleções e algoritmos para manipulá-los. Pode parecer complicado agora, mas quanto mais você trabalhar com coleções, mais compreensível se tornará.
+* É impossível obter um elemento por índice por meio da ```Collection``` interface porque é muito abstrato e não fornece tal método. Mas se não importa para você qual coleção particular usar, você pode trabalhar por meio desta interface.
+```
+É importante entender que a ordem dos elementos no ArrayListainda é preservada. Simplesmente não podemos chamar o getmétodo por meio da Collectioninterface.
+```
+* Cada coleção pode ser convertida em uma string usando ```toString``` e comparada com outra coleção usando o ```equals``` método. Esses métodos vêm ```Object``` e seu comportamento depende dos elementos armazenados na coleção e do tipo da coleção em si.
+#### Collections mutáveis e imutáveis
+* Todas as coleções podem ser divididas em dois grandes grupos: mutáveis e imutáveis. Ambos implementar a ```Collection<E>``` interface, mas coleções imutáveis vai jogar ```UnsupportedOperationException``` ao tentar invocar alguns métodos que eles mudam: por exemplo, ```add```, ```remove```, ```clear```.
+* Nos próximos tópicos, consideraremos como criar e quando usar coleções imutáveis. Agora lembre-se de que eles estão presentes aqui.
+#### Iterando sobre Collections
+* Se desejar iterar sobre todos os elementos de qualquer coleção, você pode usar o loop de estilo para cada .Voltemos à nossa ```languages``` coleção:
+```java 
+for (String lang : languages) {
+    System.out.println(lang);
+}
+```
+* Este código imprime todos os elementos desta coleção.
+``` 
+English
+Deutsch
+Français
+```
+* A ordem dos elementos durante a iteração depende de um tipo de coleção particular que está realmente sendo usado.
+* Se você já estiver familiarizado com referências de método ou expressões lambda, poderá usar outro estilo para iterações usando o ```forEach(Consumer<T> consumer)``` método:
+```
+languages.forEach(System.out::println); // with method reference
+languages.forEach(elem -> System.out.println(elem)); // with lambda expression
+```
+* Parece muito legível, mas é opcional para uso.
+#### Removendo elementos
+* Também é possível remover elementos de uma coleção mutável (como ```ArrayList```).
 
 
 #### <hr>
