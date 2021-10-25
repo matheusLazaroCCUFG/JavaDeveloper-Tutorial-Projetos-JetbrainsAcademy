@@ -1607,11 +1607,238 @@ numbers.add(3);
 Objects.equals(numbers, Set.of(1, 2, 3)); // true
 ```
 * Assumimos que os exemplos dados não precisam de comentários.
+#### <hr>
+### A interface Map
+* Em algumas situações, você precisa armazenar pares de objetos associados. Por exemplo, ao contar o número de palavras em um texto, a primeira é uma palavra e a segunda é o número de suas ocorrências no texto. Há um tipo especial de coleção chamado mapa para armazenar efetivamente esses pares de objetos.
+```
+Um mapa é uma coleção de pares de valores-chave . As chaves são sempre únicas, enquanto os valores podem se repetir.
+```
+* Um bom exemplo de mapa do mundo real é uma lista telefônica em que as chaves são os nomes dos seus amigos e os valores são os telefones associados a eles.
+```java 
+Keys  : Values
+-----------------------
+Bob   : +1-202-555-0118
+James : +1-202-555-0220
+Katy  : +1-202-555-0175
+```
+* Os mapas têm algumas semelhanças com conjuntos e matrizes;
+  * as chaves de um mapa formam um conjunto , mas cada chave possui um valor associado;
+  * as chaves de um mapa são semelhantes aos índices de uma matriz , mas as chaves podem ter qualquer tipo, incluindo números inteiros, strings e assim por diante.
+* Por esses motivos, você pode encontrar algum tipo de efeito déjà vu ao aprender mapas.
+* A seguir, todos os nossos exemplos usarão string e números como chaves, uma vez que o uso de classes personalizadas como tipos de chaves tem alguns pontos significativos da mesma forma que para conjuntos. Será considerado em outros tópicos.
+#### A interface Map
+* O Collections Framework fornece a ```Map<K,V>``` interface para representar um mapa como um tipo de dados abstratos. Aqui, ```K``` é um tipo de chave e ```V``` um tipo de valor associado. A ```Map``` interface não é um subtipo da ```Collection``` interface, mas os mapas costumam ser considerados coleções, pois fazem parte da estrutura.
+* A interface declara muitos métodos para trabalhar com mapas. Alguns dos métodos são semelhantes aos métodos de ```Collection```, enquanto outros são exclusivos de mapas.
+1. Métodos de coleção:
+  * ```int size()``` retorna o número de elementos no mapa;
+  * ```boolean isEmpty()``` retorna ```true``` se o mapa não contém elementos e ```false``` caso contrário;
+  * ```void clear()``` remove todos os elementos do mapa.
+* Esperamos que esses métodos não necessitem de comentários.
+2. Processamento de chaves e valores:
+  * ```V put(K key, V value)``` associa o especificado ```value``` ao especificado ```key``` e retorna o valor anteriormente associado a este ```key``` ou ```null```;
+  * ```V get(Object key)``` retorna o valor associado à chave ou ```null``` não;
+  * ```V remove(Object key)``` remove o mapeamento para a ```key``` do mapa;
+  * ```boolean containsKey(Object key)``` retorna ```true``` se o mapa contém o especificado ```key```;
+  * ```boolean containsValue(Object value)``` retorna ```true``` se o mapa contém o especificado ```value```.
+* Esses métodos são semelhantes aos métodos de coleções, exceto que processam pares de chave-valor.
+3. Métodos avançados:
+  * ```V putIfAbsent(K key, V value)``` coloca um par se a chave especificada ainda não está associada a um valor (ou está mapeada para ```null```) e retorna ```null```, caso contrário, retorna o valor atual;
+  * ```V getOrDefault(Object key, V defaultValue)``` retorna o valor para o qual a chave especificada é mapeada ou ```defaultValue``` se este mapa não contém mapeamento para a chave.
+* Esses métodos, juntamente com alguns outros, são freqüentemente usados em projetos reais.    
+4. Métodos que retornam outras coleções:
+  * ```Set<K> keySet()``` Retorna uma ```Set``` visão das chaves contidas neste mapa;
+  * ```Collection<V> values()``` retorna uma Collectionvisão dos valores contidos neste mapa;
+  * ```Set<Map.Entry<K, V>> entrySet()``` retorna uma ```Set``` visão das entradas (associações) contidas neste mapa.
+* Esta não é uma lista completa de métodos, pois ```Map``` é realmente uma interface enorme. A documentação realmente ajuda a usá-lo.
+* Para começar a usar um mapa, você precisa de um instanciar de suas implementações: ```HashMap```, ```TreeMap```, e ```LinkedHashMap```. Eles usam regras diferentes para ordenar os elementos e têm alguns métodos adicionais. Existem também mapas imutáveis cujos nomes não são importantes para os programadores.
+#### Mapas imutáveis
+* A maneira mais simples de criar um mapa é invocar o ```of``` método da ```Map``` interface. O método leva zero ou qualquer número par de argumentos no formato ```key1, value1, key2, value2, ...``` e retorna um mapa imutável .
+```java 
+Map<String, String> emptyMap = Map.of();
 
+Map<String, String> friendPhones = Map.of(
+        "Bob", "+1-202-555-0118",
+        "James", "+1-202-555-0220",
+        "Katy", "+1-202-555-0175"
+);
+```
+* Agora vamos considerar algumas operações que podem ser aplicadas a mapas imutáveis usando nosso exemplo com ```friendPhones```.
+* O tamanho de um mapa é igual ao número de pares contidos nele.
+```java 
+System.out.println(emptyMap.size());     // 0
+System.out.println(friendPhones.size()); // 3
+```
+* É possível obter um valor de um mapa por sua chave:
+```java 
+String bobPhone = friendPhones.get("Bob"); // +1-202-555-0118
+String alicePhone = friendPhones.get("Alice"); // null
+String phone = friendPhones.getOrDefault("Alex", "Unknown phone"); // Unknown phone
+```
+```
+Observe que o getOrDefaultmétodo fornece uma maneira simples de evitar o NPE,
+pois evita nullo do.
+```
+* Também é possível verificar se um mapa contém uma chave ou valor específico usando os métodos ```containsKey``` e ```containsValue```.
+* Podemos acessar diretamente o conjunto de chaves e coleção de valores de um mapa:
+```java 
+System.out.println(friendPhones.keySet()); // [James, Bob, Katy]
+System.out.println(friendPhones.values()); // [+1-202-555-0220, +1-202-555-0118, +1-202-555-0175]
+```
+```
+Por ser imutável, apenas os métodos que não alteram os elementos desse mapa funcionarão. Outros lançarão uma exceção UnsupportedOperationException. Se você gostaria de colocar ou remover elementos, use um de HashMap, TreeMap ou LinkedHashMap.
+```
+#### HashMap
+* A ```HashMap``` classe representa um mapa apoiado por uma tabela hash. Essa implementação fornece desempenho em tempo constante para ```get``` e ```put``` métodos, pressupondo que a função hash dispersa os elementos adequadamente entre os baldes.
+* O exemplo a seguir demonstra um mapa de produtos em que a chave é o código do produto e o valor é o nome.
+```java 
+Map<Integer, String> products = new HashMap<>();
 
+products.put(1000, "Notebook");
+products.put(2000, "Phone");
+products.put(3000, "Keyboard");
 
+System.out.println(products); // {2000=Phone, 1000=Notebook, 3000=Keyboard}
 
+System.out.println(products.get(1000)); // Notebook
 
+products.remove(1000);
+
+System.out.println(products.get(1000)); // null
+
+products.putIfAbsent(3000, "Mouse"); // it does not change the current element
+
+System.out.println(products.get(3000)); // Keyboard
+```
+```
+Essa implementação é frequentemente usada na prática, pois é altamente otimizada
+para colocar e obter pares.
+```
+#### LinkedHashMap
+* O ```LinkedHashMap``` armazena a ordem em que os elementos foram inseridos.
+* Vamos ver uma parte do exemplo anterior novamente:
+```java 
+Map<Integer, String> products = new LinkedHashMap<>(); // ordered map of products
+
+products.put(1000, "Notebook");
+products.put(2000, "Phone");
+products.put(3000, "Keyboard");
+
+System.out.println(products); // it's always ordered {1000=Notebook, 2000=Phone, 3000=Keyboard}
+```
+* Nesse código, a ordem dos pares é sempre a mesma e corresponde à ordem em que são inseridos no mapa.
+#### TreeMap
+* A ```TreeMap``` classe representa um mapa que nos dá garantias sobre a ordem dos elementos. Corresponde à ordem de classificação das chaves determinada por sua ordem natural (se implementarem a ```Comparable``` interface) ou por ```Comparator``` implementação específica .
+* Esta classe implementa a ```SortedMap``` interface que estende a ```Map``` interface base . Ele fornece alguns métodos novos, relacionados a comparações de chaves:
+  * ```Comparator<? super K> comparator()``` retorna o comparador usado para ordenar os elementos no mapa ou ```null``` se o mapa usa a ordem natural de suas chaves;
+  * ```E firstKey()``` retorna a primeira chave (mais baixa) no mapa;
+  * ```E lastKey()``` retorna a última chave (mais alta) no mapa;
+  * ```SortedMap<K, V> headMap(K toKey)``` retorna um submapa contendo elementos cujas chaves são estritamente menores que ```toKey```;
+  * ```SortedMap<K, V> tailMap(K fromKey)``` retorna um submapa contendo elementos cujas chaves são maiores ou iguais a ```fromKey```;
+  * ```SortedMap<K, V> subMap(K fromKey, E toKey)``` retorna um submapa contendo elementos cujas chaves estão no intervalo ```fromKey``` (inclusivo) ```toKey``` (exclusivo);
+* O exemplo abaixo demonstra como criar e usar um objeto de ```TreeMap```. Este mapa é preenchido com eventos, cada um deles possui uma data (chave) e um título (valor).
+```
+LocalDate é uma classe que representa uma data. A invocação do
+LocalDate.of(year, month, day) método cria o objeto de data especificado com o
+ano, mês e dia fornecidos.
+```
+```java 
+SortedMap<LocalDate, String> events = new TreeMap<>();
+
+events.put(LocalDate.of(2017, 6, 6), "The Java Conference");
+events.put(LocalDate.of(2017, 6, 7), "Another Java Conference");
+events.put(LocalDate.of(2017, 6, 8), "Discussion: career or education?");
+events.put(LocalDate.of(2017, 6, 9), "The modern art");
+events.put(LocalDate.of(2017, 6, 10), "Coffee master class");
+
+LocalDate fromInclusive = LocalDate.of(2017, 6, 8);
+LocalDate toExclusive = LocalDate.of(2017, 6, 10);
+
+System.out.println(events.subMap(fromInclusive, toExclusive));
+```
+* O código gera o submapa resultante:
+```java 
+{2017-06-08=Discussion: career or education?, 2017-06-09=The modern art}
+```
+```
+Use TreeMapapenas quando você realmente precisar da ordem de classificação dos
+elementos, uma vez que essa implementação é menos eficaz do que HashMap.
+```
+#### Iterando em Maps
+* É impossível iterar diretamente em um mapa, pois ele não implementa a ```Iterable``` interface. Felizmente, alguns métodos de mapas retornam outras coleções que são iteráveis. A ordem dos elementos durante a iteração depende da implementação concreta da ```Map``` interface.
+* O código a seguir mostra como obter chaves e valores em um loop for-each:
+```java 
+Map<String, String> friendPhones = Map.of(
+        "Bob", "+1-202-555-0118",
+        "James", "+1-202-555-0220",
+        "Katy", "+1-202-555-0175"
+);
+
+// printing names
+for (String name : friendPhones.keySet()) {
+    System.out.println(name);
+}
+
+// printing phones
+for (String phone : friendPhones.values()) {
+    System.out.println(phone);
+}
+```
+* Se quiser imprimir uma chave e seu valor associado na mesma iteração, você pode obter ```entrySet()``` e iterar sobre ela.
+```java 
+for (var entry : friendPhones.entrySet()) {
+    System.out.println(entry.getKey() + ": " + entry.getValue());
+}
+```
+* Este código imprime todos os pares conforme esperamos:
+```java 
+Bob: +1-202-555-0118
+James: +1-202-555-0220
+Katy: +1-202-555-0175
+```
+```
+Usamos o varrelease em Java 10 para declarar a variável do loop entry, mas não
+é necessário. Se você tiver uma versão mais antiga do Java ou simplesmente não
+quiser usar var, pode escrever o tipo de dados explicitamente
+como Map.Entry<String, String>.
+```
+* O mesmo comportamento pode ser obtido usando uma expressão lambda com dois argumentos se você preferir desta forma:
+```java 
+friendPhones.forEach((name, phone) -> System.out.println(name + ": " + phone));
+```
+#### Outras coleções como valores
+* É possível armazenar outras coleções como valores em mapas, uma vez que as coleções também são objetos.
+* Aqui está um exemplo com um mapa de sinônimos:
+```java 
+Map<String, Set<String>> synonyms = new HashMap<>();
+
+synonyms.put("Do", Set.of("Execute"));
+synonyms.put("Make", Set.of("Set", "Attach", "Assign"));
+synonyms.put("Keep", Set.of("Hold", "Retain"));
+
+// {Keep=[Hold, Retain], Make=[Attach, Assign, Set], Do=[Execute]}
+System.out.println(synonyms);
+```
+* Armazenar coleções como chaves de um mapa, por outro lado, não é um caso comum e possui algumas restrições. Essas chaves devem ser representadas por coleções imutáveis . Não vamos considerar este caso aqui.
+#### Igualdade de Map's
+* Dois mapas são considerados iguais se contiverem as mesmas chaves e valores. Os tipos de mapas não são importantes.
+* Portanto, os seguintes mapas são totalmente iguais:
+```java 
+Map<String, Integer> namesToAges1 = Map.of("John", 30, "Alice", 28);
+Map<String, Integer> namesToAges2 = new HashMap<>();
+
+namesToAges2.put("Alice", 28);
+namesToAges2.put("John", 30);
+
+System.out.println(Objects.equals(namesToAges1, namesToAges2)); // true
+```
+* Mas os dois mapas a seguir são diferentes, pois o segundo mapa não inclui "Alice":
+```java 
+Map<String, Integer> namesToAges1 = Map.of("John", 30, "Alice", 28);
+Map<String, Integer> namesToAges2 = Map.of("John", 28);
+
+System.out.println(Objects.equals(namesToAges1, namesToAges2)); // false
+```
+* Com isso, estamos finalizando nossa consideração sobre os mapas. Havia muita teoria. Se houver algo que você não entende, tente praticar mesmo assim e volte à teoria quando surgirem dúvidas.
 
 
 
