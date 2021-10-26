@@ -5,19 +5,14 @@ import java.util.Iterator;
 import java.util.SortedSet;
 
 public class ByCountOrderLong implements Comparable<ByCountOrderLong> {
-    private static long total = 0;
-    private long qtdVezes;
+    private long total;
     private long vezes;
     private long valor;
 
-    public ByCountOrderLong(long vezes, long valor) {
+    public ByCountOrderLong(long vezes, long valor, long total) {
         this.vezes = vezes;
         this.valor = valor;
-        qtdVezes++;
-    }
-
-    public void setQtdVezes(long qtdVezes) {
-        this.qtdVezes = qtdVezes;
+        this.total = total;
     }
 
     public long getVezes() {
@@ -30,7 +25,7 @@ public class ByCountOrderLong implements Comparable<ByCountOrderLong> {
 
     @Override
     public String toString() {
-        return getValor() + ": " + getVezes() + " time(s)\n";
+        return getValor() + ": " + getVezes() + " time(s)¬ " + (int)Math.round(100 * (double)vezes /  total)+ "%\n";
     }
 
 

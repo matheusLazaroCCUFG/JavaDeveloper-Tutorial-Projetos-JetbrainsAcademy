@@ -195,30 +195,25 @@ public class Main {
 
             // Ordena e remove os repetidos
             SortedSet<ByCountOrderLong> byCountOrderLongs = new TreeSet<>();
-            Map<Long, Integer> map = new HashMap<>();
+            ByCountOrderLong[] byCount = new ByCountOrderLong[listLong.size()];
 
             for (int i = 0; i < listLong.size(); i++) {
-                map.put(
-                        listLong.get(i), // valor
-                        Collections.frequency(listLong, listLong.get(i)) // frequência
+                byCount[i] = new ByCountOrderLong(
+                        Collections.frequency(listLong, listLong.get(i)),
+                        listLong.get(i),
+                        listLong.size()
                 );
-            }
-            Stream<Map.Entry<Long, Integer>> sorted =
-                    map.entrySet().stream()
-                            .sorted(Map.Entry.comparingByValue());
-
-            System.out.println(sorted);
-
-            for (int i = 0; i < sorted.count(); i++) {
-                System.out.printf(
-                        "%d: %d time(s), %d%%",
-                        sorted.toString(), 1, 1
-                );
+                byCountOrderLongs.add(byCount[i]);
             }
 
-
+            System.out.println(
+                "Total numbers: " + listLong.size() + ".\n" +
+                byCountOrderLongs.toString().replace("[", "")
+                .replace(", ", "")
+                .replace("¬ ", ", ")
+                .replace("]", "")
+            );
         }
-
     }
 
 
