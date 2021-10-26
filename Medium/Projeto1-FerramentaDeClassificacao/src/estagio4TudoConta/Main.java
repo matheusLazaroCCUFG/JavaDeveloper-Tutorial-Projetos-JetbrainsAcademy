@@ -1,7 +1,6 @@
 package estagio4TudoConta;
 
 import java.util.*;
-import java.util.stream.Stream;
 
 public class Main {
     public static void main(final String[] args) {
@@ -12,7 +11,6 @@ public class Main {
         boolean natural = true;
         boolean byCount = false;
         String dataType = "";
-
 
         for (String str : args) {
             if (str.equals("-sortingType")) {
@@ -34,102 +32,44 @@ public class Main {
             if (dataType.equals("long")) {
                 listLong = (ArrayList<Long>) scannerAddList(scanner, true, false);
 
-                if (natural || (!natural && !byCount)){
-                    sortingType(listLong, true);
+                if (natural){
+                    sortingLong(listLong, true);
                 } else if (byCount) {
-                    sortingType(listLong, false);
+                    sortingLong(listLong, false);
                 }
-            } else if ( dataType.equals("line")) {
+            } else if (dataType.equals("line")) {
                 listString = (ArrayList<String>) scannerAddList(scanner, false, false);
+
+                if (natural){
+                    sortingString(listString, true, false);
+                } else if (byCount) {
+                    sortingString(listString, false, false);
+                }
             } else if (dataType.equals("word")) {
                 listString = (ArrayList<String>) scannerAddList(scanner, false, true);
-            }
 
-            //sortingType(listLong);
-            return;
-        }/*else if (args[1].equals("long")) {
-            listLong = (ArrayList<Long>) scannerAddList(scanner, true, false);
-
-            if (args.length == 3) { // args[1].equals("-sortingType")
-                sortingType(listLong);
-                return;
-            }
-
-            System.out.printf("Total numbers: %d.\n", listLong.size());
-            System.out.printf(
-                    "the greatest number: %d (%d time(s), %d%%).\n",
-                    Collections.max(listLong),
-                    Collections.frequency(listLong, Collections.max(listLong)),
-                    100 * Collections.frequency(
-                            listLong,
-                            Collections.max(listLong)
-                    ) / listLong.size()
-            );
-        } else  if (args[1].equals("line")) {
-            listString = (ArrayList<String>) scannerAddList(scanner, false, false);
-
-            System.out.printf("Total lines: %d.\n", listString.size());
-
-            int indiceMaior = checkMax(listString);
-
-            System.out.printf(
-                    "The longest line:\n" +
-                            "%s\n" +
-                            "(%d time(s), %d%%).\n",
-                    listString.get(indiceMaior),
-                    Collections.frequency(listString, listString.get(indiceMaior)),
-                    100 * Collections.frequency(
-                            listString,
-                            listString.get(indiceMaior)
-                    ) / listString.size()
-            );
-        } else  if (args[1].equals("word")) {
-            listString = (ArrayList<String>) scannerAddList(scanner, false, true);
-
-            if (args.length == 3) {
-                listLong = new ArrayList<>();
-
-                for (int i = 0; i < listString.size(); i++){
-                    listLong.add(Long.parseLong(listString.get(i)));
+                if (natural){
+                    sortingString(listString, true, true);
+                } else if (byCount) {
+                    sortingString(listString, false, true);
                 }
-
-                sortingType(listLong);
-
-                return;
             }
 
-            System.out.printf("Total words: %d.\n", listString.size());
+        } else { // natural
+            if (dataType.equals("long")) {
+                listLong = (ArrayList<Long>) scannerAddList(scanner, true, false);
+                    sortingLong(listLong, true);
+            } else if (dataType.equals("line")) {
+                listString = (ArrayList<String>) scannerAddList(scanner, false, false);
 
-            int indiceMaior = checkMax(listString);
+                    sortingString(listString, true, false);
+            } else if (dataType.equals("word")) {
+                listString = (ArrayList<String>) scannerAddList(scanner, false, true);
 
-            System.out.printf(
-                    "The longest word: %s (%d time(s), %d%%).\n",
-                    listString.get(indiceMaior),
-                    Collections.frequency(listString, listString.get(indiceMaior)),
-                    100 * Collections.frequency(
-                            listString,
-                            listString.get(indiceMaior)
-                    ) / listString.size()
-            );
+                sortingString(listString, true, true);
+            }
+
         }
-        } else { // é word
-            listString = (ArrayList<String>) scannerAddList(scanner, false, true);
-
-            System.out.printf("Total words: %d.\n", listString.size());
-
-            int indiceMaior = checkMax(listString);
-
-            System.out.printf(
-                    "The longest word: %s (%d time(s), %d%%).\n",
-                    listString.get(indiceMaior),
-                    Collections.frequency(listString, listString.get(indiceMaior)),
-                    100 * Collections.frequency(
-                            listString,
-                            listString.get(indiceMaior)
-                    ) / listString.size()
-            );
-        }
-    */
     }
 
     public static ArrayList<?> scannerAddList(
@@ -163,58 +103,123 @@ public class Main {
         }
     }
 
-    public static int checkMax(ArrayList<String> listString) {
-        int maior = 0;
-        int indiceMaior = 0;
 
-        for (int i = 0; i < listString.size(); i++) {
-            if (listString.get(i).length() > maior) {
-                maior = listString.get(i).length();
-                indiceMaior = i;
-            }
-        }
+    public static void sortingLong(ArrayList<Long> listLong, boolean natural) {
+            if (natural) {
+                Collections.sort(listLong);
 
-        return indiceMaior;
-    }
-
-    public static void sortingType(ArrayList<Long> listLong, boolean natural) {
-        if (natural) {
-             Collections.sort(listLong);
-
-             System.out.println("Total number = " + listLong.size() + ".");
-             System.out.println(
-                     "Sorted data: " +
-                             listLong.toString().
-                                     replace("[", "").
-                                     replace(",", "").
-                                     replace("]", "")
-             );
-        } else {
-            // byCount (por quantidade de vezes, da maior qtd para a menor qtd
-            // ou por ordem natural)
-
-            // Ordena e remove os repetidos
-            SortedSet<ByCountOrderLong> byCountOrderLongs = new TreeSet<>();
-            ByCountOrderLong[] byCount = new ByCountOrderLong[listLong.size()];
-
-            for (int i = 0; i < listLong.size(); i++) {
-                byCount[i] = new ByCountOrderLong(
-                        Collections.frequency(listLong, listLong.get(i)),
-                        listLong.get(i),
-                        listLong.size()
+                System.out.println("Total number = " + listLong.size() + ".");
+                System.out.println(
+                        "Sorted data: " +
+                                listLong.toString().
+                                        replace("[", "").
+                                        replace(",", "").
+                                        replace("]", "")
                 );
-                byCountOrderLongs.add(byCount[i]);
-            }
+            } else {
+                // byCount (por quantidade de vezes, da maior qtd para a menor qtd
+                // ou por ordem natural)
 
-            System.out.println(
-                "Total numbers: " + listLong.size() + ".\n" +
-                byCountOrderLongs.toString().replace("[", "")
-                .replace(", ", "")
-                .replace("¬ ", ", ")
-                .replace("]", "")
-            );
+                // Ordena e remove os repetidos
+                Set<ByCountOrderLong> byCountOrderLongs = new TreeSet<>();
+                ByCountOrderLong[] byCount = new ByCountOrderLong[listLong.size()];
+
+                for (int i = 0; i < listLong.size(); i++) {
+                    byCount[i] = new ByCountOrderLong(
+                            Collections.frequency(listLong, listLong.get(i)),
+                            listLong.get(i),
+                            listLong.size()
+                    );
+                    byCountOrderLongs.add(byCount[i]);
+                }
+
+                System.out.println(
+                        "Total numbers: " + listLong.size() + ".\n" +
+                                byCountOrderLongs.toString().replace("[", "")
+                                        .replace(", ", "")
+                                        .replace("¬ ", ", ")
+                                        .replace("]", "")
+                );
+            }
+        }
+
+
+    public static void sortingString(ArrayList<String> listString, boolean natural, boolean isWord) {
+        if (!isWord){
+            if (natural) { //ordenação lexicográfica
+                //SortedSet<String> sortedSet = new TreeSet<>();
+                Collections.sort(listString);
+
+
+
+                System.out.println(
+                        "Total lines: " + listString.size() + "\n" +
+                                "Sorted data:\n" +
+                                listString.toString()
+                                        .replace("[", "")
+                                        .replace(", ", "\n")
+                                        .replace("]", "")
+                );
+            } else { // byCount
+                ByCountOrderString[] byCountOrderStrings = new ByCountOrderString[listString.size()];
+                Set<ByCountOrderString> set = new TreeSet<>();
+
+                for (int i = 0; i < listString.size(); i++) {
+                    byCountOrderStrings[i] = new ByCountOrderString(
+                            Collections.frequency(listString, listString.get(i)),
+                            listString.get(i),
+                            listString.size()
+                    );
+
+                    set.add(byCountOrderStrings[i]);
+                }
+
+                System.out.println(
+                        "Total lines: " + listString.size() + ".\n" +
+                        set.toString()
+                                .replace("[", "")
+                                .replace(", ", "")
+                                .replace("¬ ", ", ")
+                                .replace("]", "")
+                );
+            }
+        } else { // word
+            if (natural) { //ordenação lexicográfica
+                //Set<String> sortedSet = new TreeSet<>();
+                Collections.sort(listString);
+
+                System.out.println(
+                        "Total words: " + listString.size() + "\n" +
+                                "Sorted data:\n" +
+                                listString.toString()
+                                        .replace("[", "")
+                                        .replace(", ", " ")
+                                        .replace("]", "")
+                );
+            } else { // byCount
+                ByCountOrderString[] byCountOrderStrings = new ByCountOrderString[listString.size()];
+                Set<ByCountOrderString> set = new TreeSet<>();
+
+                for (int i = 0; i < listString.size(); i++) {
+                    byCountOrderStrings[i] = new ByCountOrderString(
+                            Collections.frequency(listString, listString.get(i)),
+                            listString.get(i),
+                            listString.size()
+                    );
+
+                    set.add(byCountOrderStrings[i]);
+                }
+
+
+                System.out.println(
+                        "Total words: " + listString.size() + ".\n" +
+                                set.toString()
+                                .replace("[", "")
+                                .replace(", ", "")
+                                .replace("¬ ", ", ")
+                                .replace("]", "")
+                );
+            }
         }
     }
-
-
 }

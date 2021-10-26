@@ -1,9 +1,5 @@
 package estagio4TudoConta;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.SortedSet;
-
 public class ByCountOrderLong implements Comparable<ByCountOrderLong> {
     private long total;
     private long vezes;
