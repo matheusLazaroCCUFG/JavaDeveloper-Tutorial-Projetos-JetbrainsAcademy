@@ -2128,7 +2128,7 @@ public class Car implements Comparable<Car> {
 }
 ```
 * Agora, se executarmos nosso novo código, obteremos o resultado correto.
-#### Implemtnendo o metodo compareTo
+#### Implementando o metodo compareTo
 * Vamos falar sobre o ```compareTo()``` método. Ele compara o objeto atual com o objeto enviado como parâmetro. Para implementá-lo corretamente, precisamos ter certeza de que o método retorna:
   * Um número inteiro positivo (por exemplo, 1), se o objeto atual for maior;
   * Um número inteiro negativo (por exemplo, -1), se o objeto atual for menor;
