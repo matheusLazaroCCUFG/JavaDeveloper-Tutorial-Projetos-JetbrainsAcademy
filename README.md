@@ -23,11 +23,11 @@ public class NumberOfSpacesExample {
 * Antes do ponto e vírgula
 #### O comprimento de uma linha
 * Comprimento máximo de uma linha
-  * Evitar linhas com mais de 80 caracteres
+  * Evitar linhas com mais de 80 char
     * Util quando laptops sao usados.
 #### <hr>
 #### Ler uma sequência de comprimento desconhecido com ```while```
-* O ```while``` loop também pode ser usado para ler uma sequência de caracteres de comprimento arbitrário. Para isso, podemos invocar o ```hasNext()``` método de ```Scanner``` dentro da condição. O método retorna ```true``` se o próximo elemento existe e ```false``` caso contrário.
+* O ```while``` loop também pode ser usado para ler uma sequência de char de comprimento arbitrário. Para isso, podemos invocar o ```hasNext()``` método de ```Scanner``` dentro da condição. O método retorna ```true``` se o próximo elemento existe e ```false``` caso contrário.
 ```java 
 Scanner scanner = new Scanner(System.in);
 
@@ -123,7 +123,7 @@ Observe, não precisamos importar nada para usar esta classe em programas.
 ```
 #### Alguns métodos importantes
 * A ```StringBuilder``` classe fornece um conjunto de métodos úteis para manipular objetos. Vamos considerar alguns deles.
-  * ```int length()``` retorna o comprimento (a contagem de caracteres), como em strings regulares. Este método não modifica o objeto.
+  * ```int length()``` retorna o comprimento (a contagem de char), como em strings regulares. Este método não modifica o objeto.
 ```java 
 StringBuilder sb = new StringBuilder("I use Java");
 System.out.println(sb.length()); // 10
@@ -146,7 +146,7 @@ StringBuilder sb = new StringBuilder("dessert");
 sb.deleteCharAt(2);
 System.out.println(sb); // "desert"
 ```
-  * ```StringBuilder append(String str)``` concatena a string fornecida ao final do ```StringBuilder``` objeto de chamada . Existem também várias sobrecargas para pegar tipos primitivos e até matrizes de caracteres.
+  * ```StringBuilder append(String str)``` concatena a string fornecida ao final do ```StringBuilder``` objeto de chamada . Existem também várias sobrecargas para pegar tipos primitivos e até matrizes de char.
 ```java 
 StringBuilder sb = new StringBuilder("abc");
 sb.append("123");
@@ -189,7 +189,7 @@ StringBuilder sb = new StringBuilder("Welcome");
 sb.delete(0,3);
 System.out.println(sb); // "come"
 ```
-  * ```StringBuilder reverse()``` faz com que essa sequência de caracteres seja substituída pelo reverso da sequência.
+  * ```StringBuilder reverse()``` faz com que essa sequência de char seja substituída pelo reverso da sequência.
 ```java 
 StringBuilder sb = new StringBuilder("2 * 3 + 8 * 4");
 sb.reverse();
@@ -200,7 +200,7 @@ Observe, quando você tem um StringBuilder objeto, pode obter um String invocand
 ```
 * Para obter mais detalhes sobre os métodos, consulte a documentação: https://docs.oracle.com/javase/10/docs/api/java/lang/StringBuilder.html
 #### O length() e a capacity()
-* Existem dois métodos que não devem ser confundidos: ```length``` e ```capacity```. O ```length``` retorna o número real de caracteres, enquanto ```capacity``` retorna a quantidade de armazenamento disponível para os caracteres recém-inseridos, além da qual ocorrerá uma alocação. A capacidade é uma parte da representação interna de ```StringBuilder``` e seu valor mudará dinamicamente.
+* Existem dois métodos que não devem ser confundidos: ```length``` e ```capacity```. O ```length``` retorna o número real de char, enquanto ```capacity``` retorna a quantidade de armazenamento disponível para os char recém-inseridos, além da qual ocorrerá uma alocação. A capacidade é uma parte da representação interna de ```StringBuilder``` e seu valor mudará dinamicamente.
 * O exemplo a seguir o ajudará a distinguir melhor esses métodos:
 ```java 
 StringBuilder sb = new StringBuilder(); // initial capacity is 16
@@ -555,7 +555,7 @@ public class NumberFormatExceptionDemo {
 ```java 
 Incorrect number: 121a
 ```
-* Se você tiver problemas para entender o que é a exceção, você pode copiar e colar o nome e pesquisar no Google. Além disso, você é fortemente encorajado a fazê-lo, pois 99% dos problemas que os alunos encontram já foram resolvidos em fóruns profissionais.
+* Se você tiver problemas para entender o que é a exceção, você pode copiar e colar o nome e pesquisar no Google. Além disso, você é fortemente encorajado a fazê-lo, pois 99 %dos problemas que os alunos encontram já foram resolvidos em fóruns profissionais.
 #### <hr>
 ### Classes Wrapper
 * Cada tipo primitivo possui uma classe dedicada a ele. Essas classes são conhecidas como <strong>wrappers</strong> e são <strong>imutáveis</strong> (assim como strings). As classes de wrapper podem ser usadas em diferentes situações:
@@ -652,7 +652,7 @@ Long anotherLongVal = Long.valueOf("2000"); // a Long from "2000"
 Observe que, desde o Java 9, os construtores estão obsoletos. Você deve usar métodos especiais para criar objetos das classes de wrapper.
 ```
 #### Comparando wrappers
-* Assim como para qualquer tipo de referência, o operador ```==``` verifica se dois objetos de invólucro são realmente iguais, ou seja, se eles se referem ao mesmo objeto na memória. O método ```equals```, por outro lado, verifica se dois objetos de invólucro são significativamente iguais, por exemplo, verifica se dois invólucros ou cadeias de caracteres têm o mesmo valor.
+* Assim como para qualquer tipo de referência, o operador ```==``` verifica se dois objetos de invólucro são realmente iguais, ou seja, se eles se referem ao mesmo objeto na memória. O método ```equals```, por outro lado, verifica se dois objetos de invólucro são significativamente iguais, por exemplo, verifica se dois invólucros ou cadeias de char têm o mesmo valor.
 ```java 
 Long i1 = Long.valueOf("2000");
 Long i2 = Long.valueOf("2000");
@@ -1001,7 +1001,7 @@ for (Long value : powersOfTen) {
 * Essas são as propriedades gerais que qualquer função hash deve ter. Vejamos alguns dos mais comuns para ver como funcionam.
 #### Funções de hash padrão
 * Para usar funções hash, precisamos primeiro aprender a notação. As funções de hash são geralmente denotadas por h. O valor hash para um objeto específico x é denotado por h (x). As funções de hash usadas na programação do dia-a-dia geralmente pegam um tipo de valor e retornam inteiros. Eles são usados em tabelas hash e têm todas as três propriedades que discutimos acima. Estes são alguns dos hashes mais fáceis e mais comumente usados:
-* Inteiros: usamos a função de identidade, que sempre retorna o valor que é fornecido:h (x) = x, ou o módulo: h (x) = x % p, para algum número p(geralmente um primo). O modulo x % p retorna o resto ao dividir x por p. Vamos ver como eles funcionam para algum número aleatório, digamos 10. A identidade sempre retornará o número fornecido, então temos h (10) = 10. Para o módulo, se escolhermos p = 7, então nós temos h (10) = 10 % 7 = 3. Se escolhermos p = 10, então nós temos h (10) = 10 % 10 = 0.
+* Inteiros: usamos a função de identidade, que sempre retorna o valor que é fornecido:h (x) = x, ou o módulo: h (x) = x  %p, para algum número p(geralmente um primo). O modulo x  %p retorna o resto ao dividir x por p. Vamos ver como eles funcionam para algum número aleatório, digamos 10. A identidade sempre retornará o número fornecido, então temos h (10) = 10. Para o módulo, se escolhermos p = 7, então nós temos h (10) = 10  %7 = 3. Se escolhermos p = 10, então nós temos h (10) = 10  %10 = 0.
 * Matrizes inteiras: digamos que a matriz tenha a forma [v1, v2, ..., vn].
 * ...
 * valor Hash:
@@ -1470,7 +1470,7 @@ HashSet, TreeSetou LinkedHashSet.
 ```
 * A seguir, consideraremos três implementações mutáveis primárias da ```Set``` interface.
 #### HashSet
-* A ```HashSet``` classe representa um Set apoiado por uma tabela hash . Ele usa códigos hash de elementos para armazená-los de forma eficaz. Não dá nenhuma garantia quanto à ordem de iteração do Set; em particular, não garante que o pedido permanecerá constante ao longo do tempo.
+* A ```HashSet``` classe representa um Set apoiado por uma tabela hash . Ele usa códigos hash de elementos para armazená-los de forma eficaz. Não dá nenhuma garantia quanto à ordem de iteração do Set; em particular, não garante que o pedido permanecerá constante ao long do tempo.
 * O exemplo a seguir demonstra a criação de um ```HashSet``` e a adição de países a ele (com uma duplicata). O resultado da saída não contém duplicatas.
 ```java 
 Set<String> countries = new HashSet<>();
@@ -1552,7 +1552,7 @@ for (char c = 'a'; c <= 'k'; c++) {
         
 System.out.println(characters); // [a, b, c, d, e, f, g, h, i, j, k]
 ```
-* Neste código, a ordem dos caracteres é sempre a mesma e corresponde à ordem em que são inseridos no Set.
+* Neste código, a ordem dos char é sempre a mesma e corresponde à ordem em que são inseridos no Set.
 ```
 A LinkedHashSetimplementação poupa seus clientes do pedido caótico
 fornecido por, HashSetsem incorrer no aumento do custo do tempo das
@@ -2083,7 +2083,7 @@ try {
 #### <hr>
 #### <hr>
 #### <hr>
-### POO - Programação Orientada a Objetos 
+## POO - Programação Orientada a Objetos 
 #### Interface x Classe abstrata
 * Uma <strong>classe abstrata</strong> pode conter métodos completos ou incompletos. Uma <strong>Interface</strong> pode conter apenas a assinatura de um método, mas nenhum corpo ou implementação. Portanto, em uma <strong>classe abstrata</strong>, pode-se implementar métodos, mas em uma <strong>Interface</strong>, não.
 #### <hr>
@@ -2422,4 +2422,120 @@ public static void main(String[] args) {
 #### <hr>
 #### <hr>
 #### <hr>
-### 
+## Arquivos (Files)
+### Saída formatada (Formatted output)
+#### Introdução
+* Você já está familiarizado com os métodos ```System.out.print()``` e ```System.out.println()``` para imprimir a saída no console. Mas quando você precisa de uma formatação complexa de saída, esses dois métodos não são realmente úteis. Existem dois métodos que você pode usar nesses casos, a saber, ```System.out.printf()``` e ```String.format()```. Vamos discuti-los em detalhes e nos concentrar na formatação de strings e números.
+#### Apresentando o método printf ()
+* O ```printf()``` wmétodo geralmente tem duas partes. Primeiro, você fornece a string que deseja formatar como o primeiro atributo. Essa string em si inclui regras para formatá-la por meio de especificadores de formato . Alguns exemplos de especificadores de formato são , etc. Na segunda parte, você fornece a lista de argumentos que o Java pode usar para formatar a string de acordo com os especificadores de formato. ```%d``` ```%s```
+* Veja o exemplo a seguir para entender as diferentes partes da ```printf()``` função.
+```java 
+System.out.printf("My Name is %s. I was born in %d", "Mike", 1998);
+```
+  * A primeira parte é ```"My Name is %s. I was born in %d"```, onde ```%s```e ```%d``` são os especificadores de formato.
+  * A segunda parte é a lista de argumentos: ```"Mike", 1998```.
+#### Diferentes casos de uso de printf()
+* É hora de conhecer os diferentes casos de uso de especificadores de formato. É muito fácil entender isso com exemplos de código. Vamos tentar agora.
+* Você pode exibir um inteiro com o ```%d``` especificador de formato.
+```java 
+public static void main(String[] args){
+    System.out.printf("Display a Number %d", 15000);
+}
+```
+* Java substituirá ```%d``` por 15000. A saída do código acima é ```Display a Number 15000```.
+* Se você quiser que vários inteiros sejam exibidos na saída, use vários ```%d``` especificadores.
+```java 
+public static void main(String[] args){
+    System.out.printf("The sum of %d and %d is %d", 15, 40, 55);
+}
+```
+* Java colocará cada argumento no lugar de ```%d```, começando da esquerda. A saída do código acima é ```The sum of 15 and 40 is 55```.
+* Se você deseja exibir um valor de ponto flutuante, use o ```%f``` especificador.
+```java 
+public static void main(String[] args){
+    System.out.printf("Display a Number %f", 15.23);
+}
+```
+* Semelhante aos casos acima, o Java colocará 15.23 no lugar de ```%f```. O código acima produzirá a seguinte saída. ```Display a Number 15.230000``` Embora seja tecnicamente correto, parece feio. Você não quer tantos zeros à direita. Você pode definir a precisão com o ```printf()``` método.
+```java 
+public static void main(String[] args){
+    System.out.printf("Display a Number %.2f", 15.23);
+}
+```
+* ```.2f``` decide que o número de dígitos que deve aparecer após a casa decimal é dois. O código fornecido acima produzirá ```Display a Number 15.23```
+* Da mesma forma, você pode exibir char e strings com o ```printf()``` método. Dê uma olhada no código a seguir. Se quiser imprimir um caractere, use ```%c```, e se quiser imprimir uma String, use ```%s```.
+```java 
+public static void main(String[] args){
+    char abbr = 'H';
+    String element = "Hydrogen";
+    System.out.printf("%c stands for %s", abbr, element);
+}
+```
+* Quando este código for executado, o valor da ```abbr``` variável será substituído ```%c``` e o valor da ```element``` variável será substituído ```%s```. A saída do código acima é ```H stands for Hydrogen.``` Isso é tudo sobre o ```printf()``` método. Vamos prosseguir para aprender sobre o ```String.format()``` método.
+#### O método Stirng.format()
+* O ```format()``` método na ```String``` classe funciona de forma muito parecida com o ```printf()``` método. A principal diferença aqui é que você retorna uma string em vez de imprimi-la. Vamos ver vários exemplos.
+* O código a seguir formata um inteiro usando-o.
+```java 
+public static void main(String[] args){
+    int age = 22;
+    String str = String.format("My age is %d", age);
+    System.out.println(str);
+}
+```
+* Ao executar este código, o Java criará uma String chamada ```str``` concatenando ```My age is``` com o valor da ```age``` variável. Em seguida, ele imprimirá o valor de ```str```. O resultado é:
+```java 
+My age is 22
+```
+* Da mesma forma, você também pode formatar outros tipos de dados. Veja o seguinte código.
+```java 
+public static void main(String[] args){
+    int age = 22;
+    char initial = 'M';
+    String surname = "Anderson";
+    double height = 1.72;
+
+    String details = String.format("My name is %c. %s.%nMy age is %d.%nMy height is %.2f.", initial, surname, age, height);
+    System.out.println(details);
+}
+```
+* Você pode ver que usamos quatro tipos de dados neste exemplo. Java irá substituir ```%c, %s, %d, %f``` com ```initial```, ```surname```, ```age``` e, ```height``` respectivamente. %né o caractere de nova linha que quebra a linha toda vez que é usado. A saída do nosso código é:
+```java 
+My name is M. Anderson.
+My age is 22.
+My height is 1.72.
+```
+* Vamos resumir o que aprendemos neste tópico.
+<table>
+	<tbody>
+		<tr>
+			<td><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Especificador de Formato</font></font></strong></td>
+			<td><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">tipo de dados</font></font></strong></td>
+			<td><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Impressão de formato</font></font></strong></td>
+			<td><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Formatando uma string</font></font></strong></td>
+		</tr>
+		<tr>
+			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> %d</font></font></td>
+			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">int, short, byte, long</font></font></td>
+			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">System.out.printf ("Exibir um inteiro %d", 15000);</font></font></td>
+			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">String.format ("Exibir um inteiro %d", 15000)</font></font></td>
+		</tr>
+		<tr>
+			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> %c</font></font></td>
+			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">char</font></font></td>
+			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">System.out.printf ("Exibir um caractere %c", 'c');</font></font></td>
+			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">String.format ("Exibir um caractere %c", 'c')</font></font></td>
+		</tr>
+		<tr>
+			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> %f</font></font></td>
+			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">double, float</font></font></td>
+			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">System.out.printf ("Exibir um número de ponto flutuante %f", 123,45);</font></font></td>
+			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">String.format ("Exibir um número de ponto flutuante %f", 123.45)</font></font></td>
+		</tr>
+		<tr>
+			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> %s</font></font></td>
+			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">String</font></font></td>
+			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">System.out.printf ("Exibir uma String %s", "String");</font></font></td>
+			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">String.format ("Exibir uma String %s", "String")</font></font></td>
+		</tr>
+	</tbody>
+</table>
