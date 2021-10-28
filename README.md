@@ -1839,6 +1839,227 @@ Map<String, Integer> namesToAges2 = Map.of("John", 28);
 System.out.println(Objects.equals(namesToAges1, namesToAges2)); // false
 ```
 * Com isso, estamos finalizando nossa consideração sobre os mapas. Havia muita teoria. Se houver algo que você não entende, tente praticar mesmo assim e volte à teoria quando surgirem dúvidas.
+#### <hr>
+### Hierarquia de exceções
+* Java é principalmente uma linguagem orientada a objetos. Nesse paradigma, todas as exceções são consideradas objetos de classes especiais organizadas em uma hierarquia de classes. Compreender essa hierarquia é essencial tanto para entrevistas de emprego quanto para a prática diária de programação.
+#### Hierarquia de exceções
+* A imagem a seguir ilustra a hierarquia simplificada de exceções:
+* <img src="https://ucarecdn.com/dce2aef6-e0e1-408a-ad3e-0eff03b06ec7/">
+* A classe base para todas as exceções é ```java.lang.Throwable```. Esta classe fornece um conjunto de métodos comuns para todas as exceções:
+  * ```String getMessage()``` retorna a mensagem de string detalhada deste objeto de exceção;
+  * ```Throwable getCause()``` retorna a causa desta exceção ou nullse a causa é inexistente ou desconhecida;
+  * ```printStackTrace()``` imprime o rastreamento de pilha no fluxo de erro padrão.
+* Voltaremos aos métodos e construtores desta classe nos tópicos a seguir.
+* A ```Throwable``` classe possui duas subclasses diretas: ```java.lang.Error``` e ```java.lang.Exception```.
+  * as subclasses da ```Error``` classe representam exceções de baixo nível na JVM, por exemplo: ```OutOfMemoryError```, ```StackOverflowError```;
+  * subclasses da ```Exception``` classe lidam com eventos excepcionais dentro de aplicativos, como: ```RuntimeException```, ```IOException```;
+  * a ```RuntimeException``` classe é uma subclasse bastante especial de ```Exception```. Ela representa o chamado unchecked exceções, incluindo: ```ArithmeticException```, ```NumberFormatException```, ```NullPointerException```.
+* Ao desenvolver um aplicativo, você normalmente processará objetos da ```Exception``` classe e suas subclasses. Não discutiremos ```Error``` suas subclasses aqui.
+```
+As quatro classes básicas de exceções ( Throwable, Exception,
+RuntimeExceptione Error) estão localizados no java.lang pacote. Eles não
+precisam ser importados. No entanto, suas subclasses podem ser colocadas
+em pacotes diferentes.
+```
+#### Exceções marcadas e desmarcadas (Checked and Unchecked)
+* Todas as exceções podem ser divididas em dois grupos: checkeds e não checkeds. Eles são funcionalmente equivalentes, mas há uma diferença do ponto de vista do compilador.
+* <strong>1. As exceções verificadas</strong> são representadas pela Exceptionclasse, excluindo a RuntimeExceptionsubclasse. O compilador verifica se o programador espera a ocorrência de tais exceções em um programa ou não. 
+* Se um método lançar uma exceção verificada, isso deve ser marcado na declaração usando a ```throws``` palavra-chave especial . Caso contrário, o programa não será compilado.
+* Vamos dar uma olhada no exemplo. Usamos a ```Scanner``` classe, com a qual você já está familiarizado, como um meio de ler a entrada padrão, para ler a partir de um arquivo:
+```java 
+public static String readLineFromFile() throws FileNotFoundException {
+    Scanner scanner = new Scanner(new File("file.txt")); // java.io.FileNotFoundException
+    return scanner.nextLine();
+}
+```
+* Aqui ```FileNotFoundException``` está uma exceção padrão verificada. Este construtor de ```Scanner``` declara uma ```FileNotFoundException``` exceção, porque assumimos que o arquivo especificado pode não existir. Mais importante ainda, há uma única linha no método que pode lançar uma exceção, portanto, colocamos a throwspalavra - chave na declaração do método.
+* <strong>2. As exceções não verificadas</strong> são representadas pela RuntimeExceptionclasse e todas as suas subclasses. O compilador não verifica se o programador espera a ocorrência de tais exceções em um programa.
+* Aqui está um método que lança ```NumberFormatException``` quando a string de entrada tem um formato inválido (por exemplo, ```"abc"```).
+```java 
+public static Long convertStringToLong(String str) {
+    return Long.parseLong(str); // It may throw a NumberFormatException
+}
+```
+* Este código sempre é compilado com sucesso sem a ```throws``` palavra - chave na declaração.
+```
+As exceções de tempo de execução podem ocorrer em qualquer lugar em um
+programa. O compilador não exige que você especifique exceções de tempo
+de execução nas declarações. Adicioná-los à declaração de cada método
+reduziria a clareza de um programa.
+```
+* A ```Error``` classe e suas subclasses também são consideradas como exceções não verificadas. No entanto, eles formam uma classe separada.
+#### Conclusão
+* Todas as exceções são representadas pela ```Throwable``` classe, que possui duas subclasses: ```Exception``` e ```Error```. Também existem dois tipos de exceções: checked e unchecked.
+* Exceções não verificadas são esperadas pelo compilador, então você não precisa manipulá-las. Eles são representados pela ```RuntimeExceptionsubclass``` e da ```Exceptionclasse```. Erros da ```Error``` classe também são considerados não verificados.
+* As exceções verificadas devem ser tratadas e indicadas explicitamente. Eles estão localizados em todas as outras subclasses de ```Exception```.
+#### <hr>
+### Tratamento de exceções
+* Como você já sabe, uma exceção interrompe a execução normal de um programa. Normalmente não é isso que queremos que aconteça. Felizmente, é possível escrever algum código que tratará a exceção sem interromper todo o programa. Para fazer isso, Java fornece um mecanismo de tratamento de exceções que funciona com exceções marcadas e não verificadas .
+#### Como lidar com uma exceção
+* Depois que uma linha de código lança uma exceção, o sistema de tempo de execução Java tenta encontrar um manipulador adequado para ela. Esse manipulador pode estar localizado no mesmo método em que ocorreu a exceção ou no método de chamada. Assim que um manipulador adequado é encontrado e executado, a exceção é considerada como tratada e o programa é executado normalmente.
+* Tecnicamente, uma exceção pode ser tratada no método em que ocorre ou no método de chamada. A melhor abordagem para tratar uma exceção é fazê-lo em um método que tenha informações suficientes para tomar a decisão correta com base nessa exceção.
+* Vamos agora aprender três palavras-chave para lidar com exceções: ```try```, ```catch``` e ```finally```.
+#### A declaração try-catch
+* Aqui está um ```try-catch``` modelo simples para lidar com exceções:
+```java 
+try {
+    // code that may throw an exception
+} catch (Exception e) {
+    // code for handling the exception
+}
+```
+* O ```try``` bloco é usado para envolver o código que pode lançar uma exceção. Este bloco pode incluir todas as linhas de código, incluindo chamadas de método.
+* O ```catch``` bloco é um manipulador para o tipo especificado de exceção e todas as suas subclasses. Este bloco é executado quando uma exceção do tipo correspondente ocorre no ```try``` bloco.
+```
+Observe que o tipo especificado em um
+catch bloco deve estender a Throwableclasse.
+```
+* No modelo apresentado, o ```catch``` bloco pode manipular exceções da ```Exception``` classe e todas as classes derivadas dela.
+* O exemplo a seguir demonstra o fluxo de execução com ```try``` e ```catch```.
+```java 
+System.out.println("before the try-catch block"); // it will be printed
+
+try {
+    System.out.println("inside the try block before an exception"); // it will be printed
+
+    System.out.println(2 / 0); // it throws ArithmeticException
+
+    System.out.println("inside the try block after the exception"); // it won't be printed
+} catch (Exception e) {
+    System.out.println("Division by zero!"); // it will be printed
+}
+
+System.out.println("after the try-catch block"); // it will be printed
+```
+* A saída:
+```
+before the try-catch block
+inside the try block before an exception
+Division by zero!
+after the try-catch block
+```
+* O programa não imprime ```"inside the try block after the exception"``` pois ```ArithmeticException``` abortou o fluxo normal da execução. Em vez disso, ele executa a instrução de impressão no ```catch``` bloco. Após a conclusão do ```catch``` bloco, o programa executa a próxima instrução (impressão ```"after the try-catch block"```) sem retornar ao ```try``` bloco novamente.
+* Substituir ```Exception``` por ```ArithmeticException``` ou ```RuntimeException``` na ```catch``` instrução não altera o fluxo de execução do programa. Mas substituí-lo por ```NumberFormatException``` tornará o manipulador inadequado para a exceção e o programa falhará.
+```
+Como observamos anteriormente, a try-catch instrução pode lidar com exceções
+verificadas e não verificadas. Mas há uma diferença: as exceções verificadas
+devem ser agrupadas com um try-catchbloco ou declaradas para serem lançadas
+no método, enquanto as exceções não verificadas não precisam.
+```
+#### Obter informações sobre uma exceção
+* Quando uma exceção é capturada por um catchbloco, é possível obter algumas informações sobre ela:
+```java 
+try {
+    double d = 2 / 0;
+} catch (Exception e) {
+    System.out.println(e.getMessage());
+}
+```
+* Este código imprime:
+```
+An exception occured: / by zero
+```
+#### Captura de múltiplas exceções
+* Sempre é possível usar um único manipulador para todos os tipos de exceções:
+```java 
+try {
+    // code that may throw exceptions
+} catch (Exception e) {
+    System.out.println("Something goes wrong");
+}
+```
+* Obviamente, esta abordagem não nos permite realizar ações diferentes dependendo do tipo de exceção que ocorreu. Felizmente, o Java suporta o uso de vários manipuladores dentro do mesmo ```try``` bloco.
+```java 
+try {
+    // code that throws exceptions
+} catch (IOException e) {
+    // handling the IOException and its subclasses    
+} catch (Exception e) {
+    // handling the Exception and its subclasses
+}
+```
+* Quando ocorre uma exceção no ```try``` bloco, o sistema de execução determina o primeiro ```catch``` bloco adequado de acordo com o tipo da exceção. A correspondência vai de cima para baixo.
+```
+Importante, o catchbloco com a classe base deve ser escrito abaixo de todos os
+blocos com subclasses. Em outras palavras, os manipuladores mais especializados
+(como IOException) devem ser escritos antes dos mais gerais (como Exception).
+Caso contrário, o código não compilará.
+```
+* Desde o Java 7, você pode usar uma sintaxe multi-catch para ter várias exceções tratadas da mesma maneira:
+```java 
+try {
+    // code that may throw exceptions
+} catch (SQLException | IOException e) {
+    // handling SQLException, IOException and their subclasses
+    System.out.println(e.getMessage());
+} catch (Exception e) {
+    // handling any other exceptions
+    System.out.println("Something goes wrong");
+}
+```
+* No código acima, ```SQLException``` e ```IOException``` (alternativas) são separados pelo ```|``` caractere. Eles serão tratados da mesma maneira.
+```
+Observe que as alternativas em uma instrução multi-catch não podem ser
+subclasses umas das outras.
+```
+#### O bloco finally
+* Existe outro bloco possível chamado ```finally```. Todas as instruções presentes neste bloco sempre serão executadas independentemente de ocorrer uma exceção no ```try``` bloco ou não.
+```java 
+try {
+    // code that may throw an exception
+} catch (Exception e) {
+    // exception handler
+} finally {
+    // code always be executed
+}
+```
+* O exemplo a seguir ilustra a ordem de execução da ```try-catch-finally``` instrução.
+```java 
+try {
+    System.out.println("inside the try block");
+    Integer.parseInt("101abc"); // throws NumberFormatException
+} catch (Exception e) {
+    System.out.println("inside the catch block");
+} finally {
+    System.out.println("inside the finally block");
+}
+
+System.out.println("after the try-catch-finally block");
+```
+* A saída:
+```
+inside the try block
+inside the catch block
+inside the finally block
+after the try-catch-finally block
+```
+* Se removermos a linha que lança NumberFormatException, o ```finally``` bloco ainda é executado após o ```try``` bloco.
+```
+inside the try block
+inside the finally block
+after the try-catch-finally block
+```
+```
+Interessante: o finally bloco é executado mesmo se ocorrer uma exceção
+no catch bloco.
+```
+* Também é possível escrever ```try``` e ```finally``` sem nenhum ```catch``` bloco.
+```java 
+try {
+    // code that may throw an exception
+} finally {   
+    // code always be executed
+}
+```
+* Neste modelo, o ```finally``` bloco é executado logo após o ```try``` bloco.
+#### Conclusão
+* A ```try-catch``` instrução nos permite lidar com exceções verificadas e não verificadas.
+* O ```try``` bloco envolve o código que pode lançar uma exceção enquanto o ```catch``` bloco trata essa exceção caso ela ocorra, também nos permitindo obter algumas informações sobre ela. É possível usar vários manipuladores para fornecer diferentes cenários para diferentes tipos de exceções.
+* Finalmente, existe um ```finally``` bloco opcional que sempre é executado. Sua principal característica é que ele executa mesmo se falharmos em manipular uma exceção.
+
+
+
+
 
 
 
