@@ -2402,3 +2402,24 @@ public static void main(String[] args) {
 * Tom e Bob têm a mesma idade, então ambos devem ser mais novos ou mais velhos que Kris:
   * ```tom.compareTo(bob) == 0``` implica que ```tom.compareTo(kris) > 0``` e ```bob.compareTo(kris) > 0``` ou ```tom.compareTo(kris) < 0``` e ```bob.compareTo(kris) < 0```
 * Isso garantirá que possamos usar objetos com segurança em conjuntos classificados e mapas classificados.
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+### 

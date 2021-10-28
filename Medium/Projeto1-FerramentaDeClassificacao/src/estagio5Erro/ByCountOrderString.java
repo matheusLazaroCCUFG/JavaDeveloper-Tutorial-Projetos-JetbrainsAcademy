@@ -3,7 +3,7 @@ package estagio5Erro;
 /**
  * Ordenação por quantidade de vezes de uma string ou lexicograficamente
  */
-public class ByCountOrderString implements Comparable<ByCountOrderString>{
+public class ByCountOrderString implements Comparable<ByCountOrderString> {
     private int qtdStr;
     private int total;
     private String str;

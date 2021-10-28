@@ -27,6 +27,8 @@ public class Main {
             }
         }
 
+        exceptionHandling(args);
+
         if (sortingType) { // args[1].equals("-sortingType")
             //listLong = (ArrayList<Long>) scannerAddList(scanner, true, false);
             if (dataType.equals("long")) {
@@ -72,16 +74,66 @@ public class Main {
         }
     }
 
+    public static void exceptionHandling(String[] args) {
+        boolean sortingType = false;
+        boolean natural = false;
+        boolean byCount = false;
+        boolean dataType = false;
+        boolean typeLong = false;
+        boolean typeline = false;
+        boolean typeWord = false;
+
+        for (String arg : args) {
+            if (arg.equals("-sortingType")) {
+                sortingType = true;
+            } else if (arg.equals("natural")) {
+                natural = true;
+            } else if (arg.equals("byCount")) {
+                byCount = true;
+            } else if (arg.equals("-dataType")) {
+                dataType = true;
+            } else if (arg.equals("long")) {
+                typeLong = true;
+            } else if (arg.equals("line")) {
+                typeline = true;
+            } else if (arg.equals("word")) {
+                typeWord = true;
+            } else {
+                System.out.println("\"" + arg + "\" is not a valid parameter. It will be skipped");
+            }
+        }
+
+        /** se o -sortingType argumento for fornecido, mas o tipo não,
+        * imprime uma mensagem No sorting type defined!
+        */
+        if (sortingType && !natural && !byCount) {
+            System.out.println("No sorting type defined!");
+        }
+
+        // se o -dataType argumento for fornecido, mas o tipo não,
+        // imprimir No data type defined!
+        if (dataType && !typeLong && !typeline && !typeWord) {
+            System.out.println("No data type defined!");
+        }
+    }
+
     public static ArrayList<?> scannerAddList(
             Scanner scanner, boolean isLong, boolean isWord
     ) {
         if (isLong) {
             ArrayList<Long> listLong = new ArrayList<>();
+            long number;
+            String aux = "";
 
-            while (scanner.hasNextLong()) {
-                long number = scanner.nextLong();
 
-                listLong.add(number);
+            while (scanner.hasNext()) {
+                try {
+                    aux = scanner.next();
+                    number = Long.parseLong(aux);
+                    listLong.add(number);
+                } catch(NumberFormatException numberFormatException){
+                    System.out.println("\"" + aux + "\" is not a long. It will be skipped");
+                }
             }
 
             return listLong;
