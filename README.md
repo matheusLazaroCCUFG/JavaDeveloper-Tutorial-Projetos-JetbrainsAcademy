@@ -2056,7 +2056,123 @@ try {
 * A ```try-catch``` instrução nos permite lidar com exceções verificadas e não verificadas.
 * O ```try``` bloco envolve o código que pode lançar uma exceção enquanto o ```catch``` bloco trata essa exceção caso ela ocorra, também nos permitindo obter algumas informações sobre ela. É possível usar vários manipuladores para fornecer diferentes cenários para diferentes tipos de exceções.
 * Finalmente, existe um ```finally``` bloco opcional que sempre é executado. Sua principal característica é que ele executa mesmo se falharmos em manipular uma exceção.
+####<hr>
+### Saída formatada (Formatted output)
+#### Introdução
+* Você já está familiarizado com os métodos ```System.out.print()``` e ```System.out.println()``` para imprimir a saída no console. Mas quando você precisa de uma formatação complexa de saída, esses dois métodos não são realmente úteis. Existem dois métodos que você pode usar nesses casos, a saber, ```System.out.printf()``` e ```String.format()```. Vamos discuti-los em detalhes e nos concentrar na formatação de strings e números.
+#### Apresentando o método printf ()
+* O ```printf()``` wmétodo geralmente tem duas partes. Primeiro, você fornece a string que deseja formatar como o primeiro atributo. Essa string em si inclui regras para formatá-la por meio de especificadores de formato . Alguns exemplos de especificadores de formato são , etc. Na segunda parte, você fornece a lista de argumentos que o Java pode usar para formatar a string de acordo com os especificadores de formato. ```%d``` ```%s```
+* Veja o exemplo a seguir para entender as diferentes partes da ```printf()``` função.
+```java 
+System.out.printf("My Name is %s. I was born in %d", "Mike", 1998);
+```
+* A primeira parte é ```"My Name is %s. I was born in %d"```, onde ```%s```e ```%d``` são os especificadores de formato.
+* A segunda parte é a lista de argumentos: ```"Mike", 1998```.
+#### Diferentes casos de uso de printf()
+* É hora de conhecer os diferentes casos de uso de especificadores de formato. É muito fácil entender isso com exemplos de código. Vamos tentar agora.
+* Você pode exibir um inteiro com o ```%d``` especificador de formato.
+```java 
+public static void main(String[] args){
+    System.out.printf("Display a Number %d", 15000);
+}
+```
+* Java substituirá ```%d``` por 15000. A saída do código acima é ```Display a Number 15000```.
+* Se você quiser que vários inteiros sejam exibidos na saída, use vários ```%d``` especificadores.
+```java 
+public static void main(String[] args){
+    System.out.printf("The sum of %d and %d is %d", 15, 40, 55);
+}
+```
+* Java colocará cada argumento no lugar de ```%d```, começando da esquerda. A saída do código acima é ```The sum of 15 and 40 is 55```.
+* Se você deseja exibir um valor de ponto flutuante, use o ```%f``` especificador.
+```java 
+public static void main(String[] args){
+    System.out.printf("Display a Number %f", 15.23);
+}
+```
+* Semelhante aos casos acima, o Java colocará 15.23 no lugar de ```%f```. O código acima produzirá a seguinte saída. ```Display a Number 15.230000``` Embora seja tecnicamente correto, parece feio. Você não quer tantos zeros à direita. Você pode definir a precisão com o ```printf()``` método.
+```java 
+public static void main(String[] args){
+    System.out.printf("Display a Number %.2f", 15.23);
+}
+```
+* ```.2f``` decide que o número de dígitos que deve aparecer após a casa decimal é dois. O código fornecido acima produzirá ```Display a Number 15.23```
+* Da mesma forma, você pode exibir char e strings com o ```printf()``` método. Dê uma olhada no código a seguir. Se quiser imprimir um caractere, use ```%c```, e se quiser imprimir uma String, use ```%s```.
+```java 
+public static void main(String[] args){
+    char abbr = 'H';
+    String element = "Hydrogen";
+    System.out.printf("%c stands for %s", abbr, element);
+}
+```
+* Quando este código for executado, o valor da ```abbr``` variável será substituído ```%c``` e o valor da ```element``` variável será substituído ```%s```. A saída do código acima é ```H stands for Hydrogen.``` Isso é tudo sobre o ```printf()``` método. Vamos prosseguir para aprender sobre o ```String.format()``` método.
+#### O método Stirng.format()
+* O ```format()``` método na ```String``` classe funciona de forma muito parecida com o ```printf()``` método. A principal diferença aqui é que você retorna uma string em vez de imprimi-la. Vamos ver vários exemplos.
+* O código a seguir formata um inteiro usando-o.
+```java 
+public static void main(String[] args){
+    int age = 22;
+    String str = String.format("My age is %d", age);
+    System.out.println(str);
+}
+```
+* Ao executar este código, o Java criará uma String chamada ```str``` concatenando ```My age is``` com o valor da ```age``` variável. Em seguida, ele imprimirá o valor de ```str```. O resultado é:
+```java 
+My age is 22
+```
+* Da mesma forma, você também pode formatar outros tipos de dados. Veja o seguinte código.
+```java 
+public static void main(String[] args){
+    int age = 22;
+    char initial = 'M';
+    String surname = "Anderson";
+    double height = 1.72;
 
+    String details = String.format("My name is %c. %s.%nMy age is %d.%nMy height is %.2f.", initial, surname, age, height);
+    System.out.println(details);
+}
+```
+* Você pode ver que usamos quatro tipos de dados neste exemplo. Java irá substituir ```%c, %s, %d, %f``` com ```initial```, ```surname```, ```age``` e, ```height``` respectivamente. %né o caractere de nova linha que quebra a linha toda vez que é usado. A saída do nosso código é:
+```java 
+My name is M. Anderson.
+My age is 22.
+My height is 1.72.
+```
+* Vamos resumir o que aprendemos neste tópico.
+<table>
+	<tbody>
+		<tr>
+			<td><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Especificador de Formato</font></font></strong></td>
+			<td><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">tipo de dados</font></font></strong></td>
+			<td><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Impressão de formato</font></font></strong></td>
+			<td><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Formatando uma string</font></font></strong></td>
+		</tr>
+		<tr>
+			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> %d</font></font></td>
+			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">int, short, byte, long</font></font></td>
+			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">System.out.printf ("Exibir um inteiro %d", 15000);</font></font></td>
+			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">String.format ("Exibir um inteiro %d", 15000)</font></font></td>
+		</tr>
+		<tr>
+			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> %c</font></font></td>
+			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">char</font></font></td>
+			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">System.out.printf ("Exibir um caractere %c", 'c');</font></font></td>
+			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">String.format ("Exibir um caractere %c", 'c')</font></font></td>
+		</tr>
+		<tr>
+			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> %f</font></font></td>
+			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">double, float</font></font></td>
+			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">System.out.printf ("Exibir um número de ponto flutuante %f", 123,45);</font></font></td>
+			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">String.format ("Exibir um número de ponto flutuante %f", 123.45)</font></font></td>
+		</tr>
+		<tr>
+			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> %s</font></font></td>
+			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">String</font></font></td>
+			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">System.out.printf ("Exibir uma String %s", "String");</font></font></td>
+			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">String.format ("Exibir uma String %s", "String")</font></font></td>
+		</tr>
+	</tbody>
+</table>
 
 
 
@@ -2423,119 +2539,179 @@ public static void main(String[] args) {
 #### <hr>
 #### <hr>
 ## Arquivos (Files)
-### Saída formatada (Formatted output)
-#### Introdução
-* Você já está familiarizado com os métodos ```System.out.print()``` e ```System.out.println()``` para imprimir a saída no console. Mas quando você precisa de uma formatação complexa de saída, esses dois métodos não são realmente úteis. Existem dois métodos que você pode usar nesses casos, a saber, ```System.out.printf()``` e ```String.format()```. Vamos discuti-los em detalhes e nos concentrar na formatação de strings e números.
-#### Apresentando o método printf ()
-* O ```printf()``` wmétodo geralmente tem duas partes. Primeiro, você fornece a string que deseja formatar como o primeiro atributo. Essa string em si inclui regras para formatá-la por meio de especificadores de formato . Alguns exemplos de especificadores de formato são , etc. Na segunda parte, você fornece a lista de argumentos que o Java pode usar para formatar a string de acordo com os especificadores de formato. ```%d``` ```%s```
-* Veja o exemplo a seguir para entender as diferentes partes da ```printf()``` função.
+* Frequentemente, um programa precisa processar e armazenar dados localizados fora da base de código: definições de configuração, alguns conjuntos de dados para processamento, logs de execução e assim por diante. A maneira mais simples de armazenar dados é usar arquivos compatíveis com todos os sistemas operacionais modernos. Você pode considerar um arquivo como uma coleção de dados que são armazenados em um disco ou outro dispositivo e que podem ser manipulados como uma única unidade quando endereçada por seu nome. Os arquivos podem ser organizados em diretórios que atuam como pastas para outros arquivos e diretórios.
+* Neste tópico, aprenderemos como trabalhar com arquivos diretamente de um programa Java.
+#### A classe File
+* Existe uma classe chamada ```File``` no ```java.io``` pacote. Um objeto desta classe representa um arquivo existente ou não existente ou um diretório. A classe pode ser usada para manipular arquivos e diretórios: criando, removendo, acessando propriedades e muito mais.
+* A maneira mais simples de criar um objeto de arquivo é passar um caminho de string para seu construtor. O formato válido da string depende do sistema operacional:
+  * O Windows usa barras invertidas para caminhos (```'\'```),
+  * Linux, OS X, Android e outros sistemas semelhantes ao UNIX usam a barra (```'/'```).
+* Você deve manter essa diferença em mente ao trabalhar com arquivos.
+* Se o seu sistema operacional for Windows, não se esqueça de usar o caractere de escape ```'\'```.
+* Vamos criar dois objetos da ```File``` classe para plataformas diferentes.
 ```java 
-System.out.printf("My Name is %s. I was born in %d", "Mike", 1998);
+File fileOnUnix = new File("/home/username/Documents");    // a directory on a UNIX-like system
+File fileOnWin = new File("D:\\Materials\\java-materials.pdf"); // a file on Windows
 ```
-  * A primeira parte é ```"My Name is %s. I was born in %d"```, onde ```%s```e ```%d``` são os especificadores de formato.
-  * A segunda parte é a lista de argumentos: ```"Mike", 1998```.
-#### Diferentes casos de uso de printf()
-* É hora de conhecer os diferentes casos de uso de especificadores de formato. É muito fácil entender isso com exemplos de código. Vamos tentar agora.
-* Você pode exibir um inteiro com o ```%d``` especificador de formato.
+* O código funcionará mesmo se um arquivo ou diretório não existir realmente em seu sistema de arquivos. Não cria um novo arquivo ou diretório. Ele apenas representa um arquivo ou diretório "virtual" que já existe ou pode ser criado no futuro.
+* Para exibir o caractere para separar o caminho para um arquivo no seu caso, você pode imprimir o seguinte:
 ```java 
-public static void main(String[] args){
-    System.out.printf("Display a Number %d", 15000);
-}
+System.out.println(File.separator); // '/' - for Linux
 ```
-* Java substituirá ```%d``` por 15000. A saída do código acima é ```Display a Number 15000```.
-* Se você quiser que vários inteiros sejam exibidos na saída, use vários ```%d``` especificadores.
-```java 
-public static void main(String[] args){
-    System.out.printf("The sum of %d and %d is %d", 15, 40, 55);
-}
+* Os objetos da ```File``` classe são imutáveis; ou seja, uma vez criado, o nome do caminho abstrato representado por um objeto nunca será alterado.
+#### Caminho absoluto e relativo
+* Você já viu exemplos de arquivos descritos por um caminho absoluto . Simplesmente, um caminho é absoluto se começar com o elemento raiz do sistema de arquivos. Ele contém as informações completas sobre a localização do arquivo, incluindo o tipo de sistema operacional.
 ```
-* Java colocará cada argumento no lugar de ```%d```, começando da esquerda. A saída do código acima é ```The sum of 15 and 40 is 55```.
-* Se você deseja exibir um valor de ponto flutuante, use o ```%f``` especificador.
-```java 
-public static void main(String[] args){
-    System.out.printf("Display a Number %f", 15.23);
-}
+É considerada uma prática inadequada localizar um arquivo usando seu caminho
+absoluto dentro de seus programas, pois você perderá a capacidade de
+reutilizar seu programa em diferentes plataformas. Outro problema é que você
+não pode transferir o arquivo junto com o diretório especificado, você terá
+que alterar o código que o acessa.
 ```
-* Semelhante aos casos acima, o Java colocará 15.23 no lugar de ```%f```. O código acima produzirá a seguinte saída. ```Display a Number 15.230000``` Embora seja tecnicamente correto, parece feio. Você não quer tantos zeros à direita. Você pode definir a precisão com o ```printf()``` método.
+* Um caminho relativo é um caminho que não inclui o elemento raiz do sistema de arquivos. Isso sempre começa no seu diretório de trabalho . Este diretório é representado por um ```.``` (ponto). Um caminho relativo não está completo e precisa ser combinado com o caminho do diretório atual para chegar ao arquivo solicitado.
+* Aqui está um exemplo com um arquivo dentro do diretório de imagens que está em seu diretório de trabalho:
 ```java 
-public static void main(String[] args){
-    System.out.printf("Display a Number %.2f", 15.23);
-}
+File fileOnUnix = new File("./images/picture.jpg");
+File fileOnWin = new File("./images/picture.jpg");
 ```
-* ```.2f``` decide que o número de dígitos que deve aparecer após a casa decimal é dois. O código fornecido acima produzirá ```Display a Number 15.23```
-* Da mesma forma, você pode exibir char e strings com o ```printf()``` método. Dê uma olhada no código a seguir. Se quiser imprimir um caractere, use ```%c```, e se quiser imprimir uma String, use ```%s```.
-```java 
-public static void main(String[] args){
-    char abbr = 'H';
-    String element = "Hydrogen";
-    System.out.printf("%c stands for %s", abbr, element);
-}
+* Como você pode ver, os dois caminhos parecem exatamente iguais, o que fornece independência de plataforma. Curiosamente, o caractere de ponto pode ser ignorado, portanto, o caminho ```images/picture.jpg``` também está correto.
 ```
-* Quando este código for executado, o valor da ```abbr``` variável será substituído ```%c``` e o valor da ```element``` variável será substituído ```%s```. A saída do código acima é ```H stands for Hydrogen.``` Isso é tudo sobre o ```printf()``` método. Vamos prosseguir para aprender sobre o ```String.format()``` método.
-#### O método Stirng.format()
-* O ```format()``` método na ```String``` classe funciona de forma muito parecida com o ```printf()``` método. A principal diferença aqui é que você retorna uma string em vez de imprimi-la. Vamos ver vários exemplos.
-* O código a seguir formata um inteiro usando-o.
-```java 
-public static void main(String[] args){
-    int age = 22;
-    String str = String.format("My age is %d", age);
-    System.out.println(str);
-}
+Para construir programas independentes de plataforma, é uma convenção comum
+usar caminhos relativos sempre que possível. Você também pode transferir o
+diretório de trabalho que contém, images/picture.jpg sem nenhuma modificação
+de código.
 ```
-* Ao executar este código, o Java criará uma String chamada ```str``` concatenando ```My age is``` com o valor da ```age``` variável. Em seguida, ele imprimirá o valor de ```str```. O resultado é:
+* Para acessar o diretório pai, basta escrever ```..```(ponto duplo). Portanto, ```../picture.jpg``` é um arquivo colocado no diretório pai do diretório de trabalho. O caminho relativo ```images/../images/picture.jpg``` significa o diretório pai de e ```images```, em seguida, a ```images``` pasta novamente. E ```picture.jpg``` é o arquivo dentro da ```images``` pasta. Em geral ```images/../images/picture.jpg``` e ```images/picture.jpg``` são os mesmos caminhos.
+#### Métodos básicos
+* Uma instância de File possui uma lista de métodos. Dê uma olhada em alguns deles:
+  * ```String getPath()``` retorna o caminho da string para este arquivo ou diretório;
+  * ```String getName()``` retorna o nome deste arquivo ou diretório (apenas o sobrenome do caminho)
+  * ```boolean isDirectory()``` retorna ```true``` se é um diretório e existe, caso contrário ```false```,;
+  * ```boolean isFile()``` retorna ```true``` se for um arquivo existente (não um diretório), caso contrário ```false```,;
+  * ```boolean exists()``` retorna ```true``` se este arquivo ou diretório realmente existe em seu sistema de arquivos, caso contrário ```false```,;
+  * ```String getParent()``` retorna o caminho da string para o diretório pai que contém este arquivo ou diretório.
+* A lista não está completa, mas por enquanto, vamos nos concentrar nesses. Para outros métodos, veja em: <https://docs.oracle.com/javase/7/docs/api/java/io/File.html> .
+* Vamos criar uma instância de um arquivo existente e imprimir algumas informações sobre ele.
 ```java 
-My age is 22
-```
-* Da mesma forma, você também pode formatar outros tipos de dados. Veja o seguinte código.
-```java 
-public static void main(String[] args){
-    int age = 22;
-    char initial = 'M';
-    String surname = "Anderson";
-    double height = 1.72;
+File file = new File("/home/username/Documents/javamaterials.pdf");
 
-    String details = String.format("My name is %c. %s.%nMy age is %d.%nMy height is %.2f.", initial, surname, age, height);
-    System.out.println(details);
+System.out.println("File name: " + file.getName());
+System.out.println("File path: " + file.getPath());
+System.out.println("Is file: " + file.isFile());
+System.out.println("Is directory: " + file.isDirectory());
+System.out.println("Exists: " + file.exists());
+System.out.println("Parent path:" + file.getParent());
+```
+* Como esperamos, o código imprime o seguinte:
+```java 
+File name: javamaterials.pdf
+File path: /home/username/Documents/javamaterials.pdf
+Is file: true
+Is directory: false
+Exists: true
+Parent path: /home/username/Documents
+```
+* Suponha agora que temos uma instância que representa um arquivo não existente e imprime os detalhes sobre ele:
+```java 
+File name: javamaterials1.pdf
+File path: /home/art/Documents/javamaterials1.pdf
+Is file: false
+Is directory: false
+Exists: false
+Parent path:/home/art/Documents
+```
+* O arquivo não existe e o aplicativo não conhece seu tipo.
+* Há também um grupo de métodos ```canRead()```, ```canWrite()```, ```canExecute()``` para testar se o aplicativo pode Ler / Modificar / executar o arquivo denotado pelo caminho. É recomendável usar esses métodos, caso contrário, você pode encontrar erros de acesso ao arquivo quando o usuário não tiver permissões suficientes para realizar uma operação com um arquivo.
+* Acreditamos que a ```File``` classe fornece uma API muito clara para processar arquivos e diretórios em diferentes plataformas.
+#### <hr>
+### Lendo Arquivos
+* A biblioteca de classes Java padrão fornece várias maneiras de ler dados de arquivos. Alguns deles são bastante antigos, outros surgiram recentemente. Neste tópico, consideraremos apenas dois métodos básicos, o que é suficiente por enquanto. Você pode escolher aquele que é mais adequado para você.
+#### Leitura de dados usando Scanner
+* É possível usar ```java.util.Scanner``` para ler dados de arquivos. Esta classe é uma abordagem de alto nível para ler dados de entrada. Ele permite a leitura de tipos ou strings primitivos usando expressões regulares.
+* Em primeiro lugar, precisamos criar uma instância de ```java.io.File``` e, em seguida, uma instância de ```Scanner``` passagem do objeto de arquivo. Depois disso, podemos obter os dados do arquivo usando o scanner da mesma forma que lemos na entrada padrão.
+* Suponha que você tenha uma string chamada ```pathToFile```. Ele mantém o caminho para um arquivo que contém uma sequência de números separados por espaços.
+* Vamos criar um objeto de arquivo e então um scanner para ler os dados do arquivo.
+```java 
+File file = new File(pathToFile);
+Scanner scanner = new Scanner(file); // it throws FileNotFoundException (checked)
+```
+* Ao criar uma instância de ```Scanner``` passagem de arquivo, você deve tratar a exceção verificada ```FileNotFoundException```. Você também pode declarar o método como lançando essa exceção.
+* Agora, podemos usar métodos de ```Scanner``` ler dados como strings, inteiros e assim por diante.
+* Vamos ler uma linha do arquivo
+```java 
+while (scanner.hasNext()) {
+    System.out.print(scanner.nextLine());
 }
 ```
-* Você pode ver que usamos quatro tipos de dados neste exemplo. Java irá substituir ```%c, %s, %d, %f``` com ```initial```, ```surname```, ```age``` e, ```height``` respectivamente. %né o caractere de nova linha que quebra a linha toda vez que é usado. A saída do nosso código é:
+* Este código lê cada linha do arquivo e a envia para a saída padrão.
+* Após usar um scanner, devemos fechar o objeto para evitar vazamentos . Uma maneira conveniente de fechar scanners e lidar com exceções é usar a instrução try-with-resources conforme abaixo. Leia mais sobre try-with-resources no tutorial oficial .
+* O exemplo completo de ```Scanner``` uso é apresentado abaixo:
 ```java 
-My name is M. Anderson.
-My age is 22.
-My height is 1.72.
+File file = new File(pathToFile);
+ 
+try (Scanner scanner = new Scanner(file)) {
+    while (scanner.hasNext()) {
+        System.out.print(scanner.nextLine() + " ");
+    }
+} catch (FileNotFoundException e) {
+    System.out.println("No file found: " + pathToFile);
+}
 ```
-* Vamos resumir o que aprendemos neste tópico.
-<table>
-	<tbody>
-		<tr>
-			<td><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Especificador de Formato</font></font></strong></td>
-			<td><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">tipo de dados</font></font></strong></td>
-			<td><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Impressão de formato</font></font></strong></td>
-			<td><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Formatando uma string</font></font></strong></td>
-		</tr>
-		<tr>
-			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> %d</font></font></td>
-			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">int, short, byte, long</font></font></td>
-			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">System.out.printf ("Exibir um inteiro %d", 15000);</font></font></td>
-			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">String.format ("Exibir um inteiro %d", 15000)</font></font></td>
-		</tr>
-		<tr>
-			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> %c</font></font></td>
-			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">char</font></font></td>
-			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">System.out.printf ("Exibir um caractere %c", 'c');</font></font></td>
-			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">String.format ("Exibir um caractere %c", 'c')</font></font></td>
-		</tr>
-		<tr>
-			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> %f</font></font></td>
-			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">double, float</font></font></td>
-			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">System.out.printf ("Exibir um número de ponto flutuante %f", 123,45);</font></font></td>
-			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">String.format ("Exibir um número de ponto flutuante %f", 123.45)</font></font></td>
-		</tr>
-		<tr>
-			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> %s</font></font></td>
-			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">String</font></font></td>
-			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">System.out.printf ("Exibir uma String %s", "String");</font></font></td>
-			<td><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">String.format ("Exibir uma String %s", "String")</font></font></td>
-		</tr>
-	</tbody>
-</table>
+* Então, para um arquivo contendo:
+```java 
+first line
+second line
+third line
+```
+* O programa produz para consolar o seguinte resultado:
+```java 
+first line second line third line
+```
+* O scanner também permite que você leia inteiros, booleanos, duplos e outros tipos. Os métodos têm nomes correspondentes como ```nextInt```, ```nextBoolean``` e etc. No caso de não haver novos dados disponíveis, qualquer um dos ```next``` métodos retorna ```java.util.NoSuchElementException```.
+* Em vez de exibir os dados lidos na saída padrão, você pode armazená-los em uma matriz ou string.
+#### Lendo todo o texto de um arquivo como uma única string
+* Desde o Java 1.7, há um conjunto de novas classes e métodos para lidar com arquivos. Dentro deste tópico, nos limitaremos a aprender como ler um arquivo de texto inteiro. Observe que este método deve ser usado apenas para pequenos arquivos de texto . Por pequeno, queremos dizer que seu tamanho é menor do que a RAM disponível na JVM. Isso é mais do que suficiente para aprender e realizar pequenas tarefas.
+* Em primeiro lugar, faça as seguintes importações:
+```java 
+import java.nio.file.Files;
+import java.nio.file.Paths;
+```
+* A ```Files``` classe consiste em métodos que operam em arquivos, a ```Paths``` classe contém um conjunto de métodos que retornam um objeto especial para representar o caminho para um arquivo.
+* O método a seguir retorna todo o texto de um arquivo especificado:
+```java 
+public static String readFileAsString(String fileName) throws IOException {
+    return new String(Files.readAllBytes(Paths.get(fileName)));
+}
+```
+* Vamos tentar usar o método ```readFileAsString``` para ler o código-fonte do arquivo ```HelloWorld.java``` e imprimi-lo na saída padrão. ```HelloWorld.java``` contém um programa básico tradicional mencionado em um dos primeiros tópicos "O primeiro programa".
+```java 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
+public class ReadingFileDemo {
+    public static String readFileAsString(String fileName) throws IOException {
+        return new String(Files.readAllBytes(Paths.get(fileName)));
+    }
+
+    public static void main(String[] args) {
+        String pathToHelloWorldJava = "/home/username/Projects/hello-world/HelloWorld.java";
+        try {
+            System.out.println(readFileAsString(pathToHelloWorldJava));
+        } catch (IOException e) {
+            System.out.println("Cannot read file: " + e.getMessage());
+        }
+    }
+}
+```
+* Ele imprime o código-fonte:
+```java 
+package org.hyperskill;
+
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, world!");
+    }
+}
+```
+* Observe que não é difícil modificar o código acima para que ele leia o caminho para o arquivo de destino da entrada padrão em vez de codificá-lo.
