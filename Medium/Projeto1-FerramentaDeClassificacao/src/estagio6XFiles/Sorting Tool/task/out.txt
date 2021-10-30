@@ -1,0 +1,5 @@
+Total lines: 3
+Sorted data:
+1                 1
+1 -2   333 4
+42
