@@ -2715,3 +2715,83 @@ public class HelloWorld {
 }
 ```
 * Observe que não é difícil modificar o código acima para que ele leia o caminho para o arquivo de destino da entrada padrão em vez de codificá-lo.
+#### <hr>
+### Writing files (Escrevendo em arquivos)
+* Agora que aprendemos como criar e gerenciar arquivos, vamos discutir como escrever texto em um arquivo. Java fornece maneiras diferentes de fazer isso e, nesta lição, consideraremos duas das maneiras mais simples: usando as classes ```java.io.FileWriter``` e  ```java.io.PrintWriter```.
+#### A classe FileWriter
+* A classe ```FileWriter``` tem um conjunto de construtores para gravar caracteres e strings em um arquivo especificado:
+  * ```FileWriter(String fileName);```
+  * ```FileWriter(String fileName, boolean append)```;
+  * ```FileWriter(File file)```;
+  * ```FileWriter(File file, boolean append)```;
+* Dois construtores usam um parâmetro adicional ```append``` que indica se é para anexar (```true```) ou sobrescrever (```false```) um arquivo existente.
+* Todos esses construtores podem lançar um ```IOException``` por vários motivos:
+  * se o arquivo nomeado existe, mas é um diretório;
+  * se um arquivo não existe e não pode ser criado;
+  * se um arquivo existe, mas não pode ser aberto.
+* Nesta lição, às vezes, ignoraremos o mecanismo de tratamento de exceções para simplificar nossos exemplos.
+* Vamos considerar o seguinte código:
+```java 
+File file = new File("/home/username/path/to/your/file.txt");
+FileWriter writer = new FileWriter(file); // overwrites the file
+
+writer.write("Hello");
+writer.write("Java");
+
+writer.close();
+```
+* Se o arquivo especificado não existir, ele será criado após a execução deste código. Se o arquivo já existir, este código substituirá os dados.
+* O arquivo conterá o texto HelloJava .
+* Se você quiser acrescentar alguns novos dados, você deve especificar o segundo argumento como verdadeiro.
+```java 
+File file = new File("/home/username/path/to/your/file.txt");
+FileWriter writer = new FileWriter(file, true); // appends text to the file
+
+writer.write("Hello, World\n");
+writer.close();
+```
+* Este código anexa uma nova linha ao arquivo. Execute-o várias vezes para ver o que acontece. Observe que aqui estamos usando quebras de linha do sistema operacional do tipo Unix. Há uma diferença entre os caracteres de quebra de linha em plataformas diferentes:
+* \n SO tipo Unix
+* \r\n SO Windows
+#### Fechando um FileWriter
+* É importante fechar um ```FileWriter``` depois de usá-lo para evitar vazamento de recursos. Isso é feito invocando o método close:
+```
+writer.close();
+```
+* Desde o Java 7, a maneira conveniente de fechar um objeto ```FileWriter``` é usar a instrução try-with-resources .
+```java 
+File file = new File("/home/username/path/to/your/file.txt");
+
+try (FileWriter writer = new FileWriter(file)) {
+    writer.write("Hello, World");
+} catch (IOException e) {
+    System.out.printf("An exception occurred %s", e.getMessage());
+}
+```
+* Isso fechará o gravador automaticamente.
+#### A classe PrintWriter
+* A ```PrintWriter``` classe permite que você grave dados formatados em um arquivo. Ele pode gerar strings, tipos primitivos e até mesmo uma matriz de caracteres. A classe fornece vários métodos sobrecarregados: ```print```, ```println``` e ```printf```.
+```java 
+File file = new File("/home/art/Documents/file.txt");
+try (PrintWriter printWriter = new PrintWriter(file)) {
+    printWriter.print("Hello"); // prints a string
+    printWriter.println("Java"); // prints a string and then terminates the line
+    printWriter.println(123); // prints a number
+    printWriter.printf("You have %d %s", 400, "gold coins"); // prints a formatted string
+} catch (IOException e) {
+    System.out.printf("An exception occurred %s", e.getMessage());
+}
+```
+* Este exemplo primeiro cria uma instância de ```File``` e, segundo, a ```PrintWriter``` na instrução try-with-resources para fechá-la corretamente. Ele escreve ```"Hello"``` e ```"Java"``` na mesma linha e, ```123``` em seguida, em uma nova linha. Este exemplo também chama o avançado ```printf``` método que pode formatar um texto usando ```%d```, ```%s``` e assim por diante. Finalmente, o ```PrintWriter``` é fechado.
+* O resultado contém:
+```java 
+HelloJava
+123
+You have 400 gold coins
+```
+* A classe possui vários construtores. Alguns deles são semelhantes aos construtores de FileWriter:
+  * ```PrintWriter(String fileName)```;
+  * ```PrintWriter(File file)```.
+* Outros permitem passar ```FileWriter``` como uma classe que estende a ```Writer``` classe abstrata:
+  * ```PrintWriter(Writer writer)```.
+
