@@ -2794,4 +2794,4 @@ You have 400 gold coins
   * ```PrintWriter(File file)```.
 * Outros permitem passar ```FileWriter``` como uma classe que estende a ```Writer``` classe abstrata:
   * ```PrintWriter(Writer writer)```.
-
+  * fasdfads   
