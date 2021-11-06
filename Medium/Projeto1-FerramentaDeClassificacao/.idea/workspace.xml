@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="8e350697-cf2d-4d03-a6fd-a8f638fe2c20" name="Default Changelist" comment="commit">
+      <change afterPath="$PROJECT_DIR$/src/atividades/atividade7File/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/atividades/atividade7File/files/dataset_91007.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/atividades/atividade7File/files/dataset_91022.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/atividades/atividade7File/files/dataset_91033.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/.idea/libraries-with-intellij-classes.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/.idea/libraries/Gradle__com_github_hyperskill_hs_test_release_SNAPSHOT.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/.idea/libraries/Gradle__com_google_code_gson_gson_2_8_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/.idea/libraries/Gradle__commons_codec_commons_codec_1_11.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/.idea/libraries/Gradle__commons_logging_commons_logging_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/.idea/libraries/Gradle__junit_junit_4_12.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/.idea/libraries/Gradle__org_apache_httpcomponents_httpclient_4_5_9.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/.idea/libraries/Gradle__org_apache_httpcomponents_httpcore_4_4_11.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/.idea/libraries/Gradle__org_assertj_assertj_core_3_11_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/.idea/libraries/Gradle__org_assertj_assertj_swing_3_9_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/.idea/libraries/Gradle__org_assertj_assertj_swing_junit_3_9_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/.idea/libraries/Gradle__org_easytesting_fest_reflect_1_4_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/.idea/libraries/Gradle__org_easytesting_fest_util_1_2_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/.idea/libraries/Gradle__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/.idea/libraries/Gradle__org_jetbrains_annotations_13_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_1_5_21.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_common_1_5_21.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk7_1_5_21.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/.idea/libraries/Gradle__org_jetbrains_kotlin_kotlin_stdlib_jdk8_1_5_21.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/.idea/modules/Sorting Tool/task/estagio6XFiles.Sorting_Tool-task.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/.idea/modules/Sorting Tool/task/estagio6XFiles.Sorting_Tool-task.main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/.idea/modules/Sorting Tool/task/estagio6XFiles.Sorting_Tool-task.test.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/.idea/modules/estagio6XFiles.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/.idea/modules/util/estagio6XFiles.util.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/.idea/modules/util/estagio6XFiles.util.main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/.idea/modules/util/estagio6XFiles.util.test.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/Sorting Tool/Error_/task-info.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/Sorting Tool/Error_/task-remote-info.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/Sorting Tool/Error_/task.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/Sorting Tool/Everything counts/task-info.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/Sorting Tool/Everything counts/task-remote-info.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/Sorting Tool/Everything counts/task.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/Sorting Tool/Not just numbers/task-info.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/Sorting Tool/Not just numbers/task-remote-info.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/Sorting Tool/Not just numbers/task.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/Sorting Tool/Numbers only/task-info.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/Sorting Tool/Numbers only/task-remote-info.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/Sorting Tool/Numbers only/task.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/Sorting Tool/Sorting it out/task-info.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/Sorting Tool/Sorting it out/task-remote-info.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/Sorting Tool/Sorting it out/task.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/Sorting Tool/X-files/task-info.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/Sorting Tool/X-files/task-remote-info.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/Sorting Tool/X-files/task.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/Sorting Tool/lesson-info.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/Sorting Tool/task/src/sorting/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/Sorting Tool/task/src/sorting/data.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/Sorting Tool/task/src/sorting/teste1.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/Sorting Tool/task/test/common/SortingToolStage6Test.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/course-info.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/course-remote-info.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/estagio6XFiles/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../README.md" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="ProjectId" id="1zX35gLxtisP2SU0eqZsTTVaSIZ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/atividades/atividade7File/files" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/atividades/atividade7File/files" />
+      <recent name="$PROJECT_DIR$/src/atividades/atividade7File" />
+      <recent name="$PROJECT_DIR$/src/estagio5Erro" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/atividades/atividade7File/files" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Main (1)">
+    <configuration name="Atividade1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="atividades.Atividade1" />
+      <module name="Projeto1-FerramentaDeClassificacao" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="atividades.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Atividade5Sets" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="atividades.Atividade5Sets" />
+      <module name="Projeto1-FerramentaDeClassificacao" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="atividades.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Atividade6Map" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="atividades.Atividade6Map" />
+      <module name="Projeto1-FerramentaDeClassificacao" />
+      <option name="PROGRAM_PARAMETERS" value="-sortingType natural -dataType long" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="atividades.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="atividades.atividade7File.Main" />
+      <module name="Projeto1-FerramentaDeClassificacao" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="atividades.atividade7File.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="estagio4TudoConta.Main" />
+      <module name="Projeto1-FerramentaDeClassificacao" />
+      <option name="PROGRAM_PARAMETERS" value="-sortingType natural -dataType line" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="estagio1ApenasNumeros.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="estagio5Erro.Main" />
+      <module name="Projeto1-FerramentaDeClassificacao" />
+      <option name="PROGRAM_PARAMETERS" value="-dataType long -sortingType natural -abc -def" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="estagio5Erro.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="estagio4TudoConta.Main" />
+      <module name="Projeto1-FerramentaDeClassificacao" />
+      <option name="PROGRAM_PARAMETERS" value="-sortingType byCount -dataType long" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="estagio4TudoConta.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="estagio4TudoConta.Main" />
+      <module name="Projeto1-FerramentaDeClassificacao" />
+      <option name="PROGRAM_PARAMETERS" value="-sortingType byCount -dataType long" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="estagio4TudoConta.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="estagio3Resolvendo.Main" />
+      <module name="Projeto1-FerramentaDeClassificacao" />
+      <option name="PROGRAM_PARAMETERS" value="-dataType word -sortIntegers" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="estagio3Resolvendo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="atividades.Atividade4ArrayList.Main" />
+      <module name="Projeto1-FerramentaDeClassificacao" />
+      <option name="PROGRAM_PARAMETERS" value="-dataType" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="atividades.Atividade4ArrayList.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.Atividade1" />
+      <item itemvalue="Application.Atividade5Sets" />
+      <item itemvalue="Application.Atividade6Map" />
+      <item itemvalue="Application.Main (1)" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main (1)" />
+        <item itemvalue="Application.Atividade6Map" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8e350697-cf2d-4d03-a6fd-a8f638fe2c20" name="Default Changelist" comment="" />
+      <created>1634280426450</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1634280426450</updated>
+      <workItem from="1634280428157" duration="843000" />
+      <workItem from="1634363509677" duration="430000" />
+      <workItem from="1634445001310" duration="17457000" />
+      <workItem from="1634579681130" duration="252000" />
+      <workItem from="1634583742499" duration="7425000" />
+      <workItem from="1634606359611" duration="2566000" />
+      <workItem from="1634660818468" duration="12364000" />
+      <workItem from="1634692182005" duration="2309000" />
+      <workItem from="1634701096215" duration="4808000" />
+      <workItem from="1634875880219" duration="1225000" />
+      <workItem from="1634877767929" duration="6504000" />
+      <workItem from="1635126409460" duration="7919000" />
+      <workItem from="1635189626857" duration="6416000" />
+      <workItem from="1635204511993" duration="15875000" />
+      <workItem from="1635246474560" duration="9427000" />
+      <workItem from="1635256183727" duration="2313000" />
+      <workItem from="1635425399719" duration="13019000" />
+      <workItem from="1635542474851" duration="1888000" />
+      <workItem from="1635552021399" duration="5672000" />
+      <workItem from="1635562946467" duration="2710000" />
+    </task>
+    <task id="LOCAL-00001" summary="commit">
+      <created>1634280483858</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1634280483858</updated>
+    </task>
+    <task id="LOCAL-00002" summary="commit">
+      <created>1634280629650</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1634280629650</updated>
+    </task>
+    <task id="LOCAL-00003" summary="commit">
+      <created>1634363942500</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1634363942500</updated>
+    </task>
+    <task id="LOCAL-00004" summary="commit">
+      <created>1634497088369</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1634497088369</updated>
+    </task>
+    <task id="LOCAL-00005" summary="commit">
+      <created>1634497192685</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1634497192685</updated>
+    </task>
+    <task id="LOCAL-00006" summary="commit">
+      <created>1634512222602</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1634512222602</updated>
+    </task>
+    <task id="LOCAL-00007" summary="commit">
+      <created>1634608587507</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1634608587507</updated>
+    </task>
+    <task id="LOCAL-00008" summary="commit">
+      <created>1634608957824</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1634608957824</updated>
+    </task>
+    <task id="LOCAL-00009" summary="commit">
+      <created>1634616366381</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1634616366381</updated>
+    </task>
+    <task id="LOCAL-00010" summary="commit">
+      <created>1634616394817</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1634616394817</updated>
+    </task>
+    <task id="LOCAL-00011" summary="commit">
+      <created>1634667931308</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1634667931308</updated>
+    </task>
+    <task id="LOCAL-00012" summary="commit">
+      <created>1634704311900</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1634704311900</updated>
+    </task>
+    <task id="LOCAL-00013" summary="commit">
+      <created>1634706262331</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1634706262331</updated>
+    </task>
+    <task id="LOCAL-00014" summary="commit">
+      <created>1634878131164</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1634878131165</updated>
+    </task>
+    <task id="LOCAL-00015" summary="commit">
+      <created>1634884921323</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1634884921323</updated>
+    </task>
+    <task id="LOCAL-00016" summary="commit">
+      <created>1635191412513</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1635191412513</updated>
+    </task>
+    <task id="LOCAL-00017" summary="commit">
+      <created>1635221827538</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1635221827538</updated>
+    </task>
+    <task id="LOCAL-00018" summary="commit">
+      <created>1635248273713</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1635248273713</updated>
+    </task>
+    <task id="LOCAL-00019" summary="commit">
+      <created>1635255596842</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1635255596842</updated>
+    </task>
+    <task id="LOCAL-00020" summary="commit">
+      <created>1635427068410</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1635427068410</updated>
+    </task>
+    <task id="LOCAL-00021" summary="commit">
+      <created>1635444968517</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1635444968517</updated>
+    </task>
+    <task id="LOCAL-00022" summary="commit">
+      <created>1635446699023</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1635446699023</updated>
+    </task>
+    <task id="LOCAL-00023" summary="commit">
+      <created>1635542584401</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1635542584401</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="commit" />
+  </component>
+</project>
