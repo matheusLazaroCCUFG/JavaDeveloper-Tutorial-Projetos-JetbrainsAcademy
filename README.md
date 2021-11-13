@@ -2794,4 +2794,89 @@ You have 400 gold coins
   * ```PrintWriter(File file)```.
 * Outros permitem passar ```FileWriter``` como uma classe que estende a ```Writer``` classe abstrata:
   * ```PrintWriter(Writer writer)```.
-  * fasdfads    
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+#### <hr>
+## Banco de dados com Java
+### Introdução aos bancos de dados
+* O mundo hoje está sobrecarregado de informações, e nós também. Como você mantém as informações importantes seguras e classificadas? Você pode simplesmente esperar que não esqueça nem confunda nada, mas é melhor anotar ou salvar no seu dispositivo. Então você o tem em seu computador ou telefone, e o programa mantém as informações seguras. Enquanto o programa está ativo, ele "lembra" de tudo. No entanto, encerrar o programa pode resultar na perda de todas essas informações. É por isso que é melhor manter os dados usando ferramentas mais sofisticadas.
+* O desafio é navegar por uma enorme e complexa rede de informações e garantir que tudo o que é importante esteja seguro e organizado: uma tarefa que os bancos de dados administram bem.
+#### Banco de dados
+* Um banco de dados é uma coleção de dados especificamente organizada para uma rápida pesquisa e recuperação processada por um computador.
+* A diferença entre um banco de dados e um arquivo comum é que um arquivo pode ser estruturado ou não, mas um banco de dados deve ter uma estrutura específica. Por exemplo, você pode criar um arquivo com uma lista de tarefas:
+* Obviamente, diríamos que esse arquivo tem algum tipo de estrutura, mas do ponto de vista do computador, ainda é um arquivo simples, até que você escreva um programa que gerencie os dados nele. Normalmente, as informações nos bancos de dados são compactadas e armazenadas como binários em vez de texto simples, portanto, está claro que esse tipo de estrutura se destina a computadores, não a humanos.
+* Ao contrário de nós, os computadores podem entender facilmente o formato binário dos dados, mas o que lhes permite ler e escrever corretamente? É um programa chamado Database Management System que controla os dados em um banco de dados.
+#### Sistema de gerenciamento de banco de dados
+* Um sistema de gerenciamento de banco de dados ( DBMS ) é um tipo de software que permite aos usuários definir, criar e controlar dados em um banco de dados.
+* O SGBD pode otimizar as consultas, recuperar dados do banco de dados de forma otimizada. Ele também isola os dados do usuário. O SGBD é um mediador entre um usuário e um banco de dados, o que significa que os usuários podem trabalhar com bancos de dados através da interface do SGBD.
+* Outro objetivo deste software é ajudar os usuários a trabalhar com diferentes bancos de dados sem expor suas diferenças reais.
+* A maioria dos sistemas de gerenciamento de banco de dados tem descrições e tutoriais muito bons em seus sites. Existem também linguagens específicas que você precisa aprender para começar a trabalhar com um banco de dados, mas se você conhece linguagens de programação, pode trabalhar com um banco de dados com suas ferramentas.
+```
+Embora pareça que todos os bancos de dados têm sintaxes diferentes, a maioria
+deles realmente implementa padrões comuns. Quase todos os bancos de dados
+relacionais usam o padrão SQL, portanto, você pode aplicar os mesmos comandos
+em diferentes DBMSs.
+```
+#### Acesso aos dados
+* Nesta fase, você ainda pode ter dúvidas quanto ao uso de bancos de dados. Você precisa aprender um novo idioma para atualizar e selecionar os dados, o que pode ser demorado, então por que não usar arquivos simples?
+* Claro, você pode manter os arquivos localmente, mas à medida que eles aumentam em número, você não será capaz de encontrar informações rapidamente. Os bancos de dados fornecem esquemas e metadados que permitem uma pesquisa rápida dos dados necessários.
+``` 
+Um esquema descreve como VOCÊ organiza os dados. Os metadados contêm
+informações estruturais e estatísticas.
+```
+* Se você deseja acessar seus dados de vários dispositivos, a maioria dos sistemas oferece uma maneira conveniente de trabalhar com eles pela web.
+* Para abrir o acesso restrito a outra pessoa, alguns sistemas de gerenciamento usam autenticação simples de login / senha, enquanto alguns fornecem instrumentos mais poderosos. Com a ajuda deles, você pode conceder acesso a uma parte limitada dos dados de cada usuário.
+* Se você ainda não está convencido de como os DBMSs são excelentes, vamos ver o que mais você pode obter deles.
+#### A consistência dos dados
+* Uma das melhores características dos bancos de dados é a capacidade de manter e restaurar os dados corretamente. Isso não significa que o SGBD saiba como estar correto, mas uma vez que você defina a correção com a configuração ou esquema, pode ter certeza de que nada quebrará essas regras. O DBMS pode fornecer formatos que você pode usar para seus dados. Você também pode configurar todos os testes e restrições que deseja ter.
+* Digamos que você tenha alguns dados aos quais vários usuários com seus dispositivos tenham acesso: isso pode criar um conflito de atualizações. As atualizações nos arquivos geralmente seguem a regra "último salvamento vence". Os bancos de dados, por outro lado, isolam diferentes usuários e podem ser configurados para resolver conflitos entre suas atualizações
+* Há outra coisa boa sobre bancos de dados. Quando um arquivo comum é corrompido e não pode ser aberto, você perde seus dados para sempre. Em vez disso, usando o DBMS, você pode fazer backups e restaurar os dados para continuar seu trabalho.
+```
+Claro, você pode emular todas essas operações e desenvolver seu DBMS, mas
+primeiro, tente trabalhar com as soluções existentes.
+```
+#### <hr>
+### O que é SQL
+* SQL (Structured Query Language) é uma linguagem de programação específica de domínio projetada para lidar com dados em tabelas. Ele foi desenvolvido na década de 1970 e as interfaces do tipo SQL ainda são amplamente utilizadas e suportadas em sistemas de gerenciamento de dados até hoje, incluindo aqueles não baseados em tabelas!
+* Compreender uma linguagem que é usada com tanta frequência provavelmente será muito útil. Se você é um engenheiro de software, é bom aprender porque muitos sistemas armazenam e processam dados de negócios por meio de serviços que oferecem suporte a SQL. Por exemplo, o back-end do sistema de informações de uma seguradora pode usar SQL para extrair e atualizar dados sobre seus clientes.
+* Começaremos examinando um exemplo concreto de como você pode usar SQL para calcular estatísticas. Em seguida, aprofundaremos nosso conhecimento examinando o que significam as letras do nome SQL.
+#### Calculando estatísticas
+* O SQL facilita a agregação de dados e o cálculo de estatísticas. Suponha que você precise avaliar as mudanças na popularidade do nome Jessie entre 1920 e 2000 (inclusive) com base nos dados do censo. Usando SQL, você pode completar esta tarefa com apenas 11 linhas de código! Você pode não entender o código abaixo ainda, então tente lê-lo como uma frase escrita em inglês. Ele seleciona registros sobre indivíduos nomeados ```'Jessie'``` que nasceram ```BETWEEN 1920 and 2000```. É agrupa-os por ```year``` e ```gender```, contagem do número de fichas de cada grupo por meio de ```COUNT(*)```, e gera uma tabela com colunas chamadas ```year```, ```gender``` e ```cnt```. Ele também classifica a tabela ```year``` e ```gender``` em ordem decrescente.
+* SQL é a linguagem de manipulação de dados padrão usada por empresas orientadas a dados em todo o mundo. Há muito a ganhar com sua compreensão e muito a aprender. O melhor lugar para começar é com o básico, então vamos agora dar uma olhada no que cada letra do nome SQL significa para descobrir exatamente com o que estamos lidando!
+#### S é para estruturado
+* SQL é uma linguagem usada para extrair e atualizar dados estruturados como tabelas. Esse tipo de dado aparece em várias áreas de aplicação, como planilhas do Excel contendo dados contábeis ou estatísticas de censo no Google BigQuery. Outro exemplo é uma loja online que utiliza um sistema de software especial para manter e acessar tabelas, conhecido como Relational Database Management System (RDBMS) . Isso pode ajudar a processar informações sobre mercadorias, pedidos e clientes.
+* O SQL destina-se ao uso com tabelas que possuem uma estrutura específica. As tabelas contêm linhas que representam entidades ou objetos e colunas que contêm os nomes dos atributos dessas entidades. Por exemplo, uma tabela de células de lojas de linha r e a coluna C o valor de atributo C durante R. entidade Na ```"census"``` tabela mostrada na secção anterior, as linhas representam os indivíduos com os atributos ```id```, ```year```, ```name```, e ```gender```. Por exemplo, a terceira linha contém dados sobre Willie, um homem nascido em 1985.
+* Os dados geralmente são organizados em um conjunto de tabelas, conhecido como banco de dados . Então, é possível acessar essas tabelas usando seus nomes individuais. Por exemplo, no banco de dados de uma loja online, uma tabela chamada Clientes provavelmente conteria informações gerais sobre os clientes da empresa (seus nomes e detalhes de contato). A tabela Pedidos armazenaria informações sobre os pedidos específicos que eles fazem (cliente, mercadorias, detalhes de pagamento).
+#### Q é para consulta
+* SQL é uma linguagem de programação com um grande conjunto de recursos de processamento de dados. É declarativo , o que significa que uma instrução escrita em SQL é uma consulta que informa ao sistema o que deve ser feito ou avaliado, mas não especifica como.
+* Para ajudar a ilustrar isso, vamos nos concentrar em uma funcionalidade simples: extrair dados de uma tabela. Se tivermos uma tabela chamada ```Customers```, uma consulta para extrair todas as linhas e colunas dela seria escrita da seguinte maneira:
+```sql 
+SELECT * FROM Customers;
+```
+* É prática padrão terminar cada instrução SQL com um ponto e vírgula, conhecido como terminador de instrução .
+* Palavras-chave como ```SELECT``` não diferenciam maiúsculas de minúsculas na linguagem SQL. Eles podem estar em qualquer caixa de letra, mas geralmente são escritos em caixa alta para torná-los mais visíveis.
+#### L é para a linguagem
+* Você pode ler a consulta simples no exemplo acima como "selecione tudo dos clientes". O SQL foi projetado para ser o mais semelhante possível a uma linguagem natural . Sua natureza declarativa ajuda a ocultar as complexidades da operação, permitindo ao usuário definir o que é necessário de uma forma relativamente direta. O sistema então analisa a consulta, escolhe o fluxo de controle e o executa.
+* O SQL foi originalmente adotado como padrão pelo American National Standards Institute (ANSI) na década de 1980, e há muitos dialetos implementados por fornecedores de software que o suportam. Os dialetos são baseados no padrão ANSI, mas apresentam algumas diferenças técnicas. Por exemplo, eles podem não processar datas ou strings da mesma maneira. Isso significa que as consultas SQL escritas em dialetos diferentes não são compatíveis. No entanto, uma vez que você conheça o básico do SQL, é possível se adaptar a diferentes dialetos com muita facilidade, como acontece com o inglês americano e britânico escrito.
+```
+A sintaxe do MySQL foi usada neste tópico e em outras partes deste site,
+portanto, os exemplos podem não ser compatíveis com outros dialetos SQL.
+```
+
