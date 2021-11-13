@@ -2879,4 +2879,344 @@ SELECT * FROM Customers;
 A sintaxe do MySQL foi usada neste tópico e em outras partes deste site,
 portanto, os exemplos podem não ser compatíveis com outros dialetos SQL.
 ```
+<<<<<<< HEAD
 
+=======
+#### <hr>
+#### Tipos de dados básicos
+#### Introdução
+* Como você já sabe, SQL é uma linguagem usada para trabalhar com diferentes tipos de dados organizados em uma tabela.
+* Normalmente, os valores de dados da mesma coluna em uma tabela têm o mesmo significado e tipo. Por exemplo, uma mesa Car pode ter a seguinte aparência:
+* Vemos que os valores na coluna do ano de fabricação são números inteiros, os valores do preço são decimais e os valores da eletricidade são booleanos. Os bancos de dados SQL geralmente requerem que cada coluna em uma tabela de banco de dados tenha um nome e um tipo de dados . O tipo de dados da coluna restringe o conjunto de valores que podem ser armazenados na coluna e define o conjunto de operações possíveis sobre eles.
+* O padrão ANSI define um conjunto bastante complexo de tipos de dados. Além disso, os fornecedores de banco de dados geralmente adicionam suas próprias opções de dados não padrão. Neste tópico, consideraremos um subconjunto muito básico de tipos de dados: INTEGER , REAL , DECIMAL , VARCHAR e BOOLEAN .
+#### Integer (Inteiro)
+* INTEGER é um tipo de dado numérico que representa algum intervalo de inteiros matemáticos. Normalmente, os sistemas de gerenciamento de banco de dados suportam uma faixa de -2147483648 a +2147483647, o que é suficiente para a maioria das tarefas de negócios.
+* O tipo INTEGER é bom para contadores, identificadores numéricos e qualquer valor de negócios inteiro que você possa imaginar que se encaixe no intervalo de escala. Por exemplo, em um banco de dados de uma empresa de publicidade, você pode ter uma tabela que armazena um identificador de banner, um número de cliques nele e várias impressões de banner: tudo em colunas INTEGER.
+#### Real
+* Os dados numéricos, é claro, vão além dos valores inteiros: por exemplo, considere a distância da Terra a Marte (225,0e + 06 km), a contagem de leucócitos no sangue (de 1,2e + 09 a 3,0e + 09 por litro) , ou massa do elétron (9,10938356e-31 kg). Para esses valores reais, o SQL tem um tipo de dados especial com um nome intuitivo REAL . Este tipo de dado é freqüentemente denominado FLOAT, refletindo a forma como os números são armazenados internamente: a forma exponencial é utilizada e, portanto, o ponto decimal pode "flutuar", ou seja, pode ser colocado em qualquer lugar em relação aos dígitos significativos do número.
+* Esse tipo numérico geralmente é chamado de inexato porque alguns valores são armazenados como aproximações (por exemplo, 0,1), portanto, o armazenamento e a recuperação de um valor nem sempre funcionam conforme o esperado. Portanto, se você precisar de armazenamento e cálculos exatos (por exemplo, para banco de dados de faturamento), os dados numéricos REAIS não são sua escolha. No entanto, os dados REAIS são freqüentemente encontrados em sistemas que operam em números reais muito pequenos e muito grandes e requerem um tempo de processamento rápido. Por exemplo, a distância entre galáxias ou o diâmetro de um núcleo atômico podem ser armazenados em uma coluna do tipo REAL. Na maioria dos sistemas, o tipo REAL tem uma escala de escala de 1e-37 a 1e + 37 com uma precisão de pelo menos 6 dígitos decimais; a precisão absoluta para números pequenos é maior do que para números maiores.
+#### Decimal
+* Na vida cotidiana, costumamos nos deparar com muitos números decimais: por exemplo, ao medir a temperatura corporal (36,6 graus Celsius) ou o peso (52,7 kg), estimar a altura da famosa Torre de Pisa (55,86 m) e, é claro , contando nossas preciosas finanças ( $ 1.03050,79). O SQL suporta um tipo de dados especial para tais valores - DECIMAL (precisão, escala) .
+* Como você pode ver, esse tipo tem dois parâmetros: precisão e escala. A escala define a contagem de dígitos na parte fracionária, à direita da vírgula decimal. A precisão é a contagem total de dígitos do número, ou seja, em ambos os lados da vírgula decimal. A escala, como você deve ter concluído, não pode exceder a precisão.
+* O tipo DECIMAL é geralmente referido como um tipo numérico preciso com escala e precisão ilimitadas; no entanto, há um limite - até 131072 dígitos antes da vírgula decimal e até 16383 dígitos depois da vírgula. Venha para pensar sobre isso, isso deve ser o suficiente!
+* Uma das diferenças mais importantes entre os tipos DECIMAL e REAL para aplicativos são as regras de arredondamento . Os valores DECIMAIS são arredondados de forma intuitiva e previsível, por exemplo, arredondar -0,5 resultará em -1. As regras de arredondamento para tipo de dados REAL podem ser menos intuitivas e, aqui, arredondar -0,5 nos dará -0. No entanto, as operações aritméticas em tipos REAL são mais rápidas e os próprios valores ocupam menos espaço de armazenamento.
+#### Text
+* Claro, pode-se desejar processar algo diferente de dados numéricos, e o SQL oferece suporte a uma família de tipos de dados projetados para representar dados de texto. Vamos considerar um deles, bastante universal e básico - VARCHAR (n) .
+* Este tipo representa uma sequência de símbolos de comprimento variável não maior que n . Por exemplo, pode-se inserir as strings "maçã", "ameixa" e "pêssego" em uma coluna do tipo VARCHAR (5). As strings "laranja" e "banana" irão exceder a restrição de comprimento e o sistema irá truncá-las ou gerar um erro se alguém tentar inserir tais valores longos.
+#### Boolean
+* O tipo BOOLEAN representa valores de lógica booleana (verdade): TRUE ou FALSE. Esse tipo de dados simples pode ser utilizado para quaisquer atributos com semântica de sinalizador, por exemplo, se um cliente visitou o site de um concorrente.
+#### Quem define os tipos e como?
+* Como um usuário de banco de dados, você deve apenas saber os tipos de colunas da tabela que utiliza para poder processá-las corretamente. No entanto, como engenheiro de software, você deve saber como criar uma tabela e definir os tipos de coluna.
+* Vamos considerar um exemplo de consulta SQL que define uma tabela "censo" com 5 colunas: "id" do tipo INTEGER, "nome" do tipo VARCHAR (20), "birth_place_latitude" do tipo REAL, "year_income" do tipo DECIMAL ( 20,3), e "is_parent" do tipo BOOLEAN.
+```sql 
+CREATE TABLE census (
+    id INTEGER,
+    name VARCHAR(20),
+    birth_place_latitude REAL,
+    year_income DECIMAL(20,3),
+    is_parent BOOLEAN
+);
+```
+* Pode-se ver o seguinte padrão:
+```sql 
+CREATE TABLE table_name (
+    column_name_1 column_type_1,
+    ..., 
+    column_name_n column_type_n
+);
+```
+#### <hr>
+#### declaração CREATE básica
+* SQL é uma linguagem que trabalha com dados organizados em tabelas e bancos de dados. Sim, você já sabe disso; o que você provavelmente não sabe ainda é como criar e excluir bancos de dados e tabelas. Neste tópico, vamos ensinar isso a você. Vamos ser criativos!
+#### Declaração CREATE
+* Para criar um banco de dados, você pode usar a instrução CREATE DATABASE . Por exemplo, vamos criar um banco de dados vazio que armazene informações sobre estudantes universitários e nomeie-o como estudantes :
+```sql 
+CREATE DATABASE students;
+```
+* Esta consulta SQL simples criará o banco de dados, mas para usá-la, precisaremos de algumas tabelas para organizar os dados.
+#### Criando uma nova tabela
+* Para criar uma tabela, use a instrução CREATE TABLE .
+* Vamos continuar trabalhando com nosso banco de dados de alunos e criar uma tabela students_info que conterá quatro colunas: student_id , nome , sobrenome e idade .
+* A coluna student_id conterá o identificador único do aluno do tipo INT. As colunas nome e sobrenome terão dados VARCHAR (30). A coluna de idade manterá os valores INT.
+```sql 
+CREATE TABLE students_info ( 
+ student_id INT, 
+ name VARCHAR(30), 
+ surname VARCHAR(30), 
+ age INT
+);
+```
+* A consulta acima ilustra a idéia principal do uso da instrução CREATE. A tabela criada desta forma será muito simples, e em breve você aprenderá a fazer tabelas mais complexas.
+#### Eliminar (DROP) um banco de dados
+* Agora que você sabe criar um banco de dados ou uma tabela, vamos descobrir como excluí-los. Para excluir um banco de dados, você pode usar a instrução DROP DATABASE .
+* A seguinte consulta SQL elimina os alunos do banco de dados existente :
+```sql 
+DROP DATABASE students;
+```
+* Lembre-se de que, se você eliminar o banco de dados, perderá todas as tabelas armazenadas nele.
+### Apagar uma tabela (DROP TABLE)
+* Como mencionamos acima, DROP DATABASE excluirá todas as tabelas no banco de dados e o próprio banco de dados. Se você deseja excluir apenas uma tabela específica, use a instrução DROP TABLE.
+* Vamos excluir nossa tabela students_info com uma consulta SQL simples:
+```sql 
+DROP TABLE students_info;
+```
+* Enquanto a instrução DROP DATABASE exclui todas as tabelas do banco de dados, a instrução DROP TABLE exclui a própria tabela e todas as informações nela armazenadas.
+#### <hr>
+### Métodos default
+* Como você provavelmente se lembra, os métodos de interface são abstratos por padrão. Isso significa que eles não podem ter um corpo, em vez disso, eles apenas declaram uma assinatura. Mesmo assim, alguns métodos podem ter um corpo. Esses métodos são chamados ```default``` e estão disponíveis desde Java 8.
+#### Métodos com um corpo
+* Os métodos padrão são opostos aos abstratos. Eles têm uma implementação:
+```java 
+interface Feature {
+    default void action() {
+        System.out.println("Default action");
+    }
+}
+```
+* Para denotar que o método é a ```default```, a palavra ```default- chave é reservada. Lembre-se de que um método de interface é tratado como ```abstract``` padrão. Portanto, você precisa indicar isso explicitamente colocando a ```default``` palavra-chave antes dos métodos com um corpo, caso contrário, ocorrerá um erro de compilação.
+* Embora os métodos padrão sejam implementados, você não pode chamá-los diretamente de uma interface semelhante ```Feature.action()```. Você ainda precisa ter um objeto de uma classe que implemente a interface:
+```java 
+class FeatureImpl implements Feature {
+}
+...
+
+Feature feature = new FeatureImpl();
+feature.action(); // Default action
+```
+* Se você quiser personalizar um método padrão em uma classe, basta substituí-lo como um método normal:
+```java 
+class FeatureImpl implements Feature {
+    public void action() {
+        System.out.println("FeatureImpl specific action");
+    }
+}
+...
+
+Feature feature = new FeatureImpl();
+feature.action(); // FeatureImpl-specific action
+```
+* Às vezes, os métodos padrão são enormes. Para tornar possível decompor tais métodos, Java permite declarar métodos privados dentro de uma interface:
+```java 
+interface Feature {
+    default void action() {
+        String answer = subAction();
+        System.out.println(answer);
+    }
+
+    private String subAction() {
+        return "Default action";
+    }
+}
+```
+#### Por que eles são necessários?
+* Como foi mencionado no tópico Interface, a ideia principal de uma interface é declarar funcionalidade. Os métodos padrão estendem essa ideia. Eles não apenas declaram a funcionalidade, mas também a implementam. O principal motivo é o suporte à compatibilidade com versões anteriores. Vamos considerar um exemplo.
+* Suponha que você programe um jogo com vários tipos de personagens. Esses personagens são capazes de se mover dentro de um mapa. Isso é representado pela ```Movable``` interface:
+```java 
+interface Movable {
+    void stepAhead();
+    void turnLeft();
+    void turnRight();
+}
+```
+* Portanto, temos a interface e muitas classes que a implementam. Por exemplo, um ```Batman``` personagem:
+```java 
+class Batman implements Movable {
+    public void stepAhead() {...}
+    public void turnLeft() {...}
+    public void turnRight() {...}
+}
+```
+* Depois de decidir que os personagens devem ser capazes de se virar. Isso significa que você precisa adicionar um ```turnAround``` método ao ```Movable```. Você pode implementar o método para todas as classes que implementam a interface. Outra forma é declarar um defaultmétodo na interface. Então você não precisa implementá-lo em todas as classes.
+* Outro exemplo em que a situação está piorando é quando falamos de interfaces que fazem parte da biblioteca padrão Java. Suponha que os mantenedores de Java decidam estender uma interface comumente usada com um novo método na próxima versão. Isso significa que se você for atualizar a versão Java e houver classes implementando a interface em seu código, você deve implementar o novo método. Caso contrário, seu código não compilará.
+* Às vezes, os métodos padrão ajudam a evitar a duplicação de código. De fato, em nosso caso, os ```turnAround``` métodos podem parecer iguais para todas as classes.
+```java 
+interface Movable {
+    void stepAhead();
+    void turnLeft();
+    void turnRight();
+
+    default void turnAround() {
+        turnLeft();
+        turnLeft();
+    }
+}
+```
+* Se você quiser personalizar uma implementação padrão para Batman, basta substituí-la:
+```java 
+class Batman implements Movable {
+    public void stepAhead() {...}
+    public void turnLeft() {...}
+    public void turnRight() {...}
+    public void turnAround() {
+        turnRight();
+        turnRight();
+    }
+}
+```
+#### O problema do diamante
+* Suponha que temos outra interface ```Jumpable``` que representa a capacidade de pular. A interface contém métodos abstratos para pular no lugar, pular virando à esquerda e à direita. Também possui um ```default``` método para um salto de reviravolta com a mesma assinatura de ```Movable```.
+```java 
+interface Jumpable {
+    void jump();
+    void turnLeftJump();
+    void turnRightJump();
+    default void turnAround() {
+        turnLeftJump();
+        turnLeftJump();
+    }
+}
+```
+* ```Spiderman``` tem as habilidades de ```Movable``` e ```Jumpable```, portanto, sua classe implementa ambas as interfaces. Observe que as interfaces têm ```default``` métodos ```turnAround``` com a mesma assinatura, mas implementações diferentes. Qual deve ser escolhido para a classe? Para evitar ambigüidade, o compilador força um programador a fornecer a implementação explicitamente, caso contrário, ele gera uma exceção de compilação.
+```java 
+class Spiderman implements Movable, Jumpable {
+    // define an implementation for abstract methods
+    public void stepAhead() {...}
+    public void turnLeft() {...}
+    public void turnRight() {...}
+    public void jump() {…}
+    public void turnLeftJump() {...}
+    public void turnRightJump() {...}
+
+    // define an implementation for conflicted default method
+    public void turnAround() {
+        // define turnaround for the spiderman
+    }
+}
+```
+* Você também pode escolher uma das implementações padrão em vez de escrever a sua própria.
+```java 
+class Spiderman implements Movable, Jumpable {
+    ...
+    public void turnAround() {
+        Movable.super.turnAround();
+    }
+}
+```
+#### <hr>
+## Anonymous classes (Classes anonimas)
+* Às vezes, os desenvolvedores precisam usar uma pequena classe que substitui alguns métodos de outra classe ou interface apenas uma vez . Nesse caso, declarar uma nova classe pode ser supérfluo. Felizmente, Java fornece um mecanismo para criar uma classe em uma única instrução, sem precisar declarar uma nova classe nomeada. Essas classes são chamadas de anônimas porque não têm identificadores de nome como ```String``` ou ```MyClass``` (mas têm um nome interno).
+#### O que é uma classe anônima?
+* As classes anônimas permitem que você declare e instancie uma classe ao mesmo tempo.
+* Uma classe anônima sempre implementa uma interface ou estende outra classe (concreta ou abstrata). Esta é a sintaxe comum para criar uma classe anônima:
+```java 
+new SuperClassOrInterfaceName() {
+
+    // fields
+
+    // overridden methods
+};
+```
+* A sintaxe de uma classe anônima é uma expressão. E é semelhante a uma chamada de construtor, exceto que há uma definição de classe contida em um bloco de código.
+```
+Uma classe anônima deve substituir todos os métodos abstratos da superclasse.
+Ou seja, todos os métodos de interface devem ser substituídos, exceto os
+métodos padrão. Se uma classe anônima estende uma classe que não possui
+métodos abstratos, ela não precisa sobrescrever nada.
+```
+#### Escrevendo classes anônimas
+* Vamos supor que temos a seguinte interface com dois métodos:
+```java 
+interface SpeakingEntity {
+
+    void sayHello();
+
+    void sayBye();
+}
+```
+* Esta é uma classe anônima que representa uma pessoa que fala inglês:
+```java 
+SpeakingEntity englishSpeakingPerson = new SpeakingEntity() {
+            
+    @Override
+    public void sayHello() {
+        System.out.println("Hello!");
+    }
+
+    @Override
+    public void sayBye() {
+        System.out.println("Bye!");
+    }
+};
+```
+* A classe anônima é declarada e instanciada ao mesmo tempo - como uma expressão. Ele substitui os dois métodos da interface.
+* Atribuímos uma instância da classe anônima à variável do tipo de interface. Agora, podemos invocar métodos substituídos:
+```java 
+englishSpeakingPerson.sayHello();
+englishSpeakingPerson.sayBye();
+```
+```
+Claro, o resultado é
+```
+* Vamos declarar e instanciar outra classe anônima:
+```java 
+SpeakingEntity cat = new SpeakingEntity() {
+
+    @Override
+    public void sayHello() {
+        System.out.println("Meow!");
+    }
+
+    @Override
+    public void sayBye() {
+        System.out.println("Meow!");
+    }
+};
+```
+* Quando invocamos os mesmos métodos, obtemos o seguinte resultado:
+```
+Meow!
+Meow!
+```
+* Portanto, ```englishSpeakingPerson``` e ```cat``` são instâncias de diferentes classes anônimas que implementam a mesma interface.
+#### Acessando variáveis de contexto
+* No corpo de uma classe anônima, é possível capturar variáveis de um contexto onde ela é definida:
+  * uma classe anônima pode capturar membros de sua classe envolvente (a classe externa);
+  * uma classe anônima pode capturar variáveis locais que são declaradas como ```final``` ou são efetivamente finais (ou seja, a variável não é alterada, mas não tem a ```final``` palavra - chave).
+Aqui está outra classe anônima que implementa a ```SpeakingEntity``` interface:
+```java 
+public class AnonymousClassExample {
+
+    private static String BYE_STRING = "Auf Wiedersehen!"; // static constant
+
+    public static void main(String[] args) {
+
+        final String hello = "Guten Tag!"; // final local variable
+
+        SpeakingEntity germanSpeakingPerson = new SpeakingEntity() {
+
+            @Override
+            public void sayHello() {
+                System.out.println(hello); // it captures the local variable
+            }
+
+            @Override
+            public void sayBye() {
+                System.out.println(BYE_STRING); // it captures the constant field
+            }
+        };
+
+        germanSpeakingPerson.sayHello();
+
+        germanSpeakingPerson.sayBye();
+    }
+}
+```
+* A classe anônima captura o campo constante ```BYE_STRING``` e a variável final local ```hello```. Este código foi compilado com sucesso e imprime o que esperamos:
+```
+Guten Tag!
+Auf Wiedersehen!
+```
+```
+Uma declaração de uma variável ou método em uma classe anônima obscurece
+qualquer outra declaração no escopo envolvente que tenha o mesmo nome.
+Você não pode acessar quaisquer declarações ocultas por seus nomes.
+```
+#### Quando usar classes anônimas
+* Geralmente, você deve considerar o uso de uma classe anônima quando:
+  * apenas uma instância da classe é necessária
+  * a classe tem um corpo muito curto
+  * a classe é usada logo após ser definida
+* Neste tópico, consideramos classes anônimas bastante simples para entender a sintaxe básica, mas em aplicativos da vida real, elas fornecem um mecanismo poderoso para criar classes que encapsulam comportamentos e os passam para métodos adequados. Esta é uma maneira conveniente de interagir com partes de nosso aplicativo ou com algumas bibliotecas de terceiros.
+* E no próximo tópico sobre classes anônimas, você conhecerá exemplos mais difíceis e mergulhará nas complexidades das classes anônimas. Vejo você em breve!
+>>>>>>> 7fca6c834c10145752943f710c59f6d017aa5979
+#### Teste 2
