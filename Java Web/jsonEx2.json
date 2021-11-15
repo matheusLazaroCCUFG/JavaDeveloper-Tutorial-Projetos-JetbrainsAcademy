@@ -1,0 +1,16 @@
+{
+  "books": [
+    {
+      "title": "Beginning Spring 5",
+      "author": "Joseph B. Ottinger"
+    },
+    {
+      "title": "Beginning Spring Boot 2",
+      "author": "K. Siva Prasad Reddy"
+    },
+    {
+      "title": "Build Spring 2 Enterprise Applications",
+      "author": "Joseph B. Ottinger"
+    }
+  ]
+}
