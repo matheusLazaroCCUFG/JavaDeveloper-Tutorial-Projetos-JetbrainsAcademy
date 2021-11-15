@@ -9,6 +9,19 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+<<<<<<< HEAD
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="C:\Program Files\JetBrains\IntelliJ IDEA 2020.2.3\plugins\maven\lib\maven3" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="20VqwNokvJv9KWQHgSvf67gKRar" />
+=======
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -21,6 +34,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="ProjectId" id="20X8Ge7Lvv9uI2iRQ6g9V4LboIZ" />
+>>>>>>> 7fca6c834c10145752943f710c59f6d017aa5979
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -32,7 +46,27 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+  <component name="RunManager">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+>>>>>>> 7fca6c834c10145752943f710c59f6d017aa5979
+>>>>>>> ea1904aed05f2732ba5c9cdcd2056ef93c2356f3
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -40,7 +74,13 @@
       <created>1636179482099</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
+<<<<<<< HEAD
+      <updated>1636140342907</updated>
+      <workItem from="1636140653649" duration="3741000" />
+      <workItem from="1636769179919" duration="468000" />
+=======
       <updated>1636179482099</updated>
+<<<<<<< HEAD
       <workItem from="1636179485251" duration="2674000" />
       <workItem from="1636937273998" duration="54000" />
     </task>
@@ -50,6 +90,10 @@
       <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
       <updated>1636182078949</updated>
+=======
+      <workItem from="1636179485251" duration="2531000" />
+>>>>>>> 7fca6c834c10145752943f710c59f6d017aa5979
+>>>>>>> ea1904aed05f2732ba5c9cdcd2056ef93c2356f3
     </task>
     <option name="localTasksCounter" value="2" />
     <servers />
@@ -57,6 +101,8 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+<<<<<<< HEAD
+=======
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -73,4 +119,5 @@
     <MESSAGE value="commit" />
     <option name="LAST_COMMIT_MESSAGE" value="commit" />
   </component>
+>>>>>>> 7fca6c834c10145752943f710c59f6d017aa5979
 </project>

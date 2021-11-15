@@ -2879,6 +2879,9 @@ SELECT * FROM Customers;
 A sintaxe do MySQL foi usada neste tópico e em outras partes deste site,
 portanto, os exemplos podem não ser compatíveis com outros dialetos SQL.
 ```
+<<<<<<< HEAD
+
+=======
 #### <hr>
 #### Tipos de dados básicos
 #### Introdução
@@ -3215,3 +3218,4 @@ Você não pode acessar quaisquer declarações ocultas por seus nomes.
   * a classe é usada logo após ser definida
 * Neste tópico, consideramos classes anônimas bastante simples para entender a sintaxe básica, mas em aplicativos da vida real, elas fornecem um mecanismo poderoso para criar classes que encapsulam comportamentos e os passam para métodos adequados. Esta é uma maneira conveniente de interagir com partes de nosso aplicativo ou com algumas bibliotecas de terceiros.
 * E no próximo tópico sobre classes anônimas, você conhecerá exemplos mais difíceis e mergulhará nas complexidades das classes anônimas. Vejo você em breve!
+#### <hr>
