@@ -1,5 +1,0 @@
-## Introdução ao JavaServer Faces 2.x
-* https://netbeans.apache.org/kb/docs/web/jsf20-intro_pt_BR.html
-* https://github.com/apache/netbeans-website/blob/master/netbeans.apache.org/src/content/kb/docs/web/jsf20-intro_pt_BR.asciidoc
-
-
