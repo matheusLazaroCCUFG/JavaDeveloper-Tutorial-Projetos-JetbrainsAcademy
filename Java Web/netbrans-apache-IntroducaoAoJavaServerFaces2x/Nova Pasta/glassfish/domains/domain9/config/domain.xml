@@ -64,6 +64,7 @@
     <server config-ref="server-config" name="server">
       <application-ref ref="__admingui" virtual-servers="__asadmin"></application-ref>
       <application-ref ref="jsfDemo" virtual-servers="server"></application-ref>
+      <application-ref ref="Financeiro-1.0-SNAPSHOT" virtual-servers="server"></application-ref>
       <resource-ref ref="jdbc/__TimerPool"></resource-ref>
       <resource-ref ref="jdbc/__default"></resource-ref>
       <resource-ref ref="jdbc/sample"></resource-ref>
@@ -472,6 +473,17 @@
       <module name="jsfDemo">
         <engine sniffer="security"></engine>
         <engine sniffer="web"></engine>
+      </module>
+    </application>
+    <application context-root="/Financeiro" object-type="user" name="Financeiro-1.0-SNAPSHOT" directory-deployed="true" location="file:/C:/Users/mathe/Desktop/tutorialJava/xampp_stop.lnk/Java%20Web/JAVA%20EE%207%20com%20JSF,%20PrimeFaces%20e%20CDI/Financeiro/target/Financeiro-1.0-SNAPSHOT/">
+      <property name="appLocation" value="file:/C:/Users/mathe/Desktop/tutorialJava/xampp_stop.lnk/Java%20Web/JAVA%20EE%207%20com%20JSF,%20PrimeFaces%20e%20CDI/Financeiro/target/Financeiro-1.0-SNAPSHOT/"></property>
+      <property name="archiveType" value="war"></property>
+      <property name="defaultAppName" value="Financeiro-1.0-SNAPSHOT"></property>
+      <module name="Financeiro-1.0-SNAPSHOT">
+        <engine sniffer="jpa"></engine>
+        <engine sniffer="security"></engine>
+        <engine sniffer="web"></engine>
+        <engine sniffer="weld"></engine>
       </module>
     </application>
   </applications>

@@ -1,0 +1,16 @@
+/* AUTOMATICALLY GENERATED ON Sat Nov 20 19:22:17 BRT 2021*/
+/* DO NOT EDIT */
+
+grant {
+  permission javax.security.jacc.WebResourcePermission "/";
+  permission javax.security.jacc.WebUserDataPermission "/";
+};
+
+grant      principal * * {
+  permission javax.security.jacc.WebRoleRefPermission "jsp", "**";
+  permission javax.security.jacc.WebRoleRefPermission "", "**";
+  permission javax.security.jacc.WebRoleRefPermission "com.algaworks.financeiro.JAXRSConfiguration", "**";
+  permission javax.security.jacc.WebRoleRefPermission "default", "**";
+  permission javax.security.jacc.WebRoleRefPermission "com.algaworks.servlet.HelloWorldServlet", "**";
+};
+

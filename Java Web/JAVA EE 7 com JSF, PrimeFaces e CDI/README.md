@@ -20,3 +20,45 @@ de aplicação e possuem como principais objetivos, fornecer facilidade e
 produtividade no desenvolvimento de componentes distribuídos,
 transacionados, seguros e portáveis.
 * Protocolo HTTP
+    * Protocolo stateless de comunicação cliente-servidor
+    * O cliente envia uma requisição para o sevidor, que processa a requisição e devolve uma resposta para o cliente, sendo que nenhuma informação é mantida no servidor em relação às requisições previamente recebidas.
+    * Métodos HTTP:
+        * Método GET: obter o conteúdo de um arquivo no servidor.
+        * Método POST: enviar dados de formulários HTML ao servidor.
+#### Desenvolvimento web com Java
+* Acesso às páginas:
+    * Modelo request-response
+        * request:
+            * Solicitação do cliente para que alguma ação seja realizada.
+        * response:
+            * Realiza a solicitação no servidor e responde para o cliente.
+        * Implementado através da API de Servlets em Java.
+            * Estende a funcionalidade de um servidor web para servir páginas dinâmicas aos navegadores, utilizando o protocolo HTTP.
+        * Servidores web:
+            * Servlet Container
+            * Converte a requisição em um objeto do tipo HttpServletRequest
+                * Passado aos componentes web, que podem executar qualquer código Java para que possa ser gerado um conteúdo dinâmico.
+            * O componente web devolve um objeto HttpServletResponse
+                * Resposta ao cliente
+                * Objeto gerado para que o conteúdo gerado seja enviado ao navegador do usuário.
+### Persistência de dados dom JPA
+#### Persistência
+* Preservação dos dados quendo um sistema é encerrado, promovendo a praticidade e usabilidade.
+* Uso de Sistemas Gerenciadores de Banco de Dados relacionais e SQL
+* Arquivos XML
+* Arquivos texto
+* etc
+#### Mapeamento Objeto Relacional (ORM)
+* Técnica de programação para conversão de dados entre banco de dados relacionais e linguagens de programação orientada a objetos.
+    * Banco de dados:
+        * Entidades são representadas por tabelas, com colunas que armazenem propriedades de diversos tipos.
+        * Uma tabela pode se associar com outras e criar relacionamentos diversos.
+    * Linugagem orientada a Objetos (Java)
+        * Entidades são classes, e objetos dessas classes representam elementos do mundo real.
+    * Comparação entre o modelo relacional com o modelo orientado a objetos:
+        Modelo relacional | Modelo OO
+        tabela              Classe
+        linha               Objeto
+        coluna              Atributo
+        -                   Método
+        Chave estrangeira   Associação
