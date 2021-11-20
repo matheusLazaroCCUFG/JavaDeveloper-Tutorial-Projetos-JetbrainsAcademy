@@ -56,9 +56,24 @@ transacionados, seguros e portáveis.
     * Linugagem orientada a Objetos (Java)
         * Entidades são classes, e objetos dessas classes representam elementos do mundo real.
     * Comparação entre o modelo relacional com o modelo orientado a objetos:
-        Modelo relacional | Modelo OO
-        tabela              Classe
-        linha               Objeto
-        coluna              Atributo
-        -                   Método
-        Chave estrangeira   Associação
+
+<table>
+    <tr>
+      <th>Modelo relacional</th>
+      <th>Modelo OO</th>
+    </tr>
+    <tr>
+      <td>tabela</td>
+      <td>linha</td>
+      <td>coluna</td>
+      <td>-</td>
+      <td>Chave estrangeira</td>
+    </tr>
+    <tr>
+      <td>Classe</td>
+      <td>Objeto</td>
+      <td>Atributo</td>
+      <td>Método</td>
+      <td>Associação</td>
+    </tr>
+</table>
