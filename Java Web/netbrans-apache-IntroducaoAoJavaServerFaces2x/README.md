@@ -1,6 +1,9 @@
 ## Introdução ao JavaServer Faces 2.x - Tutorial
 * https://netbeans.apache.org/kb/docs/web/jsf20-intro_pt_BR.html
 * https://github.com/apache/netbeans-website/blob/master/netbeans.apache.org/src/content/kb/docs/web/jsf20-intro_pt_BR.asciidoc
+#### Descrição mais completa do framework JSF:
+* http://docs.oracle.com/javaee/7/tutorial/doc/jsf-develop.htm
+
 #### <hr>
 #### Recursos e softwares necessários
 * Software ou recurso
