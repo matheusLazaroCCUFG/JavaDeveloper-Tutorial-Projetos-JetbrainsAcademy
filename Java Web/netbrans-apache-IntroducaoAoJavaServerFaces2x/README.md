@@ -25,6 +25,7 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Pacote Java EE 7.2, 7.3, 7.4, 8.0</font></font></p></td>
 </tr>
 <tr>
+<a href="../JAVA EE 7 com JSF, PrimeFaces e CDI/README.md"></a>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">JDK (kit de desenvolvimento Java)</font></font></a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">7 ou 8</font></font></p></td>
 </tr>
