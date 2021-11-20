@@ -2,7 +2,7 @@
 * https://netbeans.apache.org/kb/docs/web/jsf20-intro_pt_BR.html
 * https://github.com/apache/netbeans-website/blob/master/netbeans.apache.org/src/content/kb/docs/web/jsf20-intro_pt_BR.asciidoc
 #### Descrição mais completa do framework JSF:
-* http://docs.oracle.com/javaee/7/tutorial/doc/jsf-develop.htm
+* https://docs.oracle.com/javaee/7/tutorial/jsf-develop.htm#BNATX
 
 #### <hr>
 #### Recursos e softwares necessários
@@ -38,5 +38,10 @@
 </tr>
 </tbody>
 </table>
+
+#### Adicionando suporte JSF 2.x a uma aplicação Web
+* Criar um Novo Projeto com o suporte a JSF 2.x
+    * https://netbeans.apache.org/kb/docs/web/jsf20-support.html#creatingSupport
+
 
 

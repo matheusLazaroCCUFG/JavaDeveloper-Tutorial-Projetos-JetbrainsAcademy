@@ -22,7 +22,7 @@ public class UserNumberBean implements Serializable {
     /** Creates a new instance of UserNumberBean */
     public UserNumberBean() {
         Random randomGR = new Random();
-        randomInt = randomGR.nextInt(10);
+        randomInt = new Integer(randomGR.nextInt(10));
         System.out.println("Duke's number: " + randomInt);
     }
 
@@ -43,6 +43,7 @@ public class UserNumberBean implements Serializable {
 
             return "Yay! You got it!";
         } else {
+
             // including HTML requires that you set escape="false" in view
             return "<p>Sorry, " + userNumber + " isn't it.</p>"
                     + "<p>Guess again...</p>";
