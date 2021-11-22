@@ -77,12 +77,16 @@
             }
             ```
         * No faces-config.xml
-```xml  
-<navigation-rule>
-    <from-view-id>cadastro.xhtml</from-view-id>
-    <navigation-case>
-        <from-outcome>cadastrado</from-outcome>
-        <to-view-id>listagem.xhtml</to-view-id>
-    </navigation-case>
-</navigation-rule>	
-```
+            ```xml  
+            <navigation-rule>
+                <from-view-id>cadastro.xhtml</from-view-id>
+                <navigation-case>
+                    <from-outcome>cadastrado</from-outcome>
+                    <to-view-id>listagem.xhtml</to-view-id>
+                </navigation-case>
+            </navigation-rule>	
+            ```
+* Exercício 1
+    * Aplicação usando JSF para somatório onde o valor inicial e o valor final são informados
+    * Informar o número de vezes que:
+        * O usuário acessou o serviço
