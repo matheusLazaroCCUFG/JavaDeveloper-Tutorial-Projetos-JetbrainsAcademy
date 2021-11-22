@@ -54,6 +54,35 @@
             <h:commandButton value="Salva"
             action="#{agendaBean.cadastra(contatoBean)}">
             ```
+        * No Bean
+            ```java 
+            public String cadastra(ContatoBean contatoBean) {
+                ...
+                return "listagem.xhtml";
+            }
+            ```
+        * Obs.: Se não tiver action no Facelet ou retorno no Bean, o JSF acionará a página de origem novamente!
     * Navegação indireta
         * O método acionado retorna um rótulo e o XML de configuração vincula o rótulo a uma página.
-
+        * No Facelet
+            ```xhtml 
+            <h:commandButton value="Salva"
+            action="#{agendaBean.cadastra(contatoBean)}">
+            ```
+        * No Bean
+            ```java 
+            public String cadastra(ContatoBean contatoBean) {
+                ...
+                return "listagem.xhtml";
+            }
+            ```
+        * No faces-config.xml
+```xml  
+<navigation-rule>
+    <from-view-id>cadastro.xhtml</from-view-id>
+    <navigation-case>
+        <from-outcome>cadastrado</from-outcome>
+        <to-view-id>listagem.xhtml</to-view-id>
+    </navigation-case>
+</navigation-rule>	
+```
