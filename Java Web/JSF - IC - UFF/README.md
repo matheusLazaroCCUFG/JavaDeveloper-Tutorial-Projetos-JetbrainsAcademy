@@ -50,10 +50,10 @@
     * Navegação direta
         * O método acionado retorna a página que deve ser aberta
         * No Facelet
-```xhtml 
-<h:commandButton value="Salva"
-action="#{agendaBean.cadastra(contatoBean)}">
-```
+            ```xhtml 
+            <h:commandButton value="Salva"
+            action="#{agendaBean.cadastra(contatoBean)}">
+            ```
     * Navegação indireta
         * O método acionado retorna um rótulo e o XML de configuração vincula o rótulo a uma página.
 
