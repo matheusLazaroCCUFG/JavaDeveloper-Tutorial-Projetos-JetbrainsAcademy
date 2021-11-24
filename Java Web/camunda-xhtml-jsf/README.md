@@ -21,9 +21,15 @@
     * Com inovação e flexibilidade, o foco do modelo é otimizar documentos, recursos e centralizar dados.
     * Integrando as etapas jurídicas, organizando uma agenda e atingindo metas, com aumento de produtividade e redução de esforço.
     * Automação de processos gerados por BPM mostra-se íntegra em meio a alta complexidade de gerenciamento de equipes e, com alta personalização.
+## O sistema
 ### Configuração da agenda de tarefas
-    * Subdivisão em três etapas:
-        * Criação de variáveis
-        * Apresentação de variáveis
-        * Filtragem
+* Subdivisão em três etapas:
+    * Criação de variáveis
+    * Apresentação de variáveis
+    * Filtragem
+* Clicando em: Menu-hambúrguer -> 'Ferramentas' (Canto superior esquerdo da aba Flow)
+    * Subtópico: "</> variáveis"
+        * O botão [Nova variável] é apresentado.
+            #### Criação de variáveis
+                * Nome:
         
