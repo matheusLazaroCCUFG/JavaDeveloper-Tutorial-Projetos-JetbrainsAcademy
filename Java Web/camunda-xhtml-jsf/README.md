@@ -21,3 +21,9 @@
     * Com inovação e flexibilidade, o foco do modelo é otimizar documentos, recursos e centralizar dados.
     * Integrando as etapas jurídicas, organizando uma agenda e atingindo metas, com aumento de produtividade e redução de esforço.
     * Automação de processos gerados por BPM mostra-se íntegra em meio a alta complexidade de gerenciamento de equipes e, com alta personalização.
+### Configuração da agenda de tarefas
+    * Subdivisão em três etapas:
+        * Criação de variáveis
+        * Apresentação de variáveis
+        * Filtragem
+        
