@@ -30,6 +30,23 @@
 * Clicando em: Menu-hambúrguer -> 'Ferramentas' (Canto superior esquerdo da aba Flow)
     * Subtópico: "</> variáveis"
         * O botão [Nova variável] é apresentado.
-            #### Criação de variáveis
-                * Nome:
-        
+#### Criação de variáveis
+- Nome: O nome dado a variável que aparecerá no filtro de
+pesquisas.
+- Código: O código da variável, se for uma variável de
+processo retornará um dado real guardado dentro dela.
+- [X] Variável local: Para extração de relatórios
+- Tipo de dado: O tipo esperado do valor interno.
+- Escopo: Onde a variável se encontra.
+- Largura da coluna nos relatórios: Quando exportado em
+formato tabela, obrigatório para exportação sob pena de
+erros.
+- Usar no filtro de tarefas: Se deverá aparecer na aba de
+‘Filtro’ para ser selecionável em “Apresentar” ou “Filtrar por”.
+- Tipo de filtro: A forma cujo campo aparecerá em meio à
+aba de filtragem das tarefas, caso selecionado em “Filtrar
+por”.
+- [X] Pesquisa exata: Exige escrita correta.
+- [Salvar]: Salva a variável da forma como ela está, podendo
+ser editada ou excluída depois.
+      
